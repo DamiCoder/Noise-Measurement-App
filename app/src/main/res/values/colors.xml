@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="normalText">#000000</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="hyperLink">#4a26fd</color>
+    <color name="menuBackground">#ff6c3d</color>
+    <color name="header">#f7310b</color>
+    <color name="navigation">#f44336</color>
+    <color name="inputHint">#ef5350</color>
+    <color name="buttonBackgroundColor">#ff5c37</color>
+    <color name="userInput">#f7310b</color>
+    <color name="backgroundColor">#FFFFFF</color>
+    <color name="grey">#9e9e9e</color>
+    <color name="darkGrey">#707070</color>
+    <color name="contraryBlue">#e64f2e</color>
+</resources>

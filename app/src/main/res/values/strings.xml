@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Pomiary hałasu</string>
+    <string name="greeting_text">Witaj!</string>
+    <string name="email_input">e-mail</string>
+    <string name="pwd_input">hasło</string>
+    <string name="login_button_label">Zaloguj się</string>
+    <string name="no_account_text">Nie masz konta?</string>
+    <string name="register_hyperlink">Zarejestruj się!</string>
+
+    <string name="register_header">Zarejestruj się</string>
+    <string name="create_account_button_label">Załóż konto</string>
+    <string name="bottommenu_record">Nagraj</string>
+    <string name="bottommenu_help">Pomoc</string>
+    <string name="bottommenu_norms">Normy</string>
+    <string name="bottommenu_history">Historia</string>
+    <string name="microphone_image_description">Obrazek mikrofonu</string>
+    <string name="chooseprobe_header">Jakiej próbki odniesienia chcesz użyć do pomiarów?</string>
+    <string name="chooseprobe_predefinedprobe_text">Próbka \npredefiniowana</string>
+    <string name="chooseprobe_customprobe_text">Nagraj własną \npróbkę</string>
+    <string name="chooseprobe_recomendedoption_text">*Zalecana</string>
+    <string name="chooseprobe_continuebutton_text">Kontynuuj</string>
+</resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      android:layout_height="match_parent"
+      android:layout_width="match_parent">
+    <item
+            android:id="@+id/item_bottomnav_record"
+            android:enabled="true"
+            android:icon="@drawable/ic_microphone_silhouette_f44545_original"
+            android:title="@string/bottommenu_record"
+            app:showAsAction="ifRoom"/>
+    <item
+            android:id="@+id/item_bottomnav_history"
+            android:enabled="true"
+            android:icon="@drawable/ic_archive_solid"
+            android:title="@string/bottommenu_history"
+            app:showAsAction="ifRoom"
+    />
+    <item
+            android:id="@+id/item_bottomnav_norms"
+            android:enabled="true"
+            android:icon="@drawable/ic_norms_solid"
+            android:title="@string/bottommenu_norms"
+            app:showAsAction="ifRoom"/>
+    <item
+            android:id="@+id/item_bottomnav_help"
+            android:enabled="true"
+            android:icon="@drawable/ic_question_solid"
+            android:title="@string/bottommenu_help"
+            app:showAsAction="ifRoom"/>
+</menu>
