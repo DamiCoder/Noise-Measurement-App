@@ -1,4 +1,4 @@
-package dcwiek.noisemeasurmentapp.view.const
+package dcwiek.noisemeasurmentapp.view.constants
 
 class FragmentKeys {
     companion object {
@@ -7,6 +7,7 @@ class FragmentKeys {
         const val REGISTER_FRAGMENT : String = "REGISTER_FRAGMENT"
         const val MAIN_MENU_FRAGMENT : String = "MAIN_MENU_FRAGMENT"
         const val CHOOSE_PROBE_FRAGMENT : String = "CHOOSE_PROBE_FRAGMENT"
-        
+        const val CUSTOM_PROBE_FRAGMENT : String = "CUSTOM_PROBE_FRAGMENT"
+
     }
 }

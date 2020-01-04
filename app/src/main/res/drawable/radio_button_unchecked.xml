@@ -6,8 +6,6 @@
             android:bottomRightRadius="15dp"
             android:topLeftRadius="15dp"
             android:topRightRadius="15dp" />
-<!--            android:radius="60dp"-->
         <stroke android:width="2dp" android:color="@color/contraryBlue"/>
-<!--    <stroke android:width="2dp" android:color="@color/inputHint"/>-->
-<!--    <solid android:color="@color/grey"/>-->
+
 </shape>

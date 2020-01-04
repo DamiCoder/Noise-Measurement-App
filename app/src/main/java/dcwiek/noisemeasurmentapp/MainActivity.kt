@@ -5,7 +5,7 @@ import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import dcwiek.noisemeasurmentapp.view.LoadingFragment
 import dcwiek.noisemeasurmentapp.view.LoginFragment
-import dcwiek.noisemeasurmentapp.view.const.FragmentKeys
+import dcwiek.noisemeasurmentapp.view.constants.FragmentKeys
 
 
 class MainActivity : AppCompatActivity() {

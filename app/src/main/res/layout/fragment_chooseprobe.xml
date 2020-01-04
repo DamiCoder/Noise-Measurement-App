@@ -4,21 +4,23 @@
         xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
         tools:context=".view.ChooseProbeFragment" android:background="@color/backgroundColor">
 
     <TextView
             android:text="@string/chooseprobe_header"
-            android:layout_width="343dp"
-            android:layout_height="69dp"
+            android:layout_width="289dp"
+            android:layout_height="68dp"
             android:id="@+id/textView4"
             android:fontFamily="@font/open_sans_bold" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="132dp" app:layout_constraintHorizontal_bias="0.493"
+            android:layout_marginTop="80dp"
             android:textColor="@color/header" android:textSize="22sp" android:gravity="clip_horizontal"
             android:textAlignment="center"/>
     <RadioGroup
             android:layout_width="363dp"
             android:layout_height="83dp"
+            android:animateLayoutChanges="true"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
             android:gravity="center_horizontal" app:layout_constraintTop_toBottomOf="@+id/textView4"
@@ -56,14 +58,29 @@
             app:layout_constraintBottom_toBottomOf="parent" android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp" android:textAllCaps="true" android:paddingLeft="30dp"
             android:paddingRight="30dp" android:id="@+id/button_chooseprobe_continue"
-            android:text="@string/chooseprobe_continuebutton_text"/>
+            android:text="@string/chooseprobe_continuebutton_text" android:fontFamily="@font/open_sans_bold"/>
+    <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/chooseprobe_button_info"
+            android:background="@drawable/ic_info_circle_solid"
+            style="?android:attr/borderlessButtonStyle"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp" android:layout_marginEnd="16dp" android:alpha="0.8"/>
+    <TextView app:layout_constraintHorizontal_bias="0.5" android:textColor="@color/inputHint"
+              android:text="info"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:id="@+id/textView5" app:layout_constraintStart_toStartOf="@+id/chooseprobe_button_info"
+              app:layout_constraintEnd_toEndOf="@+id/chooseprobe_button_info"
+              app:layout_constraintTop_toBottomOf="@+id/chooseprobe_button_info"
+                android:fontFamily="@font/open_sans_light" />
     <TextView
+            android:text="@string/chooseprobe_recomendedoption_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView6" app:layout_constraintStart_toStartOf="@+id/chooseprobe_radiogroup"
-            app:layout_constraintEnd_toEndOf="@+id/chooseprobe_radiogroup"
+            android:id="@+id/textView8"
             app:layout_constraintTop_toBottomOf="@+id/chooseprobe_radiogroup"
-            app:layout_constraintHorizontal_bias="0.203" android:fontFamily="@font/open_sans_light"
-            android:textColor="@color/inputHint" android:textStyle="bold"
-            tools:text="@string/chooseprobe_recomendedoption_text"/>
+            app:layout_constraintStart_toStartOf="@+id/chooseprobe_radiogroup" android:layout_marginStart="68dp"
+            android:textColor="@color/inputHint"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

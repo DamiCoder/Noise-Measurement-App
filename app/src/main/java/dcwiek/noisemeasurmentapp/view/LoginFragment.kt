@@ -1,14 +1,13 @@
 package dcwiek.noisemeasurmentapp.view
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import dcwiek.noisemeasurmentapp.R
-import dcwiek.noisemeasurmentapp.view.const.FragmentKeys
+import dcwiek.noisemeasurmentapp.view.constants.FragmentKeys
 import kotlinx.android.synthetic.main.fragment_login.*
 
 class LoginFragment : Fragment() {

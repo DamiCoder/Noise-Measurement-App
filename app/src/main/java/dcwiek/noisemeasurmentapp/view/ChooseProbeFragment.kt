@@ -1,26 +1,27 @@
 package dcwiek.noisemeasurmentapp.view
 
-import android.annotation.SuppressLint
 import android.graphics.Color
-import android.graphics.Typeface
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
+import android.widget.Button
+import android.widget.PopupWindow
 import android.widget.RadioButton
-import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.forEach
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import dcwiek.noisemeasurmentapp.R
-import dcwiek.noisemeasurmentapp.view.const.FragmentKeys
+import dcwiek.noisemeasurmentapp.view.constants.FragmentKeys
 import kotlinx.android.synthetic.main.fragment_chooseprobe.*
 
 
 class ChooseProbeFragment : Fragment() {
+
+    private lateinit var popupWindow : PopupWindow
 
     companion object {
         fun newInstance() = ChooseProbeFragment()
@@ -35,39 +36,74 @@ class ChooseProbeFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_chooseprobe, container, false)
     }
 
-    @SuppressLint("ResourceType")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(ChooseProbeViewModel::class.java)
 
         chooseprobe_radiogroup.setOnCheckedChangeListener { group, checkedId ->
-            chooseprobe_radiogroup.forEach {
-                val radioButton = it as RadioButton
-                if(!radioButton.isChecked) {
-                    radioButton.background = ResourcesCompat.getDrawable(resources, R.drawable.radio_button_unchecked, null)
-                    val typeface = resources.getFont(R.font.open_sans)
-                    radioButton.typeface = typeface
-                    radioButton.setTextColor(ResourcesCompat.getColor(resources, R.color.contraryBlue, null))
-                } else {
-                    radioButton.background = ResourcesCompat.getDrawable(resources, R.drawable.radio_button_checked, null);
-                    val typeface = resources.getFont(R.font.open_sans)
-                    radioButton.typeface = typeface
-                    radioButton.setTextColor(Color.WHITE)
-                }
+            changeRadioButtonsAppearance()
+        }
+        button_chooseprobe_continue.setOnClickListener {
+            if (chooseprobe_defaultproberadio.isChecked) {
+                createMainMenuFragment()
+            } else {
+                createCustomProbeFragment()
             }
         }
-        button_chooseprobe_continue.setOnClickListener{
-            if(chooseprobe_defaultproberadio.isChecked) {
-                fragmentManager?.let { fragmentManager ->
-                    fragmentManager
-                        .beginTransaction()
-                        .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
-                        .replace(R.id.framelayout_main, MainMenuFragment.newInstance(), FragmentKeys.MAIN_MENU_FRAGMENT)
-                        .commit()
-                }
-            }else {
-                //TODO: przenieś do fragmentu nagrywania próbki
+        chooseprobe_button_info.setOnClickListener {
+            createInfoPopup()
+        }
+    }
+
+    private fun changeRadioButtonsAppearance() {
+        chooseprobe_radiogroup.forEach {
+            val radioButton = it as RadioButton
+            if (!radioButton.isChecked) {
+                radioButton.background =
+                    ResourcesCompat.getDrawable(resources, R.drawable.radio_button_unchecked, null)
+                val typeface = resources.getFont(R.font.open_sans)
+                radioButton.typeface = typeface
+                radioButton.setTextColor(ResourcesCompat.getColor(resources, R.color.contraryBlue, null))
+            } else {
+                radioButton.background =
+                    ResourcesCompat.getDrawable(resources, R.drawable.radio_button_checked, null);
+                val typeface = resources.getFont(R.font.open_sans)
+                radioButton.typeface = typeface
+                radioButton.setTextColor(Color.WHITE)
             }
+        }
+    }
+
+    private fun createInfoPopup() {
+        val popupView: View = LayoutInflater.from(context).inflate(R.layout.popup_chooseprobeinfo, null)
+        val width = ConstraintLayout.LayoutParams.WRAP_CONTENT
+        val height = ConstraintLayout.LayoutParams.WRAP_CONTENT
+        val focusable = true
+        popupWindow = PopupWindow(popupView, width, height, focusable)
+        popupWindow.animationStyle = R.style.Animation
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
+        (popupView.findViewById(R.id.popup_chooseprobeinfo_closebutton) as Button).setOnClickListener {
+            popupWindow.dismiss()
+        }
+    }
+
+    private fun createCustomProbeFragment() {
+        fragmentManager?.let { fragmentManager ->
+            fragmentManager
+                .beginTransaction()
+                .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
+                .replace(R.id.framelayout_main, CustomProbeFragment.newInstance(), FragmentKeys.CUSTOM_PROBE_FRAGMENT)
+                .commit()
+        }
+    }
+
+    private fun createMainMenuFragment() {
+        fragmentManager?.let { fragmentManager ->
+            fragmentManager
+                .beginTransaction()
+                .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
+                .replace(R.id.framelayout_main, MainMenuFragment.newInstance(), FragmentKeys.MAIN_MENU_FRAGMENT)
+                .commit()
         }
     }
 
