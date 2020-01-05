@@ -15,6 +15,7 @@ import androidx.core.view.forEach
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import dcwiek.noisemeasurmentapp.R
+import dcwiek.noisemeasurmentapp.service.SharedPreferencesService
 import dcwiek.noisemeasurmentapp.view.constants.FragmentKeys
 import kotlinx.android.synthetic.main.fragment_chooseprobe.*
 
@@ -45,6 +46,13 @@ class ChooseProbeFragment : Fragment() {
         }
         button_chooseprobe_continue.setOnClickListener {
             if (chooseprobe_defaultproberadio.isChecked) {
+                context?.let {
+                    SharedPreferencesService.putSharedPreference(
+                        it.getString(R.string.preference_key_choosen_probe),
+                        it.getString(R.string.preference_value_use_custom_probe),
+                        it
+                    )
+                }
                 createMainMenuFragment()
             } else {
                 createCustomProbeFragment()

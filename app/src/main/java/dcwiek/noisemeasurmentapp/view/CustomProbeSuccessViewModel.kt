@@ -1,0 +1,7 @@
+package dcwiek.noisemeasurmentapp.view
+
+import androidx.lifecycle.ViewModel
+
+class CustomProbeSuccessViewModel : ViewModel() {
+    // TODO: Implement the ViewModel
+}

@@ -14,6 +14,12 @@
     <string name="bottommenu_norms">Normy</string>
     <string name="bottommenu_history">Historia</string>
     <string name="microphone_image_description">Obrazek mikrofonu</string>
+
+    <string name="preference_file_key">SharedPreferences</string>
+    <string name="preference_value_use_default_probe">UseDefaultProbe</string>
+    <string name="preference_value_use_custom_probe">UseCustomProbe</string>
+    <string name="preference_key_choosen_probe">ChoosenProbe</string>
+
     <string name="chooseprobe_header">Jakiej próbki odniesienia chcesz użyć do pomiarów?</string>
     <string name="chooseprobe_predefinedprobe_text">Próbka \npredefiniowana</string>
     <string name="chooseprobe_customprobe_text">Nagraj własną \npróbkę</string>

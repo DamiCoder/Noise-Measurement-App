@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import dcwiek.noisemeasurmentapp.R
+import dcwiek.noisemeasurmentapp.service.SharedPreferencesService
 import dcwiek.noisemeasurmentapp.view.constants.FragmentKeys
 import kotlinx.android.synthetic.main.fragment_login.*
 
@@ -23,7 +24,7 @@ class LoginFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        textview_login_registerlink.setOnClickListener{
+        textview_login_registerlink.setOnClickListener {
             fragmentManager?.let { fragmentManager ->
                 fragmentManager
                     .beginTransaction()
@@ -32,18 +33,40 @@ class LoginFragment : Fragment() {
                     .commit()
             }
         }
-
-        //TODO: add MainMenuFragment to ChooseProbeFragment!
-        button_login_login.setOnClickListener{
-            fragmentManager?.let { fragmentManager ->
-                fragmentManager
-                    .beginTransaction()
-                    .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
-                    .replace(R.id.framelayout_main, ChooseProbeFragment.newInstance(), FragmentKeys.CHOOSE_PROBE_FRAGMENT)
-                    .commit()
-            }
+        button_login_login.setOnClickListener {
+            chooseNextFragment()
         }
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    private fun chooseNextFragment() {
+        val chosenProbe =
+            SharedPreferencesService.getSharedPreference(getString(R.string.preference_key_choosen_probe), context)
+        if (chosenProbe != null) {
+            createMainMenuFragment()
+        } else {
+            createChooseProbeFragment()
+        }
+    }
+
+    private fun createMainMenuFragment() {
+        fragmentManager?.let { fragmentManager ->
+            fragmentManager
+                .beginTransaction()
+                .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
+                .replace(R.id.framelayout_main, MainMenuFragment.newInstance(), FragmentKeys.MAIN_MENU_FRAGMENT)
+                .commit()
+        }
+    }
+
+    private fun createChooseProbeFragment() {
+        fragmentManager?.let { fragmentManager ->
+            fragmentManager
+                .beginTransaction()
+                .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
+                .replace(R.id.framelayout_main, ChooseProbeFragment.newInstance(), FragmentKeys.CHOOSE_PROBE_FRAGMENT)
+                .commit()
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
