@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import dcwiek.noisemeasurmentapp.R
 import dcwiek.noisemeasurmentapp.service.MediaRecorderService
+import dcwiek.noisemeasurmentapp.service.SharedPreferencesService
 import dcwiek.noisemeasurmentapp.view.constants.FragmentKeys
 import kotlinx.android.synthetic.main.fragment_customprobe.*
 
@@ -44,7 +45,9 @@ class CustomProbeFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(CustomProbeViewModel::class.java)
         customprobe_recordbutton.setOnClickListener {
             recordButtonClickListener()
-
+        }
+        customprobe_usedefaultprobetextview.setOnClickListener{
+            defaultProbeTextViewClickListener()
         }
     }
 
@@ -74,19 +77,38 @@ class CustomProbeFragment : Fragment() {
                     Log.e(CLASS_NAME, e.message, e)
                     createFailureFragment()
                 }
-
             }
         }.start()
+    }
+
+    private fun defaultProbeTextViewClickListener(){
+        context?.let {
+            SharedPreferencesService.putSharedPreference(
+                it.getString(R.string.preference_key_choosen_probe),
+                it.getString(R.string.preference_value_use_custom_probe),
+                it
+            )
+        }
+        fragmentManager?.let { fragmentManager ->
+            fragmentManager
+                .beginTransaction()
+                .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
+                .replace(R.id.framelayout_main, MainMenuFragment.newInstance(), FragmentKeys.MAIN_MENU_FRAGMENT)
+                .commit()
+        }
     }
 
     private fun changeObjectsVisibility() {
         customprobe_usedefaultprobetextview.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_out))
         customprobe_usedefaultprobetextview.visibility = View.GONE
+
         customprobe_recordbutton.isClickable = false
         customprobe_recordbutton.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_out))
         customprobe_recordbutton.visibility = View.GONE
+
         customprobe_progressbar.visibility = View.VISIBLE
         customprobe_progressbar.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_in))
+
         customprobe_recordingtextview.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_in))
         customprobe_recordingtextview.visibility = View.VISIBLE
         customprobe_recordingtextview.startAnimation(AnimationUtils.loadAnimation(context, R.anim.blinking))
