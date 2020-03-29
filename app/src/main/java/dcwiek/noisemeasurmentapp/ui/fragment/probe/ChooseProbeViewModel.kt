@@ -1,4 +1,4 @@
-package dcwiek.noisemeasurmentapp.view
+package dcwiek.noisemeasurmentapp.ui.fragment.probe
 
 import androidx.lifecycle.ViewModel
 

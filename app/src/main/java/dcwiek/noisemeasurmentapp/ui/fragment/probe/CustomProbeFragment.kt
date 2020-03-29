@@ -1,4 +1,4 @@
-package dcwiek.noisemeasurmentapp.view
+package dcwiek.noisemeasurmentapp.ui.fragment.probe
 
 import android.animation.LayoutTransition
 import android.os.Bundle
@@ -8,25 +8,32 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import dcwiek.noisemeasurmentapp.R
-import dcwiek.noisemeasurmentapp.service.MediaRecorderService
+import dcwiek.noisemeasurmentapp.application.NoiseMeasurementApplication
+import dcwiek.noisemeasurmentapp.service.ProbeRecorder
 import dcwiek.noisemeasurmentapp.service.SharedPreferencesService
-import dcwiek.noisemeasurmentapp.view.constants.FragmentKeys
+import dcwiek.noisemeasurmentapp.ui.constants.FragmentKeys
+import dcwiek.noisemeasurmentapp.ui.fragment.ExtendedFragment
+import dcwiek.noisemeasurmentapp.ui.fragment.menu.MainMenuFragment
 import kotlinx.android.synthetic.main.fragment_customprobe.*
 
 
-class CustomProbeFragment : Fragment() {
+class CustomProbeFragment : ExtendedFragment() {
 
+    private val TAG = CustomProbeFragment::class.java.name
+    private lateinit var probeRecorder: ProbeRecorder
+    private lateinit var viewModel: CustomProbeViewModel
 
     companion object {
         fun newInstance() = CustomProbeFragment()
-        private const val CLASS_NAME = "CustomProbeFragment.class"
-
     }
 
-    private lateinit var viewModel: CustomProbeViewModel
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        probeRecorder = (requireContext().applicationContext as NoiseMeasurementApplication)
+            .getMyComponent().getProbeRecorder()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,9 +45,6 @@ class CustomProbeFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        context?.let { context ->
-            MediaRecorderService.initializeMediaRecorder(context)
-        }
         customprobe_constraintlayout.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
         viewModel = ViewModelProviders.of(this).get(CustomProbeViewModel::class.java)
         customprobe_recordbutton.setOnClickListener {
@@ -59,9 +63,9 @@ class CustomProbeFragment : Fragment() {
         progressBar.progress = total
         val timePeriod = 1 * 20 * 1000
         try {
-            MediaRecorderService.startRecording()
+            probeRecorder.startRecording()
         } catch (e: Exception) {
-            Log.e(CLASS_NAME, e.message, e)
+            Log.e(TAG, e.message, e)
             createFailureFragment()
         }
         object : CountDownTimer(timePeriod.toLong(), 25) {
@@ -71,10 +75,10 @@ class CustomProbeFragment : Fragment() {
             }
             override fun onFinish() {
                 try {
-                    MediaRecorderService.stopRecording()
+                    probeRecorder.stopRecording()
                     createSuccessFragment()
                 } catch (e: Exception) {
-                    Log.e(CLASS_NAME, e.message, e)
+                    Log.e(TAG, e.message, e)
                     createFailureFragment()
                 }
             }
@@ -89,13 +93,8 @@ class CustomProbeFragment : Fragment() {
                 it
             )
         }
-        fragmentManager?.let { fragmentManager ->
-            fragmentManager
-                .beginTransaction()
-                .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
-                .replace(R.id.framelayout_main, MainMenuFragment.newInstance(), FragmentKeys.MAIN_MENU_FRAGMENT)
-                .commit()
-        }
+
+        replaceFragment(R.id.framelayout_main, MainMenuFragment.newInstance(), FragmentKeys.MAIN_MENU_FRAGMENT)
     }
 
     private fun changeObjectsVisibility() {
@@ -115,23 +114,14 @@ class CustomProbeFragment : Fragment() {
     }
 
     private fun createSuccessFragment() {
-        fragmentManager?.let { fragmentManager ->
-            fragmentManager
-                .beginTransaction()
-                .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
-                .replace(R.id.framelayout_main, CustomProbeSuccessFragment.newInstance(), FragmentKeys.CUSTOM_PROBE_SUCCESS_FRAGMENT)
-                .commit()
-        }
+        replaceFragment(R.id.framelayout_main, CustomProbeSuccessFragment.newInstance(),
+            FragmentKeys.CUSTOM_PROBE_SUCCESS_FRAGMENT)
+
     }
 
     private fun createFailureFragment() {
-        fragmentManager?.let { fragmentManager ->
-            fragmentManager
-                .beginTransaction()
-                .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
-                .replace(R.id.framelayout_main, CustomProbeFailureFragment.newInstance(), FragmentKeys.CUSTOM_PROBE_FAILURE_FRAGMENT)
-                .commit()
-        }
+        replaceFragment(R.id.framelayout_main, CustomProbeFailureFragment.newInstance(),
+            FragmentKeys.CUSTOM_PROBE_FAILURE_FRAGMENT)
     }
 
 }

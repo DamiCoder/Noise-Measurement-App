@@ -1,4 +1,4 @@
-package dcwiek.noisemeasurmentapp.view.constants
+package dcwiek.noisemeasurmentapp.ui.constants
 
 class ProbesConstants {
     companion object {

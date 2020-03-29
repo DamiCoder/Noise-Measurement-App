@@ -1,4 +1,4 @@
-package dcwiek.noisemeasurmentapp.view
+package dcwiek.noisemeasurmentapp.ui.fragment.probe
 
 import android.graphics.Color
 import android.os.Bundle
@@ -12,15 +12,16 @@ import android.widget.RadioButton
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.forEach
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import dcwiek.noisemeasurmentapp.R
 import dcwiek.noisemeasurmentapp.service.SharedPreferencesService
-import dcwiek.noisemeasurmentapp.view.constants.FragmentKeys
+import dcwiek.noisemeasurmentapp.ui.constants.FragmentKeys
+import dcwiek.noisemeasurmentapp.ui.fragment.ExtendedFragment
+import dcwiek.noisemeasurmentapp.ui.fragment.menu.MainMenuFragment
 import kotlinx.android.synthetic.main.fragment_chooseprobe.*
 
 
-class ChooseProbeFragment : Fragment() {
+class ChooseProbeFragment : ExtendedFragment() {
 
     private lateinit var popupWindow : PopupWindow
 
@@ -74,7 +75,7 @@ class ChooseProbeFragment : Fragment() {
                 radioButton.setTextColor(ResourcesCompat.getColor(resources, R.color.contraryBlue, null))
             } else {
                 radioButton.background =
-                    ResourcesCompat.getDrawable(resources, R.drawable.radio_button_checked, null);
+                    ResourcesCompat.getDrawable(resources, R.drawable.radio_button_checked, null)
                 val typeface = resources.getFont(R.font.open_sans)
                 radioButton.typeface = typeface
                 radioButton.setTextColor(Color.WHITE)
@@ -96,23 +97,11 @@ class ChooseProbeFragment : Fragment() {
     }
 
     private fun createCustomProbeFragment() {
-        fragmentManager?.let { fragmentManager ->
-            fragmentManager
-                .beginTransaction()
-                .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
-                .replace(R.id.framelayout_main, CustomProbeFragment.newInstance(), FragmentKeys.CUSTOM_PROBE_FRAGMENT)
-                .commit()
-        }
+        replaceFragment(R.id.framelayout_main, CustomProbeFragment.newInstance(), FragmentKeys.CUSTOM_PROBE_FRAGMENT)
     }
 
     private fun createMainMenuFragment() {
-        fragmentManager?.let { fragmentManager ->
-            fragmentManager
-                .beginTransaction()
-                .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
-                .replace(R.id.framelayout_main, MainMenuFragment.newInstance(), FragmentKeys.MAIN_MENU_FRAGMENT)
-                .commit()
-        }
+        replaceFragment(R.id.framelayout_main, MainMenuFragment.newInstance(), FragmentKeys.MAIN_MENU_FRAGMENT)
     }
 
 }

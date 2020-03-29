@@ -1,15 +1,14 @@
-package dcwiek.noisemeasurmentapp.view
+package dcwiek.noisemeasurmentapp.ui.fragment.loading
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.lifecycle.ViewModelProviders
 import dcwiek.noisemeasurmentapp.R
+import dcwiek.noisemeasurmentapp.ui.fragment.ExtendedFragment
 
-class LoadingFragment : Fragment() {
+class LoadingFragment : ExtendedFragment() {
 
     companion object {
         fun newInstance() = LoadingFragment()

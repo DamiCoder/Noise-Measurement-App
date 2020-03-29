@@ -7,6 +7,7 @@ import android.os.VibrationEffect
 import android.os.Vibrator
 
 class NotificationService {
+    //TODO: move to @component
     companion object {
         fun vibrateAndPlaySound(vibrator: Vibrator, context: Context){
             vibrator.vibrate(VibrationEffect.createOneShot(600, VibrationEffect.DEFAULT_AMPLITUDE))

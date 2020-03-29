@@ -1,17 +1,16 @@
-package dcwiek.noisemeasurmentapp.view
+package dcwiek.noisemeasurmentapp.ui.fragment.register
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.lifecycle.ViewModelProviders
 import dcwiek.noisemeasurmentapp.R
-import kotlinx.android.synthetic.main.activity_main.*
+import dcwiek.noisemeasurmentapp.ui.fragment.ExtendedFragment
+import dcwiek.noisemeasurmentapp.ui.fragment.login.LoginFragment
 import kotlinx.android.synthetic.main.fragment_register.*
 
-class RegisterFragment : Fragment() {
+class RegisterFragment : ExtendedFragment() {
 
     companion object {
         fun newInstance() = RegisterFragment()
@@ -32,12 +31,7 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         button_register_back.setOnClickListener{
-            fragmentManager?.let {fragmentManager ->
-                fragmentManager
-                    .beginTransaction()
-                    .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
-                    .replace(R.id.framelayout_main, LoginFragment.newInstance()).commit()
-            }
+            replaceFragment(R.id.framelayout_main, LoginFragment.newInstance())
         }
         super.onViewCreated(view, savedInstanceState)
     }
