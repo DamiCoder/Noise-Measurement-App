@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   android:orientation="vertical"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent">
+    <Button
+            android:background="@drawable/login_button_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp" android:textAllCaps="true" android:paddingLeft="30dp"
+            android:paddingRight="30dp" android:id="@+id/button_customprobefailure_continue"
+            android:text="@string/chooseprobe_continuebutton_text" android:fontFamily="@font/open_sans_bold"/>
+    <TextView
+            android:text="Błąd!"
+            android:layout_width="81dp"
+            android:layout_height="47dp" android:id="@+id/textView13"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:fontFamily="@font/open_sans_bold"
+            android:textColor="@color/failureColor" android:textSize="32sp"
+            android:layout_marginTop="76dp"/>
+    <ImageView
+            android:layout_width="200dp"
+            android:layout_height="172dp" app:srcCompat="@drawable/ic_failure"
+            android:id="@+id/imageView4"
+            app:layout_constraintTop_toBottomOf="@+id/textView13" android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"/>
+    <TextView
+            android:text="Nie udało się zarejestrować próbki"
+            android:layout_width="284dp"
+            android:layout_height="70dp"
+            android:id="@+id/textView16" android:fontFamily="@font/open_sans"
+            android:textColor="@color/failureColor" app:layout_constraintTop_toBottomOf="@+id/imageView4"
+            android:layout_marginTop="32dp" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" android:textSize="22sp" android:textAlignment="center"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

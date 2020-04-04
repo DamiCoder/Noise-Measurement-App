@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity" android:background="@color/backgroundColor">
+        tools:context=".ui.activity.MainActivity" android:background="@color/backgroundColor">
 
     <TextView
             android:layout_width="wrap_content"
@@ -13,7 +13,7 @@
             android:text="@string/register_header"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="132dp" android:id="@+id/textView"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="72dp" android:id="@+id/textView"
             app:layout_constraintHorizontal_bias="0.496" android:fontFamily="@font/open_sans_extrabold"
             android:textSize="38sp" android:gravity="center" android:textColor="@color/header" android:alpha="1"/>
     <EditText

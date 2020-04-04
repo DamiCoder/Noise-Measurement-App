@@ -15,4 +15,7 @@
     <color name="grey">#9e9e9e</color>
     <color name="darkGrey">#707070</color>
     <color name="contraryBlue">#e64f2e</color>
+    <color name="successColor">#ccff90</color>
+    <color name="successColorDark">#4caf50</color>
+    <color name="failureColor">#E04F5F</color>
 </resources>

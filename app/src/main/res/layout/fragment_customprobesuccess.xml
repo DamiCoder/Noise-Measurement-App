@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   android:orientation="vertical"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent">
+
+    <TextView
+            android:text="@string/success"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/textView13"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="76dp"
+            android:fontFamily="@font/open_sans_bold"
+            android:textColor="@color/successColorDark" android:textSize="32sp"/>
+    <TextView
+            android:text="@string/probe_registered"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView15" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3" android:layout_marginTop="32dp"
+            android:textSize="22sp" android:textColor="@color/successColorDark" android:textAlignment="center"
+            android:fontFamily="@font/open_sans"/>
+    <ImageView
+            android:layout_width="200dp"
+            android:layout_height="172dp" app:srcCompat="@drawable/ic_ok"
+            android:id="@+id/imageView3" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toBottomOf="@+id/textView13"
+            android:layout_marginTop="8dp" app:layout_constraintHorizontal_bias="0.496"/>
+    <Button
+            android:background="@drawable/login_button_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp" android:textAllCaps="true" android:paddingLeft="30dp"
+            android:paddingRight="30dp" android:id="@+id/button_customprobesuccess_continue"
+            android:text="@string/chooseprobe_continuebutton_text" android:fontFamily="@font/open_sans_bold"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
