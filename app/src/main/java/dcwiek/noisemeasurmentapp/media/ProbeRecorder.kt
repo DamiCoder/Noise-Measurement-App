@@ -1,34 +1,23 @@
-package dcwiek.noisemeasurmentapp.service
+package dcwiek.noisemeasurmentapp.media
 
 import android.content.Context
 import android.media.MediaRecorder
 import android.util.Log
-import dagger.Module
-import dagger.Provides
 import dcwiek.noisemeasurmentapp.ui.constants.ProbesConstants.Companion.CUSTOM_PROBE_NAME
 import dcwiek.noisemeasurmentapp.ui.constants.ProbesConstants.Companion.PROBES_FOLDER
 import java.io.File
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Module
-class ProbeRecorder  {
+class ProbeRecorder constructor(val context: Context) {
 
     private lateinit var mediaRecorder: MediaRecorder
     private var state = false
     private val TAG: String = ProbeRecorder::class.java.name
-    private lateinit var context: Context
 
-    @Inject
-    constructor(context: Context) {
-        this.context = context
+    init {
+        initializeProbeRecorder(context)
     }
 
-    private constructor()
-
-    @Provides
-    @Singleton
-    fun initializeProbeRecorder() : ProbeRecorder {
+    fun initializeProbeRecorder(context: Context) : ProbeRecorder {
         val folderPath = getProbesFolder(context)
         val output = folderPath + CUSTOM_PROBE_NAME
 

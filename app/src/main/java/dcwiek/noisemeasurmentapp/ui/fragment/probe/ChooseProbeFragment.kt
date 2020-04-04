@@ -14,7 +14,6 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.forEach
 import androidx.lifecycle.ViewModelProviders
 import dcwiek.noisemeasurmentapp.R
-import dcwiek.noisemeasurmentapp.service.SharedPreferencesService
 import dcwiek.noisemeasurmentapp.ui.constants.FragmentKeys
 import dcwiek.noisemeasurmentapp.ui.fragment.ExtendedFragment
 import dcwiek.noisemeasurmentapp.ui.fragment.menu.MainMenuFragment
@@ -40,6 +39,7 @@ class ChooseProbeFragment : ExtendedFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
         viewModel = ViewModelProviders.of(this).get(ChooseProbeViewModel::class.java)
 
         chooseprobe_radiogroup.setOnCheckedChangeListener { group, checkedId ->
@@ -48,10 +48,9 @@ class ChooseProbeFragment : ExtendedFragment() {
         button_chooseprobe_continue.setOnClickListener {
             if (chooseprobe_defaultproberadio.isChecked) {
                 context?.let {
-                    SharedPreferencesService.putSharedPreference(
+                    sharedPreferencesService.putSharedPreference(
                         it.getString(R.string.preference_key_choosen_probe),
-                        it.getString(R.string.preference_value_use_custom_probe),
-                        it
+                        it.getString(R.string.preference_value_use_custom_probe)
                     )
                 }
                 createMainMenuFragment()

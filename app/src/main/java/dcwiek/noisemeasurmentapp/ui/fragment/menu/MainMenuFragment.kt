@@ -1,12 +1,16 @@
 package dcwiek.noisemeasurmentapp.ui.fragment.menu
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import dcwiek.noisemeasurmentapp.R
 import dcwiek.noisemeasurmentapp.ui.fragment.ExtendedFragment
+import dcwiek.noisemeasurmentapp.ui.fragment.archive.ArchiveFragment
+import kotlinx.android.synthetic.main.fragment_mainmenu.*
 
 class MainMenuFragment : ExtendedFragment() {
 
@@ -27,9 +31,9 @@ class MainMenuFragment : ExtendedFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        bottom_navigation.setOnNavigationItemSelectedListener {
-//                menuItem -> onNavigationItemSelected(menuItem)
-//        }
+        bottom_navigation.setOnNavigationItemSelectedListener {
+                menuItem -> onNavigationItemSelected(menuItem)
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -38,25 +42,26 @@ class MainMenuFragment : ExtendedFragment() {
         // TODO: Use the ViewModel
     }
 
-//    fun onNavigationItemSelected(item: MenuItem) : Boolean {
-//        when(item.itemId) {
-//            R.id.item_bottomnav_record -> {
-//
-//            }
-//            R.id.item_bottomnav_history -> {
-//
-//            }
-//            R.id.item_bottomnav_norms -> {
-//
-//            }
-//            R.id.item_bottomnav_help -> {
-//
-//            }
-//            else -> {
-//                Log.wtf(TAG, item.itemId.toString())
-//                return false
-//            }
-//        }
-//    }
+    fun onNavigationItemSelected(item: MenuItem) : Boolean {
+        when(item.itemId) {
+            R.id.item_bottomnav_record -> {
+                return true
+            }
+            R.id.item_bottomnav_history -> {
+                replaceFragment(R.id.mainmenu_constraintlayout, ArchiveFragment.newInstance())
+                return true
+            }
+            R.id.item_bottomnav_norms -> {
+                return true
+            }
+            R.id.item_bottomnav_help -> {
+                return true
+            }
+            else -> {
+                Log.wtf(TAG, item.itemId.toString())
+                return false
+            }
+        }
+    }
 
 }

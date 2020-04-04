@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import dcwiek.noisemeasurmentapp.R
 import dcwiek.noisemeasurmentapp.service.NotificationService
-import dcwiek.noisemeasurmentapp.service.SharedPreferencesService
 import dcwiek.noisemeasurmentapp.ui.constants.FragmentKeys
 import dcwiek.noisemeasurmentapp.ui.fragment.ExtendedFragment
 import dcwiek.noisemeasurmentapp.ui.fragment.menu.MainMenuFragment
@@ -38,11 +37,10 @@ class CustomProbeSuccessFragment : ExtendedFragment() {
         val vibrator = activity?.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         context?.let {
             NotificationService.vibrateAndPlaySound(vibrator, it)
-            SharedPreferencesService
+            sharedPreferencesService
                 .putSharedPreference(
                     it.getString(R.string.preference_key_choosen_probe),
-                    it.getString(R.string.preference_value_use_custom_probe),
-                    it)
+                    it.getString(R.string.preference_value_use_custom_probe))
         }
 
 

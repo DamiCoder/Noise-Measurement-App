@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import dcwiek.noisemeasurmentapp.R
-import dcwiek.noisemeasurmentapp.service.SharedPreferencesService
 import dcwiek.noisemeasurmentapp.ui.constants.FragmentKeys
 import dcwiek.noisemeasurmentapp.ui.fragment.ExtendedFragment
 import dcwiek.noisemeasurmentapp.ui.fragment.menu.MainMenuFragment
@@ -38,7 +37,7 @@ class LoginFragment : ExtendedFragment() {
 
     private fun chooseNextFragment() {
         val chosenProbe =
-            SharedPreferencesService.getSharedPreference(getString(R.string.preference_key_choosen_probe), context)
+            sharedPreferencesService.getSharedPreference(getString(R.string.preference_key_choosen_probe))
         if (chosenProbe != null) {
             createMainMenuFragment()
         } else {

@@ -11,8 +11,7 @@ import android.view.animation.AnimationUtils
 import androidx.lifecycle.ViewModelProviders
 import dcwiek.noisemeasurmentapp.R
 import dcwiek.noisemeasurmentapp.application.NoiseMeasurementApplication
-import dcwiek.noisemeasurmentapp.service.ProbeRecorder
-import dcwiek.noisemeasurmentapp.service.SharedPreferencesService
+import dcwiek.noisemeasurmentapp.media.ProbeRecorder
 import dcwiek.noisemeasurmentapp.ui.constants.FragmentKeys
 import dcwiek.noisemeasurmentapp.ui.fragment.ExtendedFragment
 import dcwiek.noisemeasurmentapp.ui.fragment.menu.MainMenuFragment
@@ -24,15 +23,16 @@ class CustomProbeFragment : ExtendedFragment() {
     private val TAG = CustomProbeFragment::class.java.name
     private lateinit var probeRecorder: ProbeRecorder
     private lateinit var viewModel: CustomProbeViewModel
-
     companion object {
         fun newInstance() = CustomProbeFragment()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        probeRecorder = (requireContext().applicationContext as NoiseMeasurementApplication)
-            .getMyComponent().getProbeRecorder()
+        val noiseMeasurementApplication = (requireContext().applicationContext as NoiseMeasurementApplication)
+        probeRecorder = noiseMeasurementApplication
+            .getProbeRecorderComponent()
+            .getProbeRecorder()
     }
 
     override fun onCreateView(
@@ -87,10 +87,9 @@ class CustomProbeFragment : ExtendedFragment() {
 
     private fun defaultProbeTextViewClickListener(){
         context?.let {
-            SharedPreferencesService.putSharedPreference(
+            sharedPreferencesService.putSharedPreference(
                 it.getString(R.string.preference_key_choosen_probe),
-                it.getString(R.string.preference_value_use_custom_probe),
-                it
+                it.getString(R.string.preference_value_use_custom_probe)
             )
         }
 
