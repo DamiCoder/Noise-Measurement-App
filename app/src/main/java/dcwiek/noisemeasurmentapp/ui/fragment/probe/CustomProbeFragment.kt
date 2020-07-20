@@ -11,7 +11,7 @@ import android.view.animation.AnimationUtils
 import androidx.lifecycle.ViewModelProviders
 import dcwiek.noisemeasurmentapp.R
 import dcwiek.noisemeasurmentapp.application.NoiseMeasurementApplication
-import dcwiek.noisemeasurmentapp.media.ProbeRecorder
+import dcwiek.noisemeasurmentapp.service.media.ProbeRecorder
 import dcwiek.noisemeasurmentapp.ui.constants.FragmentKeys
 import dcwiek.noisemeasurmentapp.ui.fragment.ExtendedFragment
 import dcwiek.noisemeasurmentapp.ui.fragment.menu.MainMenuFragment

@@ -6,14 +6,12 @@ import android.net.Uri
 import android.os.VibrationEffect
 import android.os.Vibrator
 
-class NotificationService {
-    //TODO: move to @component
-    companion object {
-        fun vibrateAndPlaySound(vibrator: Vibrator, context: Context){
-            vibrator.vibrate(VibrationEffect.createOneShot(600, VibrationEffect.DEFAULT_AMPLITUDE))
-            val notification: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-            val r = RingtoneManager.getRingtone(context, notification)
-            r.play()
-        }
+class NotificationService(val context: Context) {
+
+    fun vibrateAndPlaySound(vibrator: Vibrator) {
+        vibrator.vibrate(VibrationEffect.createOneShot(600, VibrationEffect.DEFAULT_AMPLITUDE))
+        val notification: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+        val r = RingtoneManager.getRingtone(context, notification)
+        r.play()
     }
 }

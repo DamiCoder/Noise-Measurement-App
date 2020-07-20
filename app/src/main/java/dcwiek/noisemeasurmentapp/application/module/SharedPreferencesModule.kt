@@ -13,7 +13,6 @@ class SharedPreferencesModule {
     @Singleton
     @Provides
     @Inject
-    fun providesSharedPreferencesService(context: Context): SharedPreferencesService {
-        return SharedPreferencesService(context)
-    }
+    fun providesSharedPreferencesService(context: Context): SharedPreferencesService = SharedPreferencesService(context)
+
 }

@@ -1,4 +1,4 @@
-package dcwiek.noisemeasurmentapp.media
+package dcwiek.noisemeasurmentapp.service.media
 
 import android.content.Context
 import android.media.MediaRecorder
@@ -17,7 +17,8 @@ class ProbeRecorder constructor(val context: Context) {
         initializeProbeRecorder(context)
     }
 
-    fun initializeProbeRecorder(context: Context) : ProbeRecorder {
+    private fun initializeProbeRecorder(context: Context) : ProbeRecorder {
+        Log.i(TAG, "ProbeRecorder.initalizeProbeRecorder called")
         val folderPath = getProbesFolder(context)
         val output = folderPath + CUSTOM_PROBE_NAME
 
@@ -44,7 +45,6 @@ class ProbeRecorder constructor(val context: Context) {
         this.mediaRecorder.setAudioSamplingRate(48 * 1024)
         this.mediaRecorder.setOutputFile(output)
 
-        Log.i(TAG, "initalizeProbeRecorder called")
 
         return this
     }

@@ -3,15 +3,15 @@ package dcwiek.noisemeasurmentapp.application.module
 import android.content.Context
 import dagger.Module
 import dagger.Provides
-import dcwiek.noisemeasurmentapp.data.DataStorage
+import dcwiek.noisemeasurmentapp.service.NotificationService
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Module
-class DataStorageModule {
+class NotificationModule {
 
     @Singleton
     @Provides
     @Inject
-    fun provideDataStorage(context: Context) : DataStorage = DataStorage()
+    fun provideNotificationService(context: Context) : NotificationService = NotificationService(context)
 }

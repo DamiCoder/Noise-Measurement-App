@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import dcwiek.noisemeasurmentapp.R
+import dcwiek.noisemeasurmentapp.application.NoiseMeasurementApplication
 import dcwiek.noisemeasurmentapp.service.NotificationService
 import dcwiek.noisemeasurmentapp.ui.constants.FragmentKeys
 import dcwiek.noisemeasurmentapp.ui.fragment.ExtendedFragment
@@ -21,11 +22,12 @@ class CustomProbeFailureFragment : ExtendedFragment() {
     }
 
     private lateinit var viewModel: CustomProbeFailureViewModel
+    private lateinit var notificationService: NotificationService
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val notificationComponent = (requireContext().applicationContext as NoiseMeasurementApplication)
+            .getNotificationComponent()
+        notificationService = notificationComponent.getNotificationService()
         return inflater.inflate(R.layout.fragment_customprobefailure, container, false)
     }
 
@@ -34,9 +36,7 @@ class CustomProbeFailureFragment : ExtendedFragment() {
         viewModel = ViewModelProviders.of(this).get(CustomProbeFailureViewModel::class.java)
 
         val vibrator = activity?.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-        context?.let {
-            NotificationService.vibrateAndPlaySound(vibrator, it)
-        }
+        notificationService.vibrateAndPlaySound(vibrator)
 
         button_customprobefailure_continue.setOnClickListener{
             replaceFragment(R.id.framelayout_main, ChooseProbeFragment.newInstance(), FragmentKeys.CHOOSE_PROBE_FRAGMENT)

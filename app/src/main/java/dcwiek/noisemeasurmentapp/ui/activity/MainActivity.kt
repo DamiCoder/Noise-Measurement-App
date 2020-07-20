@@ -15,6 +15,10 @@ import dcwiek.noisemeasurmentapp.ui.fragment.login.LoginFragment
 
 class MainActivity : AppCompatActivity() {
 
+    companion object {
+        const val LOGIN_FRAGMENT_LOAD_TIME : Long = 2000;
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -25,9 +29,7 @@ class MainActivity : AppCompatActivity() {
             val permissions = arrayOf(Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
             ActivityCompat.requestPermissions(this, permissions,0)
         }
-        Handler().postDelayed({
-            switchToLoginFragment()
-        }, 2000)
+        Handler().postDelayed({ switchToLoginFragment() }, LOGIN_FRAGMENT_LOAD_TIME)
     }
 
     private fun switchToLoginFragment() {
@@ -55,7 +57,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+
     }
-
-
 }

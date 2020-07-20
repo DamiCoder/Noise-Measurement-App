@@ -3,7 +3,7 @@ package dcwiek.noisemeasurmentapp.application.module
 import android.content.Context
 import dagger.Module
 import dagger.Provides
-import dcwiek.noisemeasurmentapp.media.ProbeRecorder
+import dcwiek.noisemeasurmentapp.service.media.ProbeRecorder
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -14,6 +14,5 @@ class ProbeRecorderModule {
     @Singleton
     @Provides
     @Inject
-    fun providesProbeRecorder(context: Context) : ProbeRecorder =
-        ProbeRecorder(context)
+    fun providesProbeRecorder(context: Context) : ProbeRecorder = ProbeRecorder(context)
 }

@@ -1,16 +1,16 @@
 package dcwiek.noisemeasurmentapp.application
 
 import android.app.Application
-import dcwiek.noisemeasurmentapp.application.component.DaggerProbeRecorderComponent
-import dcwiek.noisemeasurmentapp.application.component.DaggerStorageComponent
-import dcwiek.noisemeasurmentapp.application.component.ProbeRecorderComponent
-import dcwiek.noisemeasurmentapp.application.component.StorageComponent
+import dcwiek.noisemeasurmentapp.application.component.*
 import dcwiek.noisemeasurmentapp.application.module.ContextModule
 
 class NoiseMeasurementApplication : Application() {
     private lateinit var probeRecorderComponent: ProbeRecorderComponent
     private lateinit var storageComponent: StorageComponent
+    private lateinit var notificationComponent: NotificationComponent
+
     override fun onCreate() {
+
         super.onCreate()
         val contextModule = ContextModule(this)
         probeRecorderComponent = DaggerProbeRecorderComponent
@@ -21,13 +21,15 @@ class NoiseMeasurementApplication : Application() {
         storageComponent = DaggerStorageComponent.builder()
             .contextModule(contextModule)
             .build()
+
+        notificationComponent = DaggerNotificationComponent.builder()
+            .contextModule(contextModule)
+            .build()
     }
 
-    fun getProbeRecorderComponent(): ProbeRecorderComponent {
-        return probeRecorderComponent
-    }
+    fun getProbeRecorderComponent(): ProbeRecorderComponent = probeRecorderComponent
 
-    fun getStorageComponent(): StorageComponent {
-        return storageComponent;
-    }
+    fun getStorageComponent(): StorageComponent = storageComponent
+
+    fun getNotificationComponent(): NotificationComponent = notificationComponent
 }

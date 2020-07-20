@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import dcwiek.noisemeasurmentapp.R
 import dcwiek.noisemeasurmentapp.ui.fragment.ExtendedFragment
 import dcwiek.noisemeasurmentapp.ui.fragment.archive.ArchiveFragment
+import dcwiek.noisemeasurmentapp.ui.fragment.archive.EmptyArchiveFragment
 import kotlinx.android.synthetic.main.fragment_mainmenu.*
 
 class MainMenuFragment : ExtendedFragment() {
@@ -39,7 +40,6 @@ class MainMenuFragment : ExtendedFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(MainMenuViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
     fun onNavigationItemSelected(item: MenuItem) : Boolean {
@@ -48,7 +48,11 @@ class MainMenuFragment : ExtendedFragment() {
                 return true
             }
             R.id.item_bottomnav_history -> {
-                replaceFragment(R.id.mainmenu_constraintlayout, ArchiveFragment.newInstance())
+                if(dataStorage.archivedProbesData.isEmpty()) {
+                    replaceFragment(R.id.mainmenu_constraintlayout, EmptyArchiveFragment.newInstance())
+                } else {
+                    replaceFragment(R.id.mainmenu_constraintlayout, ArchiveFragment.newInstance())
+                }
                 return true
             }
             R.id.item_bottomnav_norms -> {

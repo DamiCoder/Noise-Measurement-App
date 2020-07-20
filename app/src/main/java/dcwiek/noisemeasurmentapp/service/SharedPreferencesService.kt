@@ -7,11 +7,6 @@ import dcwiek.noisemeasurmentapp.R
 
 class SharedPreferencesService(val context: Context) {
 
-//    @Inject
-//    @Named("applicationContext")
-//    lateinit var context: Context
-
-
     private var sharedPref: SharedPreferences =
         context.getSharedPreferences(context.getString(R.string.preference_file_key), Context.MODE_PRIVATE)
 
@@ -23,7 +18,5 @@ class SharedPreferencesService(val context: Context) {
         }
     }
 
-    fun getSharedPreference(key: String): String? {
-        return sharedPref.getString(key, null)
-    }
+    fun getSharedPreference(key: String): String? = sharedPref.getString(key, null)
 }
