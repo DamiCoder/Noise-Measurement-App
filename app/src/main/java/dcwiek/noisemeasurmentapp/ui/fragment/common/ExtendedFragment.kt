@@ -1,10 +1,10 @@
-package dcwiek.noisemeasurmentapp.ui.fragment
+package dcwiek.noisemeasurmentapp.ui.fragment.common
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import dcwiek.noisemeasurmentapp.R
 import dcwiek.noisemeasurmentapp.application.NoiseMeasurementApplication
-import dcwiek.noisemeasurmentapp.data.DataStorage
+import dcwiek.noisemeasurmentapp.domain.DataStorage
 import dcwiek.noisemeasurmentapp.service.SharedPreferencesService
 
 open class ExtendedFragment: Fragment() {

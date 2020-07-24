@@ -13,5 +13,4 @@ interface ProbeRecorderComponent {
 
     fun getContext(): Context
     fun getProbeRecorder(): ProbeRecorder
-
 }

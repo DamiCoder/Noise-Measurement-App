@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import dcwiek.noisemeasurmentapp.R
 import dcwiek.noisemeasurmentapp.ui.constants.FragmentKeys
-import dcwiek.noisemeasurmentapp.ui.fragment.ExtendedFragment
+import dcwiek.noisemeasurmentapp.ui.fragment.common.ExtendedFragment
 import dcwiek.noisemeasurmentapp.ui.fragment.menu.MainMenuFragment
 import dcwiek.noisemeasurmentapp.ui.fragment.probe.ChooseProbeFragment
 import dcwiek.noisemeasurmentapp.ui.fragment.register.RegisterFragment

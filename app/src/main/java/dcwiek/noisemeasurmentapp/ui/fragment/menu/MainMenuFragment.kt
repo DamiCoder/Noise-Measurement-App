@@ -8,9 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import dcwiek.noisemeasurmentapp.R
-import dcwiek.noisemeasurmentapp.ui.fragment.ExtendedFragment
 import dcwiek.noisemeasurmentapp.ui.fragment.archive.ArchiveFragment
 import dcwiek.noisemeasurmentapp.ui.fragment.archive.EmptyArchiveFragment
+import dcwiek.noisemeasurmentapp.ui.fragment.common.ExtendedFragment
 import kotlinx.android.synthetic.main.fragment_mainmenu.*
 
 class MainMenuFragment : ExtendedFragment() {
@@ -48,7 +48,7 @@ class MainMenuFragment : ExtendedFragment() {
                 return true
             }
             R.id.item_bottomnav_history -> {
-                if(dataStorage.archivedProbesData.isEmpty()) {
+                if(dataStorage.archivedProbesData.value.isNullOrEmpty()) {
                     replaceFragment(R.id.mainmenu_constraintlayout, EmptyArchiveFragment.newInstance())
                 } else {
                     replaceFragment(R.id.mainmenu_constraintlayout, ArchiveFragment.newInstance())

@@ -15,7 +15,7 @@ import androidx.core.view.forEach
 import androidx.lifecycle.ViewModelProviders
 import dcwiek.noisemeasurmentapp.R
 import dcwiek.noisemeasurmentapp.ui.constants.FragmentKeys
-import dcwiek.noisemeasurmentapp.ui.fragment.ExtendedFragment
+import dcwiek.noisemeasurmentapp.ui.fragment.common.ExtendedFragment
 import dcwiek.noisemeasurmentapp.ui.fragment.menu.MainMenuFragment
 import kotlinx.android.synthetic.main.fragment_chooseprobe.*
 
@@ -30,9 +30,7 @@ class ChooseProbeFragment : ExtendedFragment() {
 
     private lateinit var viewModel: ChooseProbeViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_chooseprobe, container, false)
     }

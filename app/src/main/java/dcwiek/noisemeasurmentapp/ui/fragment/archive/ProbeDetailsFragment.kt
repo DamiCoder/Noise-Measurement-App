@@ -5,15 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import dcwiek.noisemeasurmentapp.R
+import dcwiek.noisemeasurmentapp.domain.model.Probe
 import dcwiek.noisemeasurmentapp.ui.fragment.common.ExtendedFragment
 
-class EmptyArchiveFragment : ExtendedFragment() {
+class ProbeDetailsFragment(val probe: Probe): ExtendedFragment() {
 
     companion object {
         fun newInstance() = EmptyArchiveFragment()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-            return inflater.inflate(R.layout.fragment_archiveempty, container, false)
+        return inflater.inflate(R.layout.fragment_probedetails, container, false)
     }
 }

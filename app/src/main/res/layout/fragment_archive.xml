@@ -9,7 +9,7 @@
             android:layout_width="match_parent"
             android:layout_height="46dp"
             android:id="@+id/constraintLayout2" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="76dp">
         <TextView
                 android:text="@string/archive_table_dateheader"
                 android:layout_width="79dp"
@@ -17,10 +17,10 @@
                 android:id="@+id/textview_archive_table_dateheader"
                 app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
                 android:gravity="center" android:padding="5dp" android:fontFamily="@font/open_sans_bold"
-                android:textSize="18sp" android:textColor="@android:color/black"/>
+                android:textSize="18sp" android:textColor="@android:color/black" android:layout_marginStart="16dp"/>
         <TextView
                 android:text="@string/archive_table_resultheader"
-                android:layout_width="wrap_content"
+                android:layout_width="60dp"
                 android:layout_height="46dp"
                 android:id="@+id/textview_archive_table_resultheader"
                 app:layout_constraintStart_toEndOf="@+id/textview_archive_table_dateheader"
@@ -28,22 +28,29 @@
                 app:layout_constraintBottom_toBottomOf="parent" android:gravity="center"
                 android:fontFamily="@font/open_sans_bold" android:textSize="18sp"
                 android:textColor="@android:color/black"/>
-<!--        <Button-->
-<!--                android:text="Opis"-->
-<!--                android:layout_width="75dp"-->
-<!--                android:layout_height="33dp"-->
-<!--                android:id="@+id/button_archive_description" app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"-->
-<!--                android:layout_marginEnd="16dp" app:layout_constraintVertical_bias="0.538" tools:ignore="HardcodedText"/>-->
+        <!--        <Button-->
+        <!--                android:text="Opis"-->
+        <!--                android:layout_width="75dp"-->
+        <!--                android:layout_height="33dp"-->
+        <!--                android:id="@+id/button_archive_description" app:layout_constraintTop_toTopOf="parent"-->
+        <!--                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"-->
+        <!--                android:layout_marginEnd="16dp" app:layout_constraintVertical_bias="0.538" tools:ignore="HardcodedText"/>-->
     </androidx.constraintlayout.widget.ConstraintLayout>
-
     <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/recyclerview_archive"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0" app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
-    />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"/>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" app:layout_constraintStart_toStartOf="parent"
+            android:background="@android:color/darker_gray" android:id="@+id/linearLayout"
+            android:layout_marginTop="4dp">
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

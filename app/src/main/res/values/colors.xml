@@ -18,4 +18,6 @@
     <color name="successColor">#ccff90</color>
     <color name="successColorDark">#4caf50</color>
     <color name="failureColor">#E04F5F</color>
+    <color name="averageColor">#dfdf20</color>
+
 </resources>

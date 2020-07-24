@@ -3,7 +3,7 @@ package dcwiek.noisemeasurmentapp.application.module
 import android.content.Context
 import dagger.Module
 import dagger.Provides
-import dcwiek.noisemeasurmentapp.data.DataStorage
+import dcwiek.noisemeasurmentapp.domain.DataStorage
 import javax.inject.Inject
 import javax.inject.Singleton
 
