@@ -28,9 +28,6 @@ class ProbeViewHolder(val context: Context, inflater: LayoutInflater, parent: Vi
         result.text = standardResult.label
         val drawableResourceId: Int = view.resources.getIdentifier(standardResult.backgroundName, "drawable", view.context.packageName)
         backgroundLayout.background = ResourcesCompat.getDrawable(view.resources, drawableResourceId, null)
-        button.setOnClickListener { view ->
-
-        }
 //        button.background = ResourcesCompat.getDrawable(view.resources, R.drawable.login_button_bg, null)
     }
 

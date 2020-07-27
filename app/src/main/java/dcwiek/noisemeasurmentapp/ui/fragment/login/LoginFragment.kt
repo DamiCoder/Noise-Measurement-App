@@ -46,7 +46,7 @@ class LoginFragment : ExtendedFragment() {
     }
 
     private fun createMainMenuFragment() {
-        replaceFragment(R.id.framelayout_main, MainMenuFragment.newInstance(), FragmentKeys.MAIN_MENU_FRAGMENT)
+        replaceFragment(R.id.framelayout_main, MainMenuFragment.getInstance(), FragmentKeys.MAIN_MENU_FRAGMENT)
     }
 
     private fun createChooseProbeFragment() {

@@ -45,7 +45,7 @@ class CustomProbeSuccessFragment : ExtendedFragment() {
         }
 
         button_customprobesuccess_continue.setOnClickListener{
-            replaceFragment(R.id.framelayout_main, MainMenuFragment.newInstance(), FragmentKeys.MAIN_MENU_FRAGMENT)
+            replaceFragment(R.id.framelayout_main, MainMenuFragment.getInstance(), FragmentKeys.MAIN_MENU_FRAGMENT)
         }
     }
 

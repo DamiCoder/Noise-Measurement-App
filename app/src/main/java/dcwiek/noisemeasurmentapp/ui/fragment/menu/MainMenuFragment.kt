@@ -17,16 +17,23 @@ class MainMenuFragment : ExtendedFragment() {
 
     private val TAG: String = MainMenuFragment::class.java.name
 
+    private var currentMenuItemId: Int? = null
+
+
     companion object {
-        fun newInstance() = MainMenuFragment()
+        private lateinit var instance: MainMenuFragment
+
+        fun getInstance(): MainMenuFragment {
+            if (!this::instance.isInitialized) {
+                instance = MainMenuFragment()
+            }
+            return instance
+        }
     }
 
     private lateinit var viewModel: MainMenuViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_mainmenu, container, false)
     }
 
@@ -42,7 +49,17 @@ class MainMenuFragment : ExtendedFragment() {
         viewModel = ViewModelProviders.of(this).get(MainMenuViewModel::class.java)
     }
 
-    fun onNavigationItemSelected(item: MenuItem) : Boolean {
+    fun initializeArchiveView() {
+        replaceFragment(R.id.mainmenu_constraintlayout, ArchiveFragment.newInstance())
+    }
+
+    private fun onNavigationItemSelected(item: MenuItem) : Boolean {
+        if (currentMenuItemId != null) {
+            if (currentMenuItemId == item.itemId) {
+                return false
+            }
+        }
+        currentMenuItemId = item.itemId
         when(item.itemId) {
             R.id.item_bottomnav_record -> {
                 return true

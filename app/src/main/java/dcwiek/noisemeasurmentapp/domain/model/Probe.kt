@@ -35,4 +35,8 @@ class Probe(
         val dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm")
         return createdDate.format(dtf).toString()
     }
+
+    fun getResultFormatted(): String {
+        return result.toString() + "db"
+    }
 }

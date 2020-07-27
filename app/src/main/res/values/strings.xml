@@ -42,6 +42,11 @@
     <string name="archive_table_dateheader">Data</string>
     <string name="archive_table_resultheader">Wynik</string>
 
+    <string name="probedetails_place">Miejsce</string>
+    <string name="probedetails_standard">Standard</string>
+    <string name="probedetails_comment">Komentarz</string>
+    <string name="probedetails_location">Lokacja</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

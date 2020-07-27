@@ -6,13 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
 import dcwiek.noisemeasurmentapp.R
+import dcwiek.noisemeasurmentapp.domain.model.Probe
+import dcwiek.noisemeasurmentapp.ui.constants.FragmentKeys
+import dcwiek.noisemeasurmentapp.ui.fragment.archive.adapter.ArchiveItemClickListener
 import dcwiek.noisemeasurmentapp.ui.fragment.archive.adapter.ProbesAdapter
 import dcwiek.noisemeasurmentapp.ui.fragment.common.ExtendedFragment
 import kotlinx.android.synthetic.main.fragment_archive.*
 
-class ArchiveFragment : ExtendedFragment() {
+class ArchiveFragment : ExtendedFragment(), ArchiveItemClickListener {
+
+    companion object {
+        fun newInstance() : ArchiveFragment = ArchiveFragment()
+    }
 
     private lateinit var archiveRecyclerView: RecyclerView
 
@@ -25,12 +31,17 @@ class ArchiveFragment : ExtendedFragment() {
         archiveRecyclerView = recyclerview_archive as RecyclerView
         archiveRecyclerView.apply {
             layoutManager = LinearLayoutManager(activity)
-            adapter = ProbesAdapter(context, dataStorage.archivedProbesData.value!!)
+            adapter = ProbesAdapter(dataStorage.archivedProbesData.value!!, this@ArchiveFragment)
         }
     }
 
-    companion object {
-        fun newInstance() : ArchiveFragment = ArchiveFragment()
+    override fun switchToProbeDetailsFragment(probe: Probe) {
+        val fragment = fragmentManager?.findFragmentByTag(FragmentKeys.MAIN_MENU_FRAGMENT)
+        if (fragment != null) {
+            fragmentManager?.beginTransaction()?.remove(fragment)?.commit()
+        }
+        replaceFragment(R.id.framelayout_main, ProbeDetailsFragment.newInstance(probe), FragmentKeys.PROBE_DETAILS_FRAGMENT)
+//        replaceFragment(R.id.bottom_navigation, BlankFragment.newInstance(), FragmentKeys.BOTTOM_BLANK_FRAGMENT)
     }
 
 }
