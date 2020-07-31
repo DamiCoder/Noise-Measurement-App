@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Button
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:background="@drawable/login_button_bg"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:id="@+id/button_login_login"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/open_sans_bold"
+        android:alpha="1"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:layout_gravity="center_horizontal"/>
+

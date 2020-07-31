@@ -7,11 +7,12 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import dcwiek.noisemeasurmentapp.R
 import dcwiek.noisemeasurmentapp.ui.fragment.archive.ArchiveFragment
 import dcwiek.noisemeasurmentapp.ui.fragment.archive.EmptyArchiveFragment
-import dcwiek.noisemeasurmentapp.ui.fragment.common.ExtendedFragment
-import kotlinx.android.synthetic.main.fragment_mainmenu.*
+import dcwiek.noisemeasurmentapp.ui.fragment.common.fragment.ExtendedFragment
+import dcwiek.noisemeasurmentapp.ui.fragment.record.InitRecordProbeFragment
 
 class MainMenuFragment : ExtendedFragment() {
 
@@ -39,9 +40,10 @@ class MainMenuFragment : ExtendedFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        bottom_navigation.setOnNavigationItemSelectedListener {
+        view.findViewById<BottomNavigationView>(R.id.bottom_navigation).setOnNavigationItemSelectedListener {
                 menuItem -> onNavigationItemSelected(menuItem)
         }
+        initializeArchiveView()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -50,7 +52,12 @@ class MainMenuFragment : ExtendedFragment() {
     }
 
     fun initializeArchiveView() {
-        replaceFragment(R.id.mainmenu_constraintlayout, ArchiveFragment.newInstance())
+        view?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.selectedItemId = R.id.item_bottomnav_history
+        if(dataStorage.archivedProbesData.value.isNullOrEmpty()) {
+            replaceFragment(R.id.mainmenu_constraintlayout, EmptyArchiveFragment.newInstance())
+        } else {
+            replaceFragment(R.id.mainmenu_constraintlayout, ArchiveFragment.newInstance())
+        }
     }
 
     private fun onNavigationItemSelected(item: MenuItem) : Boolean {
@@ -62,6 +69,7 @@ class MainMenuFragment : ExtendedFragment() {
         currentMenuItemId = item.itemId
         when(item.itemId) {
             R.id.item_bottomnav_record -> {
+                replaceFragment(R.id.mainmenu_constraintlayout, InitRecordProbeFragment.newInstance())
                 return true
             }
             R.id.item_bottomnav_history -> {

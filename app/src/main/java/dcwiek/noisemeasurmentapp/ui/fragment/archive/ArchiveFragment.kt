@@ -11,7 +11,7 @@ import dcwiek.noisemeasurmentapp.domain.model.Probe
 import dcwiek.noisemeasurmentapp.ui.constants.FragmentKeys
 import dcwiek.noisemeasurmentapp.ui.fragment.archive.adapter.ArchiveItemClickListener
 import dcwiek.noisemeasurmentapp.ui.fragment.archive.adapter.ProbesAdapter
-import dcwiek.noisemeasurmentapp.ui.fragment.common.ExtendedFragment
+import dcwiek.noisemeasurmentapp.ui.fragment.common.fragment.ExtendedFragment
 import kotlinx.android.synthetic.main.fragment_archive.*
 
 class ArchiveFragment : ExtendedFragment(), ArchiveItemClickListener {

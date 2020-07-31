@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import dcwiek.noisemeasurmentapp.R
-import dcwiek.noisemeasurmentapp.ui.fragment.common.ExtendedFragment
+import dcwiek.noisemeasurmentapp.ui.fragment.common.fragment.ExtendedFragment
 
 class EmptyArchiveFragment : ExtendedFragment() {
 

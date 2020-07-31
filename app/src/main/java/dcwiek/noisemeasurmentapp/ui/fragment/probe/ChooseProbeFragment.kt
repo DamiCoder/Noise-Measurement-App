@@ -15,7 +15,7 @@ import androidx.core.view.forEach
 import androidx.lifecycle.ViewModelProviders
 import dcwiek.noisemeasurmentapp.R
 import dcwiek.noisemeasurmentapp.ui.constants.FragmentKeys
-import dcwiek.noisemeasurmentapp.ui.fragment.common.ExtendedFragment
+import dcwiek.noisemeasurmentapp.ui.fragment.common.fragment.ExtendedFragment
 import dcwiek.noisemeasurmentapp.ui.fragment.menu.MainMenuFragment
 import kotlinx.android.synthetic.main.fragment_chooseprobe.*
 

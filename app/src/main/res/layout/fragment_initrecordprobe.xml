@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/fragment_initrecordprobe_layout"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="60dp" android:id="@+id/textView18" android:layout_marginTop="90dp"
+            android:textAlignment="center" android:textColor="@color/header" android:textSize="24sp"
+            android:fontFamily="@font/open_sans_bold" android:text="@string/initrecordprobe_header"/>
+    <TextView
+            android:text="@string/initrecordprobe_1st_step"
+            android:layout_width="match_parent"
+            android:layout_height="60dp" android:id="@+id/textView17"
+            android:textAlignment="center" android:textColor="@color/header" android:textSize="18sp"
+            android:fontFamily="@font/open_sans_semibold"/>
+    <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/initrecordprobe_standardtypespinner"
+            android:textAlignment="center"
+            android:layout_marginHorizontal="25dp"/>
+</LinearLayout>

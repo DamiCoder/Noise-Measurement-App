@@ -1,4 +1,4 @@
-package dcwiek.noisemeasurmentapp.ui.fragment.common
+package dcwiek.noisemeasurmentapp.ui.fragment.common.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

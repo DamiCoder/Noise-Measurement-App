@@ -37,6 +37,8 @@
     <string name="success">Sukces!</string>
     <string name="probe_registered">Próbka została poprawnie zarejestrowana</string>
 
+    <string name="archive_fragment_header">Historia pomiarów</string>
+
     <string name="archive_emptylist_text">Nie masz zarejestrowanych historycznych pomiarów</string>
 
     <string name="archive_table_dateheader">Data</string>
@@ -46,6 +48,12 @@
     <string name="probedetails_standard">Standard</string>
     <string name="probedetails_comment">Komentarz</string>
     <string name="probedetails_location">Lokacja</string>
+
+    <string name="initrecordprobe_header">Nagrywanie dźwięku</string>
+    <string name="initrecordprobe_1st_step">1. Aby nagrać próbkę dźwięku, wybierz standard wg. którego ma zostać zbadana</string>
+
+    <string name="customprobefailure_text">Błąd!</string>
+    <string name="customprobefailure_label">Nie udało się zarejestrować próbki</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

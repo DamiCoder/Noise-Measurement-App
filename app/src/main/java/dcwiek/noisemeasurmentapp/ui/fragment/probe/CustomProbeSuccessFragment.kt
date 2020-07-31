@@ -11,7 +11,7 @@ import dcwiek.noisemeasurmentapp.R
 import dcwiek.noisemeasurmentapp.application.NoiseMeasurementApplication
 import dcwiek.noisemeasurmentapp.service.NotificationService
 import dcwiek.noisemeasurmentapp.ui.constants.FragmentKeys
-import dcwiek.noisemeasurmentapp.ui.fragment.common.ExtendedFragment
+import dcwiek.noisemeasurmentapp.ui.fragment.common.fragment.ExtendedFragment
 import dcwiek.noisemeasurmentapp.ui.fragment.menu.MainMenuFragment
 import kotlinx.android.synthetic.main.fragment_customprobesuccess.*
 

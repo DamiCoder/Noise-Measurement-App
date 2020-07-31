@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import dcwiek.noisemeasurmentapp.R
-import dcwiek.noisemeasurmentapp.ui.fragment.common.ExtendedFragment
+import dcwiek.noisemeasurmentapp.ui.fragment.common.fragment.ExtendedFragment
 
 class LoadingFragment : ExtendedFragment() {
 
