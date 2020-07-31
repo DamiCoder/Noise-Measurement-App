@@ -16,6 +16,7 @@
     <color name="darkGrey">#707070</color>
     <color name="contraryBlue">#e64f2e</color>
     <color name="successColor">#64BB67</color>
+    <color name="successColorBright">#ccff90</color>
     <color name="successColorDark">#4caf50</color>
     <color name="failureColor">#E04F5F</color>
     <color name="failureColorBright">#E46775</color>

@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dcwiek.noisemeasurmentapp.R
 import dcwiek.noisemeasurmentapp.ui.fragment.archive.ArchiveFragment
@@ -20,21 +19,18 @@ class MainMenuFragment : ExtendedFragment() {
 
     private var currentMenuItemId: Int? = null
 
-
     companion object {
         private lateinit var instance: MainMenuFragment
-
         fun getInstance(): MainMenuFragment {
-            if (!this::instance.isInitialized) {
+            if(!this::instance.isInitialized) {
                 instance = MainMenuFragment()
             }
             return instance
         }
     }
 
-    private lateinit var viewModel: MainMenuViewModel
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
         return inflater.inflate(R.layout.fragment_mainmenu, container, false)
     }
 
@@ -44,11 +40,6 @@ class MainMenuFragment : ExtendedFragment() {
                 menuItem -> onNavigationItemSelected(menuItem)
         }
         initializeArchiveView()
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(MainMenuViewModel::class.java)
     }
 
     fun initializeArchiveView() {
@@ -92,5 +83,4 @@ class MainMenuFragment : ExtendedFragment() {
             }
         }
     }
-
 }

@@ -52,6 +52,11 @@
     <string name="initrecordprobe_header">Nagrywanie dźwięku</string>
     <string name="initrecordprobe_1st_step">1. Aby nagrać próbkę dźwięku, wybierz standard wg. którego ma zostać zbadana</string>
 
+    <string name="customprobe_header">Nagrywanie dźwięku</string>
+    <string name="customprobe_stepsheader">Aby nagrać próbkę:</string>
+    <string name="customprobe_step1">Wciśnij poniższy przycisk i odczekaj 10 sekund - po tym czasie nagrywanie zostanie zakończone, telefon zawibruje i wydobędzie się z niego sygnał dźwiękowy, informujący o zakończeniu nagrywania</string>
+    <string name="customprobe_recording">*Nagrywanie*</string>
+
     <string name="customprobefailure_text">Błąd!</string>
     <string name="customprobefailure_label">Nie udało się zarejestrować próbki</string>
 

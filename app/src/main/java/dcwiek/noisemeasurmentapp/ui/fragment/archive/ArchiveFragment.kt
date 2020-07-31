@@ -36,12 +36,7 @@ class ArchiveFragment : ExtendedFragment(), ArchiveItemClickListener {
     }
 
     override fun switchToProbeDetailsFragment(probe: Probe) {
-        val fragment = fragmentManager?.findFragmentByTag(FragmentKeys.MAIN_MENU_FRAGMENT)
-        if (fragment != null) {
-            fragmentManager?.beginTransaction()?.remove(fragment)?.commit()
-        }
         replaceFragment(R.id.framelayout_main, ProbeDetailsFragment.newInstance(probe), FragmentKeys.PROBE_DETAILS_FRAGMENT)
-//        replaceFragment(R.id.bottom_navigation, BlankFragment.newInstance(), FragmentKeys.BOTTOM_BLANK_FRAGMENT)
     }
 
 }

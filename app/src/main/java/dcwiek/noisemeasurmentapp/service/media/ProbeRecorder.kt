@@ -13,6 +13,13 @@ class ProbeRecorder constructor(val context: Context) {
     private var state = false
     private val TAG: String = ProbeRecorder::class.java.name
 
+    companion object {
+        private const val AUDIO_CHANNELS = 2
+        const val RECORD_DURATION = 10000
+        private const val AUDIO_ENCODING_BIT_RATE =  256 * 1024
+        private const val AUDIO_SAMPLING_RATE =  48 * 1024
+    }
+
     init {
         initializeProbeRecorder(context)
     }
@@ -39,20 +46,19 @@ class ProbeRecorder constructor(val context: Context) {
         this.mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC)
         this.mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
         this.mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
-        this.mediaRecorder.setAudioChannels(2)
-        this.mediaRecorder.setMaxDuration(20000)
-        this.mediaRecorder.setAudioEncodingBitRate(256 * 1024)
-        this.mediaRecorder.setAudioSamplingRate(48 * 1024)
+        this.mediaRecorder.setAudioChannels(AUDIO_CHANNELS)
+        this.mediaRecorder.setMaxDuration(RECORD_DURATION)
+        this.mediaRecorder.setAudioEncodingBitRate(AUDIO_ENCODING_BIT_RATE)
+        this.mediaRecorder.setAudioSamplingRate(AUDIO_SAMPLING_RATE)
         this.mediaRecorder.setOutputFile(output)
 
 
         return this
     }
 
-    private fun getProbesFolder(context: Context): String {
-        return context.getExternalFilesDir(null)?.absolutePath + "/" + PROBES_FOLDER
+    fun changeOutputFileName(fileName: String) {
+        mediaRecorder.setOutputFile(getProbesFolder(context) + fileName)
     }
-
 
     fun startRecording() {
         this.mediaRecorder.prepare()
@@ -68,9 +74,8 @@ class ProbeRecorder constructor(val context: Context) {
         }
     }
 
-    fun changeOutputFileName(fileName: String) {
-        mediaRecorder.setOutputFile(getProbesFolder(context) + fileName)
+    private fun getProbesFolder(context: Context): String {
+        return context.getExternalFilesDir(null)?.absolutePath + "/" + PROBES_FOLDER
     }
-
 
 }

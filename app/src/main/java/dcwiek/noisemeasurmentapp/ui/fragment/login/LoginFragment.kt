@@ -9,7 +9,6 @@ import dcwiek.noisemeasurmentapp.R
 import dcwiek.noisemeasurmentapp.ui.constants.FragmentKeys
 import dcwiek.noisemeasurmentapp.ui.fragment.common.fragment.ExtendedFragment
 import dcwiek.noisemeasurmentapp.ui.fragment.menu.MainMenuFragment
-import dcwiek.noisemeasurmentapp.ui.fragment.probe.ChooseProbeFragment
 import dcwiek.noisemeasurmentapp.ui.fragment.register.RegisterFragment
 import kotlinx.android.synthetic.main.fragment_login.*
 
@@ -30,27 +29,14 @@ class LoginFragment : ExtendedFragment() {
             replaceFragment(R.id.framelayout_main, RegisterFragment.newInstance(), FragmentKeys.REGISTER_FRAGMENT)
         }
         button_login_login.setOnClickListener {
-            chooseNextFragment()
+            //TODO: log in here, create data etc
+            createMainMenuFragment()
         }
         super.onViewCreated(view, savedInstanceState)
     }
 
-    private fun chooseNextFragment() {
-        val chosenProbe =
-            sharedPreferencesService.getSharedPreference(getString(R.string.preference_key_choosen_probe))
-        if (chosenProbe != null) {
-            createMainMenuFragment()
-        } else {
-            createChooseProbeFragment()
-        }
-    }
-
     private fun createMainMenuFragment() {
         replaceFragment(R.id.framelayout_main, MainMenuFragment.getInstance(), FragmentKeys.MAIN_MENU_FRAGMENT)
-    }
-
-    private fun createChooseProbeFragment() {
-        replaceFragment(R.id.framelayout_main, ChooseProbeFragment.newInstance(), FragmentKeys.CHOOSE_PROBE_FRAGMENT)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

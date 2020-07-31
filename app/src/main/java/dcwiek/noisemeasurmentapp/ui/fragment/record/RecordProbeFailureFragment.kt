@@ -1,4 +1,4 @@
-package dcwiek.noisemeasurmentapp.ui.fragment.probe
+package dcwiek.noisemeasurmentapp.ui.fragment.record
 
 import android.content.Context
 import android.os.Bundle
@@ -6,22 +6,21 @@ import android.os.Vibrator
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProviders
 import dcwiek.noisemeasurmentapp.R
 import dcwiek.noisemeasurmentapp.application.NoiseMeasurementApplication
 import dcwiek.noisemeasurmentapp.service.NotificationService
 import dcwiek.noisemeasurmentapp.ui.constants.FragmentKeys
 import dcwiek.noisemeasurmentapp.ui.fragment.common.fragment.ExtendedFragment
+import dcwiek.noisemeasurmentapp.ui.fragment.menu.MainMenuFragment
 import kotlinx.android.synthetic.main.fragment_customprobefailure.*
 
 
-class CustomProbeFailureFragment : ExtendedFragment() {
+class RecordProbeFailureFragment : ExtendedFragment() {
 
     companion object {
-        fun newInstance() = CustomProbeFailureFragment()
+        fun newInstance() = RecordProbeFailureFragment()
     }
 
-    private lateinit var viewModel: CustomProbeFailureViewModel
     private lateinit var notificationService: NotificationService
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -33,13 +32,13 @@ class CustomProbeFailureFragment : ExtendedFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(CustomProbeFailureViewModel::class.java)
 
         val vibrator = activity?.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         notificationService.vibrateAndPlaySound(vibrator)
 
         button_customprobefailure_continue.setOnClickListener{
-            replaceFragment(R.id.framelayout_main, ChooseProbeFragment.newInstance(), FragmentKeys.CHOOSE_PROBE_FRAGMENT)
+            replaceFragment(R.id.framelayout_main, MainMenuFragment.getInstance(), FragmentKeys.MAIN_MENU_FRAGMENT)
+            MainMenuFragment.getInstance().initializeArchiveView()
         }
     }
 

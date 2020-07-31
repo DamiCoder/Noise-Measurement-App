@@ -25,7 +25,7 @@ class ProbeDetailsFragment(val probe: Probe): ExtendedFragment() {
         val result = Result.getByLabel(probe.standard.title)
         view.probedetails_locationview.text = if(!probe.comment.isBlank()) probe.comment else EMPTY_RESULT
         view.probedetails_datecreatedview.text = probe.getCreateDateFormatted()
-        view.probedetails_locationview.text = if(!probe.location.isBlank()) probe.location else EMPTY_RESULT
+        view.probedetails_commentview.text = if(!probe.location.isBlank()) probe.location else EMPTY_RESULT
         view.probedetails_placeview.text = probe.place.name
         view.probedetails_regulationview.text = probe.standard.regulation
         view.probedetails_resultview.text = probe.getResultFormatted()
@@ -39,8 +39,7 @@ class ProbeDetailsFragment(val probe: Probe): ExtendedFragment() {
         view.probedetails_resultdescview.text = probe.standard.description
         view.probedetails_backbutton.setOnClickListener {
             replaceFragment(R.id.framelayout_main, MainMenuFragment.getInstance(), FragmentKeys.MAIN_MENU_FRAGMENT)
-            MainMenuFragment.getInstance().initializeArchiveView()
-        }
+            MainMenuFragment.getInstance().initializeArchiveView()        }
         return view
     }
 }

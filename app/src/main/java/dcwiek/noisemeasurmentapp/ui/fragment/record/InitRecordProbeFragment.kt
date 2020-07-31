@@ -13,6 +13,7 @@ import android.widget.*
 import dcwiek.noisemeasurmentapp.R
 import dcwiek.noisemeasurmentapp.domain.constants.Place
 import dcwiek.noisemeasurmentapp.domain.constants.Regulation
+import dcwiek.noisemeasurmentapp.ui.constants.FragmentKeys
 import dcwiek.noisemeasurmentapp.ui.fragment.common.fragment.ExtendedFragment
 import dcwiek.noisemeasurmentapp.ui.fragment.common.spinner.HintListAdapter
 import dcwiek.noisemeasurmentapp.ui.fragment.common.spinner.SpinnerItem
@@ -130,7 +131,9 @@ class InitRecordProbeFragment: ExtendedFragment() {
         nextViewButton.layoutParams = layoutParams
 
         fragment_initrecordprobe_layout.addView(nextViewButton)
-        nextViewButton.setOnClickListener { view ->  }
+        nextViewButton.setOnClickListener {
+            replaceFragment(R.id.framelayout_main, RecordProbeFragment.newInstance(), FragmentKeys.PROBE_RECORD_FRAGMENT)
+        }
     }
 
     private fun Int.toPx(): Int = (this * Resources.getSystem().displayMetrics.density).toInt()

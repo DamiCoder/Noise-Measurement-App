@@ -1,4 +1,4 @@
-package dcwiek.noisemeasurmentapp.ui.fragment.probe
+package dcwiek.noisemeasurmentapp.ui.fragment.record
 
 import android.content.Context
 import android.os.Bundle
@@ -6,7 +6,6 @@ import android.os.Vibrator
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProviders
 import dcwiek.noisemeasurmentapp.R
 import dcwiek.noisemeasurmentapp.application.NoiseMeasurementApplication
 import dcwiek.noisemeasurmentapp.service.NotificationService
@@ -16,13 +15,12 @@ import dcwiek.noisemeasurmentapp.ui.fragment.menu.MainMenuFragment
 import kotlinx.android.synthetic.main.fragment_customprobesuccess.*
 
 
-class CustomProbeSuccessFragment : ExtendedFragment() {
+class RecordProbeSuccessFragment : ExtendedFragment() {
 
     companion object {
-        fun newInstance() = CustomProbeSuccessFragment()
+        fun newInstance() = RecordProbeSuccessFragment()
     }
 
-    private lateinit var viewModel: CustomProbeSuccessViewModel
     private lateinit var notificationService: NotificationService
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -34,7 +32,6 @@ class CustomProbeSuccessFragment : ExtendedFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(CustomProbeSuccessViewModel::class.java)
 
         val vibrator = activity?.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         notificationService.vibrateAndPlaySound(vibrator)
@@ -45,8 +42,9 @@ class CustomProbeSuccessFragment : ExtendedFragment() {
         }
 
         button_customprobesuccess_continue.setOnClickListener{
+            //TODO: extract probe + send to server + add it to list
             replaceFragment(R.id.framelayout_main, MainMenuFragment.getInstance(), FragmentKeys.MAIN_MENU_FRAGMENT)
-        }
+            MainMenuFragment.getInstance().initializeArchiveView()        }
     }
 
 }
