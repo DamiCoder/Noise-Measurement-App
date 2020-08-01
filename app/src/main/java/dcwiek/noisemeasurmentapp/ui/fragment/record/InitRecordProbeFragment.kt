@@ -35,7 +35,7 @@ class InitRecordProbeFragment: ExtendedFragment() {
         val spinnerValues = LinkedList<SpinnerItem>()
 
         spinnerValues.addAll(Regulation.getLabels().stream().map{regulation -> SpinnerItem.createValue(regulation)}.collect(Collectors.toList()))
-        spinnerValues.add(SpinnerItem.createHint("Wybierz regulację"))
+        spinnerValues.add(SpinnerItem.createHint("Wybierz typ regulacji"))
 
         view.initrecordprobe_standardtypespinner.adapter = HintListAdapter(requireContext(), R.layout.spinner_item,
             spinnerValues)

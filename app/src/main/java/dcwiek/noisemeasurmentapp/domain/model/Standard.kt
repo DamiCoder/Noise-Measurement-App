@@ -6,4 +6,5 @@ class Standard(
     val description: String,
     val minValue: Int,
     val maxValue: Int,
-    val regulation: String)
+    val regulation: String,
+    val place: Place)

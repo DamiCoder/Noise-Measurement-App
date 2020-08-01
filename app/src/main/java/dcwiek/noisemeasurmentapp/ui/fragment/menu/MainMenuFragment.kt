@@ -12,6 +12,7 @@ import dcwiek.noisemeasurmentapp.ui.fragment.archive.ArchiveFragment
 import dcwiek.noisemeasurmentapp.ui.fragment.archive.EmptyArchiveFragment
 import dcwiek.noisemeasurmentapp.ui.fragment.common.fragment.ExtendedFragment
 import dcwiek.noisemeasurmentapp.ui.fragment.record.InitRecordProbeFragment
+import dcwiek.noisemeasurmentapp.ui.fragment.standards.InitStandardsDiscoveryFragment
 
 class MainMenuFragment : ExtendedFragment() {
 
@@ -71,7 +72,8 @@ class MainMenuFragment : ExtendedFragment() {
                 }
                 return true
             }
-            R.id.item_bottomnav_norms -> {
+            R.id.item_bottomnav_standards -> {
+                replaceFragment(R.id.mainmenu_constraintlayout, InitStandardsDiscoveryFragment.newInstance())
                 return true
             }
             R.id.item_bottomnav_help -> {

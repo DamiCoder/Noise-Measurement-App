@@ -4,9 +4,9 @@ import java.util.*
 import java.util.stream.Collectors
 
 enum class Place(val label: String, val regulation: Regulation) {
-    HEALTH_RESORT("Uzdrowisko lub Szpital poza miastem", Regulation.LAW),
-    DETACHED_HOUSE("Dom jednorodzinny lub Szpital miejski", Regulation.LAW),
-    MULTI_OCCUPIED_HOUSE("Dom wielorodzinny lub Blok lub Teren rekreacyjny lub Teren mieszkaniowo-usługowy", Regulation.LAW),
+    HEALTH_RESORT("Uzdrowisko / Szpital poza miastem", Regulation.LAW),
+    DETACHED_HOUSE("Dom jednorodzinny / Szpital miejski", Regulation.LAW),
+    MULTI_OCCUPIED_HOUSE("Dom wielorodzinny / Blok / Teren mieszkaniowo-usługowy", Regulation.LAW),
     DOWNTOWN("Strefa śródmiejska", Regulation.LAW),
     PLACE_OF_RESIDENCE("Środowisko zamieszkania", Regulation.SCIENTIFIC),
     WORKSITE("Środowisko zawodowe", Regulation.SCIENTIFIC),
