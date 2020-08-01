@@ -12,7 +12,7 @@ import dcwiek.noisemeasurmentapp.ui.fragment.menu.MainMenuFragment
 import dcwiek.noisemeasurmentapp.ui.fragment.register.RegisterFragment
 import kotlinx.android.synthetic.main.fragment_login.*
 
-class LoginFragment : ExtendedFragment() {
+class LoginFragment: ExtendedFragment() {
 
     companion object {
         fun newInstance() = LoginFragment()

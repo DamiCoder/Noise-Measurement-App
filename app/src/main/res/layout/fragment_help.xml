@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                                                   android:layout_height="match_parent">
+
+    <TextView
+            android:text="@string/help_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/textView4"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="90dp" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" android:textSize="24sp"
+            android:fontFamily="@font/open_sans_bold" android:textColor="@color/header" android:textAlignment="center"
+            android:gravity="center"/>
+    <TextView
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae nisl at ligula tristique rutrum nec a mi. Nullam in orci vitae libero consequat blandit. Proin finibus tortor non ornare cursus. Etiam eget felis orci. Curabitur bibendum enim vitae euismod feugiat. Suspendisse congue odio at nisl interdum, vitae gravida libero feugiat. Fusce vitae nisi a dui finibus ultricies. Pellentesque vel odio odio. Aenean nunc massa, sagittis nec nisl vel, malesuada suscipit tellus. Morbi commodo fermentum ligula, rutrum dictum ante venenatis sit amet. Mauris eget nibh bibendum, posuere tortor eget, facilisis augue. Maecenas nec tempor dui. In in purus pharetra, lacinia enim quis, volutpat ipsum. Nam vitae dapibus justo.  In blandit ipsum turpis, at varius magna auctor vel. Integer a molestie ligula, ac semper justo. Donec vitae eros non lectus consectetur feugiat eu fermentum erat. Donec neque dolor, luctus vel velit non, viverra consectetur lectus. Cras sed tristique libero. Quisque ornare dolor id tincidunt tincidunt. Nam a massa at massa sagittis volutpat eget ut lectus. Cras sit amet aliquet leo. Mauris lacinia libero fringilla arcu tempus lacinia. Nam sit amet malesuada sem. Sed accumsan pharetra turpis in posuere.  Vestibulum quis velit eu justo rhoncus tempus ac nec purus. Integer bibendum mattis ligula eget tempus. In consequat, magna tincidunt viverra accumsan, urna magna luctus velit, at lobortis urna nibh quis elit. Aliquam erat volutpat. Curabitur at arcu varius, dignissim augue et, dignissim nulla. Duis facilisis eget nisl ut dignissim. Aenean ultricies in lectus eu tincidunt. Vivamus ut feugiat turpis. Quisque sodales auctor neque et accumsan.  Integer tellus lacus, gravida in ultrices quis, efficitur et sapien. Nam porta varius ex, in molestie arcu imperdiet nec. Maecenas vitae mattis arcu, vitae facilisis mi. Pellentesque sed leo dui. Pellentesque nec urna mi. Quisque dignissim faucibus velit ut placerat. Pellentesque id odio nibh. Phasellus ac ex finibus, molestie massa feugiat, facilisis sem. Curabitur nec blandit neque, at ultricies turpis. Aenean enim justo, malesuada nec magna at, congue feugiat nisl. Curabitur a leo quam. Maecenas gravida in elit ut volutpat. Sed a congue lacus. Morbi blandit nec leo a ultrices. Praesent sed finibus lectus. Suspendisse potenti."
+            android:layout_width="351dp"
+            android:scrollbars="vertical"
+            tools:ignore="HardcodedText"
+            android:layout_height="510dp" android:id="@+id/help_helptextview"
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            android:layout_marginTop="24dp" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" android:textAlignment="viewStart" android:textSize="14sp"
+            android:textColor="@color/inputHint" android:fontFamily="@font/open_sans"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

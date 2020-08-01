@@ -73,5 +73,6 @@
     <string name="item_standard_riskthresholdlabel">Próg zagrożenia</string>
     <string name="item_standard_aceeptedvaluethreshold">Akceptowalna wartość</string>
     <string name="item_standard_classificationlabel">Klasyfikacja</string>
+    <string name="help_header">Informacje o aplikacji</string>
 
 </resources>
