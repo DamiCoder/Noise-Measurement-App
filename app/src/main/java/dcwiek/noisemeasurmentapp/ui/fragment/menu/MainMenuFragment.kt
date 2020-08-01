@@ -16,14 +16,18 @@ import dcwiek.noisemeasurmentapp.ui.fragment.standards.InitStandardsDiscoveryFra
 
 class MainMenuFragment : ExtendedFragment() {
 
-    private val TAG: String = MainMenuFragment::class.java.name
 
-    private var currentMenuItemId: Int? = null
+    private lateinit var bottomNavigationView: BottomNavigationView
+    var currentMenuItem: MenuItem? = null
+
+    private var isFirstTimeOpened = true
 
     companion object {
+        private val TAG: String = MainMenuFragment::class.java.name
         private lateinit var instance: MainMenuFragment
         fun getInstance(): MainMenuFragment {
             if(!this::instance.isInitialized) {
+                Log.d(TAG, "Creating new MainMenuFragment instance")
                 instance = MainMenuFragment()
             }
             return instance
@@ -37,28 +41,48 @@ class MainMenuFragment : ExtendedFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.findViewById<BottomNavigationView>(R.id.bottom_navigation).setOnNavigationItemSelectedListener {
+
+        this.bottomNavigationView = view.findViewById(R.id.bottom_navigation)
+        this.bottomNavigationView.setOnNavigationItemSelectedListener {
                 menuItem -> onNavigationItemSelected(menuItem)
         }
-        initializeArchiveView()
+        if(isFirstTimeOpened) {
+            initializeArchiveView()
+        }
     }
 
     fun initializeArchiveView() {
-        view?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.selectedItemId = R.id.item_bottomnav_history
-        if(dataStorage.archivedProbesData.value.isNullOrEmpty()) {
-            replaceFragment(R.id.mainmenu_constraintlayout, EmptyArchiveFragment.newInstance())
-        } else {
-            replaceFragment(R.id.mainmenu_constraintlayout, ArchiveFragment.newInstance())
-        }
+        currentMenuItem = null
+        this.bottomNavigationView.selectedItemId = R.id.item_bottomnav_history
+    }
+
+    fun initializeStandardsView() {
+        currentMenuItem = null
+        this.bottomNavigationView.selectedItemId = R.id.item_bottomnav_standards
+    }
+
+    fun initializeRecordView() {
+        currentMenuItem = null
+        this.bottomNavigationView.selectedItemId = R.id.item_bottomnav_record
+    }
+
+    fun initializeHelpView() {
+        currentMenuItem = null
+        this.bottomNavigationView.selectedItemId = R.id.item_bottomnav_help
     }
 
     private fun onNavigationItemSelected(item: MenuItem) : Boolean {
-        if (currentMenuItemId != null) {
-            if (currentMenuItemId == item.itemId) {
+        isFirstTimeOpened = false
+        Log.d(TAG, "Current menuItem: ${item.title}")
+
+        if (currentMenuItem != null) {
+            if (currentMenuItem == item) {
                 return false
             }
         }
-        currentMenuItemId = item.itemId
+
+        currentMenuItem = item
+        item.isChecked = true
         when(item.itemId) {
             R.id.item_bottomnav_record -> {
                 replaceFragment(R.id.mainmenu_constraintlayout, InitRecordProbeFragment.newInstance())

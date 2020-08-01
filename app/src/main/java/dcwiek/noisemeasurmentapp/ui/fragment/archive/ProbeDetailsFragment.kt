@@ -7,9 +7,7 @@ import android.view.ViewGroup
 import dcwiek.noisemeasurmentapp.R
 import dcwiek.noisemeasurmentapp.domain.constants.Result
 import dcwiek.noisemeasurmentapp.domain.model.Probe
-import dcwiek.noisemeasurmentapp.ui.constants.FragmentKeys
 import dcwiek.noisemeasurmentapp.ui.fragment.common.fragment.ExtendedFragment
-import dcwiek.noisemeasurmentapp.ui.fragment.menu.MainMenuFragment
 import kotlinx.android.synthetic.main.fragment_probedetails.view.*
 
 class ProbeDetailsFragment(val probe: Probe): ExtendedFragment() {
@@ -38,8 +36,8 @@ class ProbeDetailsFragment(val probe: Probe): ExtendedFragment() {
         view.probedetails_resultlabelview.setTextColor(brightColor)
         view.probedetails_resultdescview.text = probe.standard.description
         view.probedetails_backbutton.setOnClickListener {
-            replaceFragment(R.id.framelayout_main, MainMenuFragment.getInstance(), FragmentKeys.MAIN_MENU_FRAGMENT)
-            MainMenuFragment.getInstance().initializeArchiveView()        }
+            loadMainMenuFragment()
+        }
         return view
     }
 }

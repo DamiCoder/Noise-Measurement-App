@@ -10,8 +10,8 @@ enum class Place(val label: String, val regulation: Regulation) {
     DOWNTOWN("Strefa śródmiejska", Regulation.LAW),
     PLACE_OF_RESIDENCE("Środowisko zamieszkania", Regulation.SCIENTIFIC),
     WORKSITE("Środowisko zawodowe", Regulation.SCIENTIFIC),
-    INDUSTRIAL_WORKSITE("Środowisko zawodowe przemysłowe", Regulation.SCIENTIFIC),
-    OFFICE_WORKSITE("Środowisko zawodowe biurowe", Regulation.SCIENTIFIC);
+    INDUSTRIAL_WORKSITE("Środowisko zawodowe (Przemysłowe)", Regulation.SCIENTIFIC),
+    OFFICE_WORKSITE("Środowisko zawodowe (Biurowe)", Regulation.SCIENTIFIC);
 
     companion object {
         fun getAllByRegulation(regulation: Regulation): List<Place> {

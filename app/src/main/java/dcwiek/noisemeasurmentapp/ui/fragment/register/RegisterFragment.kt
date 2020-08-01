@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProviders
 import dcwiek.noisemeasurmentapp.R
 import dcwiek.noisemeasurmentapp.ui.fragment.common.fragment.ExtendedFragment
 import dcwiek.noisemeasurmentapp.ui.fragment.login.LoginFragment
@@ -16,17 +15,9 @@ class RegisterFragment : ExtendedFragment() {
         fun newInstance() = RegisterFragment()
     }
 
-    private lateinit var viewModel: RegisterViewModel
-
     override fun onCreateView(        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?)
             : View? {
         return inflater.inflate(R.layout.fragment_register, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(RegisterViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

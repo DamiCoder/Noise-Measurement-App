@@ -16,17 +16,17 @@ class Probe(
     companion object {
         fun mockGoodProbe(): Probe {
             val place = Place(0, "Place name", "Quite short place description", "")
-            val standard = Standard(0, "Dobry", "Quite short standard description", 10, 35, "Law", place)
+            val standard = Standard(0, "Dobry", "Quite short standard description", 10, 35, "LAW", place)
             return Probe(0, "180,90,180,90", place, standard, AppUser(), 50, "Empty comment", LocalDateTime.now().minusDays(2))
         }
         fun mockBadProbe(): Probe {
             val place = Place(0, "Place name", "Quite short place description", "")
-            val standard = Standard(0, "Zły", "Quite short standard description", 10, 35, "Law", place)
+            val standard = Standard(0, "Zły", "Quite short standard description", 10, 35, "LAW", place)
             return Probe(0, "180,90,180,90", place, standard, AppUser(), 50, "Empty comment", LocalDateTime.now().minusDays(2))
         }
         fun mockAverageProbe(): Probe {
             val place = Place(0, "Place name", "Quite short place description", "")
-            val standard = Standard(0, "Średni", "Quite short standard description", 10, 35, "Law", place)
+            val standard = Standard(0, "Średni", "Quite short standard description", 10, 35, "LAW", place)
             return Probe(0, "180,90,180,90", place, standard, AppUser(), 50, "Empty comment", LocalDateTime.now().minusDays(2))
         }
     }

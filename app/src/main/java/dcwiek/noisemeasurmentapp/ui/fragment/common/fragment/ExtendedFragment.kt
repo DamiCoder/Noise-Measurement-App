@@ -10,19 +10,13 @@ import dcwiek.noisemeasurmentapp.R
 import dcwiek.noisemeasurmentapp.application.NoiseMeasurementApplication
 import dcwiek.noisemeasurmentapp.domain.DataStorage
 import dcwiek.noisemeasurmentapp.service.SharedPreferencesService
+import dcwiek.noisemeasurmentapp.ui.constants.FragmentKeys
+import dcwiek.noisemeasurmentapp.ui.fragment.menu.MainMenuFragment
 
 open class ExtendedFragment: Fragment() {
 
     lateinit var sharedPreferencesService: SharedPreferencesService
     lateinit var dataStorage: DataStorage
-
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        val storageComponent = (requireContext().applicationContext as NoiseMeasurementApplication)
-//            .getStorageComponent()
-//        sharedPreferencesService = storageComponent.getSharedPreferencesService()
-//        dataStorage = storageComponent.getDataStorage()
-//    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val storageComponent = (requireContext().applicationContext as NoiseMeasurementApplication)
@@ -56,14 +50,14 @@ open class ExtendedFragment: Fragment() {
             ?.commit()
     }
 
-    fun reinitializeServices() {
-        val storageComponent = (requireContext().applicationContext as NoiseMeasurementApplication)
-            .getStorageComponent()
-        sharedPreferencesService = storageComponent.getSharedPreferencesService()
-        dataStorage = storageComponent.getDataStorage()
-    }
-
-    fun reattach() {
-        fragmentManager?.beginTransaction()?.attach(this)?.commit()
+    fun loadMainMenuFragment() {
+        val fragment = MainMenuFragment.getInstance()
+        replaceFragment(R.id.framelayout_main, fragment, FragmentKeys.MAIN_MENU_FRAGMENT)
+        when(fragment.currentMenuItem?.itemId) {
+            R.id.item_bottomnav_record -> fragment.initializeRecordView()
+            R.id.item_bottomnav_history -> fragment.initializeArchiveView()
+            R.id.item_bottomnav_standards -> fragment.initializeStandardsView()
+            R.id.item_bottomnav_help -> fragment.initializeHelpView()
+        }
     }
 }

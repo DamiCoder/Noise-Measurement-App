@@ -68,5 +68,10 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="item_standard_placelabel">Miejsce</string>
+    <string name="item_standard_threatthresholdlabel">Norma przekroczona</string>
+    <string name="item_standard_riskthresholdlabel">Próg zagrożenia</string>
+    <string name="item_standard_aceeptedvaluethreshold">Akceptowalna wartość</string>
+    <string name="item_standard_classificationlabel">Klasyfikacja</string>
 
 </resources>

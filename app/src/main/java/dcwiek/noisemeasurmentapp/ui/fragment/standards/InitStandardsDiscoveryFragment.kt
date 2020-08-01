@@ -9,6 +9,8 @@ import android.widget.RadioButton
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.forEach
 import dcwiek.noisemeasurmentapp.R
+import dcwiek.noisemeasurmentapp.domain.constants.Regulation
+import dcwiek.noisemeasurmentapp.ui.constants.FragmentKeys
 import dcwiek.noisemeasurmentapp.ui.fragment.common.fragment.ExtendedFragment
 import kotlinx.android.synthetic.main.fragment_initstandardsdiscovery.*
 
@@ -28,7 +30,11 @@ class InitStandardsDiscoveryFragment: ExtendedFragment() {
             changeRadioButtonsAppearance()
         }
         button_initstandardsview_continue.setOnClickListener {
-            //TODO: load next main fragment
+            if(initstandardsdiscovery_radiogroup.checkedRadioButtonId == R.id.initstandardsdiscovery_law_radiobutton) {
+                replaceFragment(R.id.framelayout_main, StandardsDiscoveryFragment.newInstance(Regulation.LAW), FragmentKeys.STANDARDS_DISCOVERY_FRAGMENT)
+            } else {
+                replaceFragment(R.id.framelayout_main, StandardsDiscoveryFragment.newInstance(Regulation.SCIENTIFIC), FragmentKeys.STANDARDS_DISCOVERY_FRAGMENT)
+            }
         }
     }
 

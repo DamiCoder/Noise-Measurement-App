@@ -9,9 +9,7 @@ import android.view.ViewGroup
 import dcwiek.noisemeasurmentapp.R
 import dcwiek.noisemeasurmentapp.application.NoiseMeasurementApplication
 import dcwiek.noisemeasurmentapp.service.NotificationService
-import dcwiek.noisemeasurmentapp.ui.constants.FragmentKeys
 import dcwiek.noisemeasurmentapp.ui.fragment.common.fragment.ExtendedFragment
-import dcwiek.noisemeasurmentapp.ui.fragment.menu.MainMenuFragment
 import kotlinx.android.synthetic.main.fragment_customprobefailure.*
 
 
@@ -37,8 +35,7 @@ class RecordProbeFailureFragment : ExtendedFragment() {
         notificationService.vibrateAndPlaySound(vibrator)
 
         button_customprobefailure_continue.setOnClickListener{
-            replaceFragment(R.id.framelayout_main, MainMenuFragment.getInstance(), FragmentKeys.MAIN_MENU_FRAGMENT)
-            MainMenuFragment.getInstance().initializeArchiveView()
+            loadMainMenuFragment()
         }
     }
 
