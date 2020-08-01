@@ -14,7 +14,7 @@ class ProbeRecorder constructor(val context: Context) {
     private val TAG: String = ProbeRecorder::class.java.name
 
     companion object {
-        private const val AUDIO_CHANNELS = 2
+        private const val AUDIO_CHANNELS = 1
         const val RECORD_DURATION = 10000
         private const val AUDIO_ENCODING_BIT_RATE =  256 * 1024
         private const val AUDIO_SAMPLING_RATE =  48 * 1024
