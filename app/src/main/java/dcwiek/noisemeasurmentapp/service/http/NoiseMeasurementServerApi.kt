@@ -1,6 +1,10 @@
 package dcwiek.noisemeasurmentapp.service.http
 
 import android.content.Context
+import com.franmontiel.persistentcookiejar.ClearableCookieJar
+import com.franmontiel.persistentcookiejar.PersistentCookieJar
+import com.franmontiel.persistentcookiejar.cache.SetCookieCache
+import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
 import com.google.gson.Gson
 import dcwiek.noisemeasurmentapp.R
 import dcwiek.noisemeasurmentapp.domain.DataStorage
@@ -23,6 +27,8 @@ class NoiseMeasurementServerApi(private val dataStorage: DataStorage,
     companion object {
         const val LOGIN_RELATIVE_URL = "/public/api/user/login"
         const val REGISTER_RELATIVE_URL = "/public/api/user/register"
+        const val PLACES_RETRIEVAL_RELATIVE_URL = "/api/place/retrieveAll"
+        const val REGULATIONS_RETRIEVAL_RELATIVE_URL = "/api/regulation/retrieveAll"
         val JSON = "application/json; charset=utf-8".toMediaTypeOrNull()
     }
 
@@ -39,7 +45,14 @@ class NoiseMeasurementServerApi(private val dataStorage: DataStorage,
         val trustManager = trustManagers[0] as X509TrustManager
         keyManagerFactory.init(keyStore, "secret".toCharArray())
         sslContext.init(keyManagerFactory.keyManagers, arrayOf(trustManager), SecureRandom())
-        client = OkHttpClient().newBuilder().sslSocketFactory(sslContext.socketFactory, trustManager).build()
+
+        val cookieJar: ClearableCookieJar = PersistentCookieJar(SetCookieCache(), SharedPrefsCookiePersistor(context))
+
+        client = OkHttpClient()
+            .newBuilder()
+            .cookieJar(cookieJar)
+            .sslSocketFactory(sslContext.socketFactory, trustManager)
+            .build()
     }
 
     private fun readKeystore(): KeyStore {
@@ -75,6 +88,18 @@ class NoiseMeasurementServerApi(private val dataStorage: DataStorage,
             .url(EndpointConstants.NOISE_MEASUREMENT_SERVER_URL + REGISTER_RELATIVE_URL)
 //            .addHeader("Authorization", "Basic ${Credentials.basic(username, password, StandardCharsets.UTF_8)}")
             .post(Gson().toJson(UserRegistrationForm(username, password)).toRequestBody(JSON))
+            .build()
+    }
+
+    fun preparePlacesRetrievalRequest(): Request {
+        return Request.Builder()
+            .url(EndpointConstants.NOISE_MEASUREMENT_SERVER_URL + PLACES_RETRIEVAL_RELATIVE_URL)
+            .build()
+    }
+
+    fun prepareRegulationsRetrievalRequest(): Request {
+        return Request.Builder()
+            .url(EndpointConstants.NOISE_MEASUREMENT_SERVER_URL + REGULATIONS_RETRIEVAL_RELATIVE_URL)
             .build()
     }
 

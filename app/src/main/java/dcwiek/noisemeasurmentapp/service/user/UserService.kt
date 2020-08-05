@@ -2,14 +2,11 @@ package dcwiek.noisemeasurmentapp.service.user
 
 import android.util.Log
 import com.google.gson.Gson
-import dcwiek.noisemeasurmentapp.domain.DataStorage
 import dcwiek.noisemeasurmentapp.domain.model.AppUser
 import dcwiek.noisemeasurmentapp.service.http.NoiseMeasurementServerApi
 import java.util.*
 
-class UserService constructor(
-    private val noiseMeasurementServerApi: NoiseMeasurementServerApi,
-    private val dataStorage: DataStorage) {
+class UserService constructor(private val noiseMeasurementServerApi: NoiseMeasurementServerApi) {
 
     companion object {
         private val TAG: String = UserService::class.java.name
@@ -42,6 +39,4 @@ class UserService constructor(
             Optional.empty()
         }
     }
-
-
 }

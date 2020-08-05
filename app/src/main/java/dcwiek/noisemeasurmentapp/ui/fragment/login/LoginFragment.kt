@@ -48,8 +48,17 @@ class LoginFragment: ExtendedFragment() {
 
     private class LoginAsyncTask(val loginFragment: LoginFragment, val username: String, val password: String) : AsyncTask<URL?, Int?, Optional<AppUser>>() {
         override fun doInBackground(vararg urls: URL?): Optional<AppUser> {
-            return loginFragment.userService.login(username, password)
-            //TODO: download here other necessary
+            val userOptional = loginFragment.userService.login(username, password)
+            userOptional.ifPresent { loginFragment.dataStorage.currentUser.postValue(it) }
+
+            val places = loginFragment.placeService.getPlaces()
+            places.ifPresent { loginFragment.dataStorage.places.postValue(it) }
+
+            val regulations = loginFragment.regulationService.getRegulations()
+            regulations.ifPresent { loginFragment.dataStorage.regulations.postValue(it) }
+
+            return userOptional
+            //TODO: download here other necessary const values
         }
 
         override fun onProgressUpdate(vararg progress: Int?) {
@@ -57,7 +66,6 @@ class LoginFragment: ExtendedFragment() {
 
         override fun onPostExecute(result: Optional<AppUser>) {
             if (result.isPresent) {
-                loginFragment.dataStorage.currentUser.postValue(result.get())
                 loginFragment.createMainMenuFragment()
             } else {
                 loginFragment.view?.let {

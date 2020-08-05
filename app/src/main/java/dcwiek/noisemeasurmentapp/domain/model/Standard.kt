@@ -22,10 +22,12 @@ class Standard(
     companion object {
         fun mockStandard(regulation: Regulation): Standard {
             return if(regulation == Regulation.SCIENTIFIC) {
-                val place = Place(0, "Place name", "Quite short place description", "ABC")
+                val regulation = Regulation(0, "LAW")
+                val place = Place(0, "Place name", "Quite short place description", "ABC", regulation)
                 Standard(0, "Dobry", "Quite short standard description", 10, 35, regulation.name, place)
             } else {
-                val place = Place(0, "Place name", "Quite short place description", "")
+                val regulation = Regulation(0, "LAW")
+                val place = Place(0, "Place name", "Quite short place description", "", regulation)
                 Standard(0, "Dobry", "Quite short standard description", 10, 35, regulation.name, place)
             }
         }

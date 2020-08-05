@@ -11,10 +11,10 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.*
 import dcwiek.noisemeasurmentapp.R
-import dcwiek.noisemeasurmentapp.domain.constants.Place
 import dcwiek.noisemeasurmentapp.domain.constants.Regulation
 import dcwiek.noisemeasurmentapp.ui.constants.FragmentKeys
 import dcwiek.noisemeasurmentapp.ui.fragment.common.fragment.ExtendedFragment
+import dcwiek.noisemeasurmentapp.ui.fragment.common.popup.PopupUtil
 import dcwiek.noisemeasurmentapp.ui.fragment.common.spinner.HintListAdapter
 import dcwiek.noisemeasurmentapp.ui.fragment.common.spinner.SpinnerItem
 import kotlinx.android.synthetic.main.fragment_initrecordprobe.*
@@ -56,7 +56,9 @@ class InitRecordProbeFragment: ExtendedFragment() {
                         initrecordprobe_standardtypespinner.isEnabled = false
                         initrecordprobe_standardtypespinner.isClickable = false
                     } else {
-                        //TODO; handle exception with popup
+                        PopupUtil.createInfoPopup(requireContext(), this@InitRecordProbeFragment.requireView(),
+                            "Coś poszło nie tak", "Spróbuj wykonać akcję jeszcze raz")
+
                     }
                 }
             }
@@ -73,15 +75,23 @@ class InitRecordProbeFragment: ExtendedFragment() {
         val spinnerValues = LinkedList<SpinnerItem>()
 
         if(regulation == Regulation.LAW) {
-            spinnerValues.addAll(Place.getAllByRegulation(Regulation.LAW)
-                .stream()
-                .map { SpinnerItem.createValue(it.label) }
-                .collect(Collectors.toList()))
+            spinnerValues.addAll(
+                dataStorage.getPlacesByRegulation(dataStorage.getRegulationByName(Regulation.LAW.name))
+                    !!.stream()
+                    .map { SpinnerItem.createValue(it.name) }
+                    .collect(Collectors.toList()))
         } else {
-            spinnerValues.addAll(Place.getAllByRegulation(Regulation.SCIENTIFIC)
-                .stream()
-                .map { SpinnerItem.createValue(it.label) }
-                .collect(Collectors.toList()))
+            spinnerValues.addAll(
+                dataStorage.getPlacesByRegulation(dataStorage.getRegulationByName(Regulation.SCIENTIFIC.name))
+                !!.stream()
+                    .map {
+                        return@map if (it.type.isNotBlank()) {
+                            SpinnerItem.createValue("${it.name} (${it.type})")
+                        } else {
+                            SpinnerItem.createValue(it.name)
+                        }
+                    }
+                    .collect(Collectors.toList()))
         }
 
         spinnerValues.add(SpinnerItem.createHint("Wybierz miejsce"))
@@ -107,11 +117,13 @@ class InitRecordProbeFragment: ExtendedFragment() {
                 if (!selectedItem.isHint) {
                     placeSpinner.isEnabled = false
                     placeSpinner.isClickable = false
-                    val selectedPlaceOptional = Place.getByLabel(selectedItem.value)
+                    val selectedPlaceOptional = dataStorage.places.value!!.stream().filter{ it.name == selectedItem.value}.findFirst()
                     if(selectedPlaceOptional.isPresent) {
                         dataStorage.currentlySelectedPlace = selectedPlaceOptional.get()
                         renderRecordingView()
                     } else {
+                        PopupUtil.createInfoPopup(requireContext(), this@InitRecordProbeFragment.requireView(),
+                            "Coś poszło nie tak", "Spróbuj wykonać akcję jeszcze raz")
                         //TODO exception popup appears. It takes as constructor parameter some ExceptionHandler interface and does action given in interface on close/OK button pressed
                         //TODO it should also contain error message
                     }

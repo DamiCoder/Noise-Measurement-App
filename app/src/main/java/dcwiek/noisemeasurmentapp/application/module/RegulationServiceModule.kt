@@ -3,16 +3,16 @@ package dcwiek.noisemeasurmentapp.application.module
 import dagger.Module
 import dagger.Provides
 import dcwiek.noisemeasurmentapp.service.http.NoiseMeasurementServerApi
-import dcwiek.noisemeasurmentapp.service.user.UserService
+import dcwiek.noisemeasurmentapp.service.regulation.RegulationService
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Module
-class UserServiceModule {
+class RegulationServiceModule {
 
     @Singleton
     @Provides
     @Inject
-    fun providesUserService(noiseMeasurementServerApi: NoiseMeasurementServerApi): UserService
-            = UserService(noiseMeasurementServerApi)
+    fun providesRegulationService(noiseMeasurementServerApi: NoiseMeasurementServerApi): RegulationService
+            = RegulationService(noiseMeasurementServerApi)
 }
