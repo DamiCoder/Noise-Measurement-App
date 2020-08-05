@@ -26,7 +26,7 @@ class InitStandardsDiscoveryFragment: ExtendedFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        initstandardsdiscovery_radiogroup.setOnCheckedChangeListener { group, checkedId ->
+        initstandardsdiscovery_radiogroup.setOnCheckedChangeListener { _, _ ->
             changeRadioButtonsAppearance()
         }
         button_initstandardsview_continue.setOnClickListener {
