@@ -109,15 +109,13 @@ class InitRecordProbeFragment: ExtendedFragment() {
                 if (!selectedItem.isHint) {
                     placeSpinner.isEnabled = false
                     placeSpinner.isClickable = false
-                    val selectedPlaceOptional = dataStorage.places.value!!.stream().filter{ it.name == selectedItem.value}.findFirst()
+                    val selectedPlaceOptional = dataStorage.places.value!!.stream().filter{ it.getNameFormatted() == selectedItem.value}.findFirst()
                     if(selectedPlaceOptional.isPresent) {
                         dataStorage.currentlySelectedPlace = selectedPlaceOptional.get()
                         renderRecordingView()
                     } else {
                         PopupUtil.createInfoPopup(requireContext(), this@InitRecordProbeFragment.requireView(),
                             "Coś poszło nie tak", "Spróbuj wykonać akcję jeszcze raz")
-                        //TODO exception popup appears. It takes as constructor parameter some ExceptionHandler interface and does action given in interface on close/OK button pressed
-                        //TODO it should also contain error message
                     }
                 }
             }

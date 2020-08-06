@@ -7,7 +7,8 @@ import javax.inject.Inject
 
 class DataStorage @Inject constructor() {
 
-    val archivedProbesData: MutableLiveData<List<Probe>> = MutableLiveData(mutableListOf(Probe.mockGoodProbe(), Probe.mockBadProbe(), Probe.mockAverageProbe(), Probe.mockGoodProbe()))
+//    val archivedProbes: MutableLiveData<List<Probe>> = MutableLiveData(mutableListOf(Probe.mockGoodProbe(), Probe.mockBadProbe(), Probe.mockAverageProbe(), Probe.mockGoodProbe()))
+    val archivedProbes: MutableLiveData<List<Probe>> = MutableLiveData()
 
     val standards: MutableLiveData<List<Standard>> = MutableLiveData()
 

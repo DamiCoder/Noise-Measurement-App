@@ -19,8 +19,6 @@ import java.util.*
 
 class LoginFragment: ExtendedFragment() {
 
-//    private lateinit var userService: UserService
-
     companion object {
         fun newInstance() = LoginFragment()
     }
@@ -49,6 +47,7 @@ class LoginFragment: ExtendedFragment() {
     }
 
     private class LoginAsyncTask(val loginFragment: LoginFragment, val username: String, val password: String) : AsyncTask<URL?, Int?, Optional<AppUser>>() {
+
         override fun doInBackground(vararg urls: URL?): Optional<AppUser> {
             val userOptional = loginFragment.userService.login(username, password)
             userOptional.ifPresent { loginFragment.dataStorage.currentUser.postValue(it) }
@@ -62,8 +61,10 @@ class LoginFragment: ExtendedFragment() {
             val standards = loginFragment.standardService.getStandardsFromRemoteServer()
             standards.ifPresent { loginFragment.dataStorage.standards.postValue(it) }
 
+            val probes = loginFragment.probeService.getAllUserProbesFromRemoteServer()
+            probes.ifPresent { loginFragment.dataStorage.archivedProbes.postValue(it) }
+
             return userOptional
-            //TODO: download here other necessary const values
         }
 
         override fun onProgressUpdate(vararg progress: Int?) {

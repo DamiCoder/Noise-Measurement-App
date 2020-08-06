@@ -5,36 +5,36 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import dcwiek.noisemeasurmentapp.R
-import dcwiek.noisemeasurmentapp.domain.constants.Result
 import dcwiek.noisemeasurmentapp.domain.model.Probe
 import dcwiek.noisemeasurmentapp.ui.fragment.common.fragment.ExtendedFragment
 import kotlinx.android.synthetic.main.fragment_probedetails.view.*
 
 class ProbeDetailsFragment(val probe: Probe): ExtendedFragment() {
 
-    private val EMPTY_RESULT = "-"
 
     companion object {
+        private const val EMPTY_RESULT = "-"
         fun newInstance(probe: Probe) = ProbeDetailsFragment(probe)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_probedetails, container, false)
-        val result = Result.getByLabel(probe.standard.title)
-        view.probedetails_locationview.text = if(!probe.comment.isBlank()) probe.comment else EMPTY_RESULT
+        view.probedetails_locationview.text = if(!probe.location.isBlank()) probe.location else EMPTY_RESULT
         view.probedetails_datecreatedview.text = probe.getCreateDateFormatted()
-        view.probedetails_commentview.text = if(!probe.location.isBlank()) probe.location else EMPTY_RESULT
-        view.probedetails_placeview.text = probe.place.name
-        view.probedetails_regulationview.text = probe.standard.regulation.name
+        view.probedetails_commentview.text = if(!probe.comment.isBlank()) probe.comment else EMPTY_RESULT
+        view.probedetails_placeview.text = probe.place.getNameFormatted()
+        view.probedetails_regulationview.text = probe.place.regulation.name
         view.probedetails_resultview.text = probe.getResultFormatted()
-        val brightColorId = resources.getIdentifier(result.brightColorName, "color", context?.packageName)
-        val darkColorId = resources.getIdentifier(result.darkColorName, "color", context?.packageName)
+        val brightColorId = resources.getIdentifier(probe.healthHazard.brightColorName, "color", context?.packageName)
+        val darkColorId = resources.getIdentifier(probe.healthHazard.darkColorName, "color", context?.packageName)
         val brightColor = resources.getColor(brightColorId, context?.theme)
         val darkColor = resources.getColor(darkColorId, context?.theme)
         view.probedetails_resultview.setTextColor(darkColor)
-        view.probedetails_resultlabelview.text = probe.standard.title
+        if(probe.standard.isNotEmpty()) {
+            view.probedetails_resultlabelview.text = probe.standard[0].title
+            view.probedetails_resultdescview.text = probe.standard[0].description
+        }
         view.probedetails_resultlabelview.setTextColor(brightColor)
-        view.probedetails_resultdescview.text = probe.standard.description
         view.probedetails_backbutton.setOnClickListener {
             loadMainMenuFragment()
         }

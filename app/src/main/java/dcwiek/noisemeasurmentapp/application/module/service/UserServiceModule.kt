@@ -1,4 +1,4 @@
-package dcwiek.noisemeasurmentapp.application.module
+package dcwiek.noisemeasurmentapp.application.module.service
 
 import dagger.Module
 import dagger.Provides

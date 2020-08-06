@@ -10,7 +10,6 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import dcwiek.noisemeasurmentapp.R
-import dcwiek.noisemeasurmentapp.domain.constants.Result
 import dcwiek.noisemeasurmentapp.domain.model.Probe
 
 class ProbeViewHolder(val context: Context, inflater: LayoutInflater, parent: ViewGroup) :
@@ -24,11 +23,9 @@ class ProbeViewHolder(val context: Context, inflater: LayoutInflater, parent: Vi
 
     fun bind(probe: Probe) {
         date.text  = probe.getCreateDateFormatted()
-        val standardResult = Result.getByLabel(probe.standard.title)
-        result.text = standardResult.label
-        val drawableResourceId: Int = view.resources.getIdentifier(standardResult.backgroundName, "drawable", view.context.packageName)
+        result.text = probe.healthHazard.label
+        val drawableResourceId: Int = view.resources.getIdentifier(probe.healthHazard.backgroundName, "drawable", view.context.packageName)
         backgroundLayout.background = ResourcesCompat.getDrawable(view.resources, drawableResourceId, null)
-//        button.background = ResourcesCompat.getDrawable(view.resources, R.drawable.login_button_bg, null)
     }
 
     fun setButtonClickAction(buttonClickListener: View.OnClickListener) {

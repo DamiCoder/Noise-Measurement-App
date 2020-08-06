@@ -8,6 +8,7 @@ import dcwiek.noisemeasurmentapp.application.NoiseMeasurementApplication
 import dcwiek.noisemeasurmentapp.domain.DataStorage
 import dcwiek.noisemeasurmentapp.service.SharedPreferencesService
 import dcwiek.noisemeasurmentapp.service.place.PlaceService
+import dcwiek.noisemeasurmentapp.service.probe.ProbeService
 import dcwiek.noisemeasurmentapp.service.regulation.RegulationService
 import dcwiek.noisemeasurmentapp.service.standard.StandardService
 import dcwiek.noisemeasurmentapp.service.user.UserService
@@ -23,12 +24,12 @@ open class ExtendedFragment: Fragment() {
     lateinit var placeService: PlaceService
     lateinit var regulationService: RegulationService
     lateinit var standardService: StandardService
+    lateinit var probeService: ProbeService
 
     override fun onAttach(activity: Activity) {
         super.onAttach(activity)
 
         val application = requireContext().applicationContext as NoiseMeasurementApplication
-//        val storageComponent = application.getStorageComponent()
         val appServiceComponent = application.getAppServiceComponent()
 
         sharedPreferencesService = appServiceComponent.getSharedPreferencesService()
@@ -37,6 +38,7 @@ open class ExtendedFragment: Fragment() {
         placeService = appServiceComponent.getPlaceService()
         regulationService = appServiceComponent.getRegulationService()
         standardService = appServiceComponent.getStandardService()
+        probeService = appServiceComponent.getProbeService()
     }
 
 //    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

@@ -3,7 +3,7 @@ package dcwiek.noisemeasurmentapp.application.component
 import android.content.Context
 import dagger.Component
 import dcwiek.noisemeasurmentapp.application.module.ContextModule
-import dcwiek.noisemeasurmentapp.application.module.ProbeRecorderModule
+import dcwiek.noisemeasurmentapp.application.module.media.ProbeRecorderModule
 import dcwiek.noisemeasurmentapp.service.media.ProbeRecorder
 import javax.inject.Singleton
 

@@ -3,7 +3,7 @@ package dcwiek.noisemeasurmentapp.application
 import android.app.Application
 import dcwiek.noisemeasurmentapp.application.component.*
 import dcwiek.noisemeasurmentapp.application.module.ContextModule
-import dcwiek.noisemeasurmentapp.application.module.NoiseMeasurementServerApiModule
+import dcwiek.noisemeasurmentapp.application.module.service.NoiseMeasurementServerApiModule
 
 class NoiseMeasurementApplication : Application() {
     private lateinit var probeRecorderComponent: ProbeRecorderComponent

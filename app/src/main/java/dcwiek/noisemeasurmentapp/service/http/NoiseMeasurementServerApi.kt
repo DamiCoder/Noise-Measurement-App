@@ -7,7 +7,6 @@ import com.franmontiel.persistentcookiejar.cache.SetCookieCache
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
 import com.google.gson.Gson
 import dcwiek.noisemeasurmentapp.R
-import dcwiek.noisemeasurmentapp.domain.DataStorage
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -22,8 +21,7 @@ import javax.net.ssl.TrustManagerFactory
 import javax.net.ssl.X509TrustManager
 
 
-class NoiseMeasurementServerApi(private val dataStorage: DataStorage,
-    private val context: Context) {
+class NoiseMeasurementServerApi(private val context: Context) {
 
     companion object {
         const val LOGIN_RELATIVE_URL = "/public/api/user/login"
@@ -31,6 +29,8 @@ class NoiseMeasurementServerApi(private val dataStorage: DataStorage,
         const val PLACES_RETRIEVAL_RELATIVE_URL = "/api/place/retrieveAll"
         const val REGULATIONS_RETRIEVAL_RELATIVE_URL = "/api/regulation/retrieveAll"
         const val STANDARDS_RETRIEVAL_RELATIVE_URL = "/api/standard/retrieveAll"
+        const val PROBES_RETRIEVAL_RELATIVE_URL = "/api/probe/retrieveAll"
+
         val JSON = "application/json; charset=utf-8".toMediaTypeOrNull()
     }
 
@@ -90,7 +90,6 @@ class NoiseMeasurementServerApi(private val dataStorage: DataStorage,
     fun prepareRegisterRequest(username: String, password: String): Request {
         return Request.Builder()
             .url(EndpointConstants.NOISE_MEASUREMENT_SERVER_URL + REGISTER_RELATIVE_URL)
-//            .addHeader("Authorization", "Basic ${Credentials.basic(username, password, StandardCharsets.UTF_8)}")
             .post(Gson().toJson(UserRegistrationForm(username, password)).toRequestBody(JSON))
             .build()
     }
@@ -113,5 +112,16 @@ class NoiseMeasurementServerApi(private val dataStorage: DataStorage,
             .build()
     }
 
+    fun prepareProbesRetrievalRequest(): Request {
+        return Request.Builder()
+            .url(EndpointConstants.NOISE_MEASUREMENT_SERVER_URL + PROBES_RETRIEVAL_RELATIVE_URL)
+            .addHeader("Content-Type", "application/json")
+            .post(Gson().toJson(ProbeRetrievalForm(null, null)).toRequestBody())
+            .build()
+    }
+
     private class UserRegistrationForm(val username: String, val password: String)
+
+    private class ProbeRetrievalForm(val number: Int?, val pageSize: Int?)
+
 }

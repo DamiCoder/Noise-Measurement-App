@@ -1,4 +1,4 @@
-package dcwiek.noisemeasurmentapp.application.module
+package dcwiek.noisemeasurmentapp.application.module.service
 
 import android.content.Context
 import dagger.Module

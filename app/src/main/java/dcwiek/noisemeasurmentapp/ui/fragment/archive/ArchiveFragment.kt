@@ -31,7 +31,7 @@ class ArchiveFragment: ExtendedFragment(), ArchiveItemClickListener {
         archiveRecyclerView = recyclerview_archive as RecyclerView
         archiveRecyclerView.apply {
             layoutManager = LinearLayoutManager(activity)
-            adapter = ProbesAdapter(dataStorage.archivedProbesData.value!!, this@ArchiveFragment)
+            adapter = ProbesAdapter(dataStorage.archivedProbes.value!!, this@ArchiveFragment)
         }
     }
 

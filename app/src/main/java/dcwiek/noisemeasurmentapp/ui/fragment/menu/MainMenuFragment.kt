@@ -90,7 +90,7 @@ class MainMenuFragment : ExtendedFragment() {
                 return true
             }
             R.id.item_bottomnav_history -> {
-                if(dataStorage.archivedProbesData.value.isNullOrEmpty()) {
+                if(dataStorage.archivedProbes.value.isNullOrEmpty()) {
                     replaceFragment(R.id.mainmenu_constraintlayout, EmptyArchiveFragment.newInstance())
                 } else {
                     replaceFragment(R.id.mainmenu_constraintlayout, ArchiveFragment.newInstance())

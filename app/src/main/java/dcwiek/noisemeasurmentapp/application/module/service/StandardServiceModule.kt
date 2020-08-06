@@ -1,7 +1,8 @@
-package dcwiek.noisemeasurmentapp.application.module
+package dcwiek.noisemeasurmentapp.application.module.service
 
 import dagger.Module
 import dagger.Provides
+import dcwiek.noisemeasurmentapp.domain.DataStorage
 import dcwiek.noisemeasurmentapp.service.http.NoiseMeasurementServerApi
 import dcwiek.noisemeasurmentapp.service.standard.StandardService
 import javax.inject.Inject
@@ -13,6 +14,6 @@ class StandardServiceModule {
     @Singleton
     @Provides
     @Inject
-    fun providesStandardService(noiseMeasurementServerApi: NoiseMeasurementServerApi): StandardService
-            = StandardService(noiseMeasurementServerApi)
+    fun providesStandardService(noiseMeasurementServerApi: NoiseMeasurementServerApi, dataStorage: DataStorage)
+            : StandardService = StandardService(noiseMeasurementServerApi, dataStorage)
 }
