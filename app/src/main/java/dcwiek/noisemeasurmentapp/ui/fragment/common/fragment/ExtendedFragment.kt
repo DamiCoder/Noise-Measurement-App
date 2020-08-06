@@ -1,6 +1,7 @@
 package dcwiek.noisemeasurmentapp.ui.fragment.common.fragment
 
 import android.app.Activity
+import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import dcwiek.noisemeasurmentapp.R
 import dcwiek.noisemeasurmentapp.application.NoiseMeasurementApplication
@@ -8,9 +9,11 @@ import dcwiek.noisemeasurmentapp.domain.DataStorage
 import dcwiek.noisemeasurmentapp.service.SharedPreferencesService
 import dcwiek.noisemeasurmentapp.service.place.PlaceService
 import dcwiek.noisemeasurmentapp.service.regulation.RegulationService
+import dcwiek.noisemeasurmentapp.service.standard.StandardService
 import dcwiek.noisemeasurmentapp.service.user.UserService
 import dcwiek.noisemeasurmentapp.ui.constants.FragmentKeys
 import dcwiek.noisemeasurmentapp.ui.fragment.menu.MainMenuFragment
+
 
 open class ExtendedFragment: Fragment() {
 
@@ -19,6 +22,7 @@ open class ExtendedFragment: Fragment() {
     lateinit var userService: UserService
     lateinit var placeService: PlaceService
     lateinit var regulationService: RegulationService
+    lateinit var standardService: StandardService
 
     override fun onAttach(activity: Activity) {
         super.onAttach(activity)
@@ -32,6 +36,7 @@ open class ExtendedFragment: Fragment() {
         userService = appServiceComponent.getUserService()
         placeService = appServiceComponent.getPlaceService()
         regulationService = appServiceComponent.getRegulationService()
+        standardService = appServiceComponent.getStandardService()
     }
 
 //    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -77,5 +82,10 @@ open class ExtendedFragment: Fragment() {
             R.id.item_bottomnav_standards -> fragment.initializeStandardsView()
             R.id.item_bottomnav_help -> fragment.initializeHelpView()
         }
+    }
+
+    open fun hideSoftKeyboard() {
+        val inputMethodManager = this.activity!!.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(activity!!.currentFocus!!.windowToken, 0)
     }
 }

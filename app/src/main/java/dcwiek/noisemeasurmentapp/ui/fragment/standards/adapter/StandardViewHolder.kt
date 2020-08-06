@@ -26,6 +26,6 @@ class StandardViewHolder(val context: Context, inflater: LayoutInflater, parent:
         acceptedValues.text = "< ${standard.minValue} dB"
         riskValues.text = ">= ${standard.minValue} dB"
         threatValues.text = ">= ${standard.maxValue} dB"
-        place.text = standard.getPlaceFormatted()
+        place.text = standard.place.getNameFormatted()
     }
 }

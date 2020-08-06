@@ -58,7 +58,6 @@ class InitRecordProbeFragment: ExtendedFragment() {
                     } else {
                         PopupUtil.createInfoPopup(requireContext(), this@InitRecordProbeFragment.requireView(),
                             "Coś poszło nie tak", "Spróbuj wykonać akcję jeszcze raz")
-
                     }
                 }
             }
@@ -78,21 +77,14 @@ class InitRecordProbeFragment: ExtendedFragment() {
             spinnerValues.addAll(
                 dataStorage.getPlacesByRegulation(dataStorage.getRegulationByName(Regulation.LAW.name))
                     !!.stream()
-                    .map { SpinnerItem.createValue(it.name) }
+                    .map { SpinnerItem.createValue(it.getNameFormatted()) }
                     .collect(Collectors.toList()))
         } else {
             spinnerValues.addAll(
                 dataStorage.getPlacesByRegulation(dataStorage.getRegulationByName(Regulation.SCIENTIFIC.name))
                 !!.stream()
-                    .map {
-                        return@map if (it.type.isNotBlank()) {
-                            SpinnerItem.createValue("${it.name} (${it.type})")
-                        } else {
-                            SpinnerItem.createValue(it.name)
-                        }
-                    }
-                    .collect(Collectors.toList()))
-        }
+                    .map { SpinnerItem.createValue(it.getNameFormatted()) }
+                    .collect(Collectors.toList())) }
 
         spinnerValues.add(SpinnerItem.createHint("Wybierz miejsce"))
         val hintListAdapter = HintListAdapter(requireContext(), R.layout.spinner_item, spinnerValues)

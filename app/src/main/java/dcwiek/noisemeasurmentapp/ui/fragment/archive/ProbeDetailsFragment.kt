@@ -25,7 +25,7 @@ class ProbeDetailsFragment(val probe: Probe): ExtendedFragment() {
         view.probedetails_datecreatedview.text = probe.getCreateDateFormatted()
         view.probedetails_commentview.text = if(!probe.location.isBlank()) probe.location else EMPTY_RESULT
         view.probedetails_placeview.text = probe.place.name
-        view.probedetails_regulationview.text = probe.standard.regulation
+        view.probedetails_regulationview.text = probe.standard.regulation.name
         view.probedetails_resultview.text = probe.getResultFormatted()
         val brightColorId = resources.getIdentifier(result.brightColorName, "color", context?.packageName)
         val darkColorId = resources.getIdentifier(result.darkColorName, "color", context?.packageName)

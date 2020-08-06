@@ -37,7 +37,7 @@ class StandardsDiscoveryFragment(val regulation: Regulation): ExtendedFragment()
             layoutManager = LinearLayoutManager(activity)
             adapter = StandardsAdapter(dataStorage.standards.value!!
                 .stream()
-                .filter{it.regulation == regulation.name}
+                .filter{it.regulation.name == regulation.name}
                 .collect(Collectors.toList()))
         }
 

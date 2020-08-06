@@ -34,6 +34,8 @@ class RegisterFragment : ExtendedFragment() {
         button_register_register.setOnClickListener {
             val username = register_usernameedittext.text.toString()
             val password = register_passwordedittext.text.toString()
+
+            hideSoftKeyboard()
             RegisterAsyncTask(this, username, password).execute()
         }
 
@@ -54,12 +56,12 @@ class RegisterFragment : ExtendedFragment() {
 
         override fun onPostExecute(result: Optional<AppUser>) {
             if (result.isPresent) {
+                PopupUtil.createInfoPopup(registerFragment.requireContext(), registerFragment.requireView(), "Udało się założyć konto!",
+                    "Teraz możesz się zalogować")
                 registerFragment.switchToLoginFragment()
             } else {
-                registerFragment.view?.let {
-                    PopupUtil.createInfoPopup(registerFragment.requireContext(), it, "Nie udało się zarejestrować",
+                PopupUtil.createInfoPopup(registerFragment.requireContext(), registerFragment.requireView(), "Nie udało się zarejestrować",
                         "Spróbuj ponownie za jakiś czas")
-                }
             }
         }
     }

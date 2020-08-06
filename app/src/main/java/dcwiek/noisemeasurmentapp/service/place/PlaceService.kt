@@ -13,8 +13,7 @@ class PlaceService constructor(private val noiseMeasurementServerApi: NoiseMeasu
         private val TAG: String = PlaceService::class.java.name
     }
 
-//    fun getPlaces(username: String, password: String): Optional<List<Place>> {
-    fun getPlaces(): Optional<List<Place>> {
+    fun getPlacesFromRemoteServer(): Optional<List<Place>> {
         val request = noiseMeasurementServerApi.preparePlacesRetrievalRequest()
         val response = noiseMeasurementServerApi.execute(request)
         val body: String = response.body?.string()!!

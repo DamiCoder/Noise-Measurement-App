@@ -9,15 +9,18 @@ class DataStorage @Inject constructor() {
 
     val archivedProbesData: MutableLiveData<List<Probe>> = MutableLiveData(mutableListOf(Probe.mockGoodProbe(), Probe.mockBadProbe(), Probe.mockAverageProbe(), Probe.mockGoodProbe()))
 
-    val standards: MutableLiveData<List<Standard>> = MutableLiveData(mutableListOf(
-        Standard.mockStandard(dcwiek.noisemeasurmentapp.domain.constants.Regulation.LAW),
-        Standard.mockStandard(dcwiek.noisemeasurmentapp.domain.constants.Regulation.SCIENTIFIC),
-        Standard.mockStandard(dcwiek.noisemeasurmentapp.domain.constants.Regulation.SCIENTIFIC),
-        Standard.mockStandard(dcwiek.noisemeasurmentapp.domain.constants.Regulation.SCIENTIFIC)))
+    val standards: MutableLiveData<List<Standard>> = MutableLiveData()
+
+//    val standards: MutableLiveData<List<Standard>> = MutableLiveData(mutableListOf(
+//        Standard.mockStandard(dcwiek.noisemeasurmentapp.domain.constants.Regulation.LAW),
+//        Standard.mockStandard(dcwiek.noisemeasurmentapp.domain.constants.Regulation.SCIENTIFIC),
+//        Standard.mockStandard(dcwiek.noisemeasurmentapp.domain.constants.Regulation.SCIENTIFIC),
+//        Standard.mockStandard(dcwiek.noisemeasurmentapp.domain.constants.Regulation.SCIENTIFIC)))
 
     val places: MutableLiveData<List<Place>> = MutableLiveData()
     val regulations: MutableLiveData<List<Regulation>> = MutableLiveData()
     //    val archivedProbesData: LiveData<List<Probe>> = MutableLiveData(mutableListOf())
+
     lateinit var currentlySelectedPlace: Place
     //TODO: should we also keep there password or cookie is stored somehow in http client
     var currentUser: MutableLiveData<AppUser> = MutableLiveData()

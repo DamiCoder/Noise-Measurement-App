@@ -37,6 +37,8 @@ class LoginFragment: ExtendedFragment() {
         button_login_login.setOnClickListener {
             val username = login_usernameedittext.text.toString()
             val password = login_passwordedittext.text.toString()
+
+            hideSoftKeyboard()
             LoginAsyncTask(this, username, password).execute()
         }
         super.onViewCreated(view, savedInstanceState)
@@ -51,11 +53,14 @@ class LoginFragment: ExtendedFragment() {
             val userOptional = loginFragment.userService.login(username, password)
             userOptional.ifPresent { loginFragment.dataStorage.currentUser.postValue(it) }
 
-            val places = loginFragment.placeService.getPlaces()
+            val places = loginFragment.placeService.getPlacesFromRemoteServer()
             places.ifPresent { loginFragment.dataStorage.places.postValue(it) }
 
-            val regulations = loginFragment.regulationService.getRegulations()
+            val regulations = loginFragment.regulationService.getRegulationsFromRemoteServer()
             regulations.ifPresent { loginFragment.dataStorage.regulations.postValue(it) }
+
+            val standards = loginFragment.standardService.getStandardsFromRemoteServer()
+            standards.ifPresent { loginFragment.dataStorage.standards.postValue(it) }
 
             return userOptional
             //TODO: download here other necessary const values

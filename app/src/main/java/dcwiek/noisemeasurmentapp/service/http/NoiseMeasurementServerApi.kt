@@ -15,6 +15,7 @@ import java.io.InputStream
 import java.nio.charset.StandardCharsets
 import java.security.KeyStore
 import java.security.SecureRandom
+import java.util.concurrent.TimeUnit
 import javax.net.ssl.KeyManagerFactory
 import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManagerFactory
@@ -29,6 +30,7 @@ class NoiseMeasurementServerApi(private val dataStorage: DataStorage,
         const val REGISTER_RELATIVE_URL = "/public/api/user/register"
         const val PLACES_RETRIEVAL_RELATIVE_URL = "/api/place/retrieveAll"
         const val REGULATIONS_RETRIEVAL_RELATIVE_URL = "/api/regulation/retrieveAll"
+        const val STANDARDS_RETRIEVAL_RELATIVE_URL = "/api/standard/retrieveAll"
         val JSON = "application/json; charset=utf-8".toMediaTypeOrNull()
     }
 
@@ -51,6 +53,8 @@ class NoiseMeasurementServerApi(private val dataStorage: DataStorage,
         client = OkHttpClient()
             .newBuilder()
             .cookieJar(cookieJar)
+            .connectTimeout(60, TimeUnit.SECONDS)
+            .readTimeout(60, TimeUnit.SECONDS)
             .sslSocketFactory(sslContext.socketFactory, trustManager)
             .build()
     }
@@ -100,6 +104,12 @@ class NoiseMeasurementServerApi(private val dataStorage: DataStorage,
     fun prepareRegulationsRetrievalRequest(): Request {
         return Request.Builder()
             .url(EndpointConstants.NOISE_MEASUREMENT_SERVER_URL + REGULATIONS_RETRIEVAL_RELATIVE_URL)
+            .build()
+    }
+
+    fun prepareStandardsRetrievalRequest(): Request {
+        return Request.Builder()
+            .url(EndpointConstants.NOISE_MEASUREMENT_SERVER_URL + STANDARDS_RETRIEVAL_RELATIVE_URL)
             .build()
     }
 
