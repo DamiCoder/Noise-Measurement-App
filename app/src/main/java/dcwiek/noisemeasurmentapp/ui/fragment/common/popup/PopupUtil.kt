@@ -14,7 +14,7 @@ class PopupUtil {
         fun createInfoPopup(context: Context, parentView: View, header: String, content: String) {
             val popupView: View = LayoutInflater.from(context).inflate(R.layout.popup_info, null)
             popupView.popup_header.text = header
-            popupView.popup_content.text = content
+            popupView.popup_comment.text = content
 
             val focusable = true
             val popupWindow = PopupWindow(popupView, 350.toPx(), 250.toPx(), focusable)

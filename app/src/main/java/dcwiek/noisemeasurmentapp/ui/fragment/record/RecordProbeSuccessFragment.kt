@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
-import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Vibrator
 import android.util.Log
@@ -18,7 +17,6 @@ import dcwiek.noisemeasurmentapp.domain.model.Probe
 import dcwiek.noisemeasurmentapp.service.NotificationService
 import dcwiek.noisemeasurmentapp.ui.fragment.common.fragment.ExtendedFragment
 import kotlinx.android.synthetic.main.fragment_customprobesuccess.*
-import java.net.URL
 import java.time.LocalDateTime
 
 
@@ -44,11 +42,6 @@ class RecordProbeSuccessFragment(private val result: Int) : ExtendedFragment() {
         val vibrator = activity?.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         notificationService.vibrateAndPlaySound(vibrator)
 
-//        context?.let { context ->  sharedPreferencesService.putSharedPreference(
-//            context.getString(R.string.preference_key_choosen_probe),
-//            context.getString(R.string.preference_value_use_custom_probe))
-//        }
-
         button_customprobesuccess_continue.setOnClickListener{
 
             if(ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -66,11 +59,11 @@ class RecordProbeSuccessFragment(private val result: Int) : ExtendedFragment() {
                             ""
                         }
                     val probe = createProbe(location)
-                    UploadProbeAsyncTask(this, probe).execute()
+                    loadResultFragment(probe)
                 }
             } else {
                 val probe = createProbe("")
-                UploadProbeAsyncTask(this, probe).execute()
+                loadResultFragment(probe)
             }
         }
     }
@@ -79,23 +72,11 @@ class RecordProbeSuccessFragment(private val result: Int) : ExtendedFragment() {
         val place = dataStorage.currentlySelectedPlace
         val standards = standardService.getHazardousStandards(result, place)
         val hazard = standardService.determineHealthHazard(result, place)
-        val probe = Probe(0, location, place, standards, hazard, result, "", 3, LocalDateTime.now())
+        val probe = Probe(0, location, place, standards, hazard, result, "", null, LocalDateTime.now())
         return probe
     }
 
-    private class UploadProbeAsyncTask(val recordProbeSuccessFragment: RecordProbeSuccessFragment, val probe: Probe) : AsyncTask<URL?, Int?, Unit>() {
-
-        override fun doInBackground(vararg urls: URL?){
-            val probes = recordProbeSuccessFragment.probeService.uploadProbeToRemoteServer(probe)
-            probes.ifPresent { recordProbeSuccessFragment.dataStorage.archivedProbes.value?.add(probe) }
-        }
-
-        override fun onProgressUpdate(vararg progress: Int?) {
-        }
-
-        override fun onPostExecute(result: Unit) {
-            recordProbeSuccessFragment.loadMainMenuFragment()
-        }
+    private fun loadResultFragment(probe: Probe) {
+        replaceFragment(R.id.framelayout_main, ResultFragment.newInstance(probe))
     }
-
 }

@@ -75,5 +75,10 @@
     <string name="item_standard_classificationlabel">Klasyfikacja</string>
     <string name="help_header">Informacje o aplikacji</string>
     <string name="probedetails_rating">Twoja ocena</string>
+    <string name="rating_1">1</string>
+    <string name="rating_2">2</string>
+    <string name="rating_3">3</string>
+    <string name="rating_4">4</string>
+    <string name="rating_5">5</string>
 
 </resources>

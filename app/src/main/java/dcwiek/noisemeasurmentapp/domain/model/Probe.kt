@@ -11,8 +11,8 @@ class Probe(
     val standards: List<Standard>,
     val healthHazard: HealthHazard,
     val result: Int,
-    val comment: String,
-    val userRating: Int,
+    var comment: String,
+    var userRating: Int?,
     val createdDate: LocalDateTime) {
 
     companion object {
@@ -44,6 +44,6 @@ class Probe(
     }
 
     fun getResultFormatted(): String {
-        return result.toString() + "db"
+        return result.toString() + "dB"
     }
 }

@@ -134,7 +134,7 @@ class NoiseMeasurementServerApi(private val context: Context) {
     }
 
     fun prepareProbeCreationRequest(location: String, place: Place, regulation: Regulation, result: Int,
-                                    standardIds: List<Int>, comment: String, userRating: Int): Request {
+                                    standardIds: List<Int>, comment: String, userRating: Int?): Request {
 
         val probeCreationForm = ProbeCreationForm(location, place.id, regulation.id, result, standardIds,
             comment, userRating)
@@ -156,5 +156,5 @@ class NoiseMeasurementServerApi(private val context: Context) {
 
     private class ProbeCreationForm(val location: String, val placeId: Int, val regulationId: Int,
                                     val result: Int, val standardIds: List<Int>, val comment: String,
-                                    val userRating: Int)
+                                    val userRating: Int?)
 }

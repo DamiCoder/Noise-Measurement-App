@@ -34,7 +34,7 @@ class RecordProbeFailureFragment : ExtendedFragment() {
         val vibrator = activity?.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         notificationService.vibrateAndPlaySound(vibrator)
 
-        button_customprobefailure_continue.setOnClickListener{
+        button_customprobefailure_continue.setOnClickListener {
             loadMainMenuFragment()
         }
     }
