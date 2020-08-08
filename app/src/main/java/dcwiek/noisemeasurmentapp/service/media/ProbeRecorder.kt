@@ -13,11 +13,14 @@ class ProbeRecorder constructor(val context: Context) {
     private var state = false
     private val TAG: String = ProbeRecorder::class.java.name
 
+    var maxAmplitude: Int = 0
+
     companion object {
         private const val AUDIO_CHANNELS = 1
         const val RECORD_DURATION = 10000
         private const val AUDIO_ENCODING_BIT_RATE =  256 * 1024
         private const val AUDIO_SAMPLING_RATE =  48 * 1024
+        private const val MICROPHONE_SENSITIVITY =  16f
     }
 
 //    init {
@@ -64,16 +67,33 @@ class ProbeRecorder constructor(val context: Context) {
 
         this.mediaRecorder.prepare()
         this.mediaRecorder.start()
+        this.mediaRecorder.maxAmplitude
         this.state = true
     }
 
     fun stopRecording() {
         if (state) {
+            this.maxAmplitude = getAmplitude()
             this.mediaRecorder.stop()
             this.mediaRecorder.release()
             this.state = false
         }
     }
+
+
+    private fun getAmplitude(): Int {
+        val maxAmplitude = this.mediaRecorder.maxAmplitude
+        Log.i(TAG, maxAmplitude.toString())
+        val maxAmplitudeFloat = maxAmplitude.toFloat()
+        Log.i(TAG, "Max ampl float: $maxAmplitudeFloat")
+        val division: Float = maxAmplitudeFloat / MICROPHONE_SENSITIVITY
+        val log: Float = kotlin.math.log10(division)
+        Log.i(TAG, "Division level: $division")
+        val dB: Float = 20f * log
+        Log.i(TAG, "DB level: ${dB.toInt()}")
+        return dB.toInt()
+    }
+
 
     private fun getProbesFolder(context: Context): String {
         return context.getExternalFilesDir(null)?.absolutePath + "/" + PROBES_FOLDER

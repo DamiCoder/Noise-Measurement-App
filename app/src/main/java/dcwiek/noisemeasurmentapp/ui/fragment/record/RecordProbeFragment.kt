@@ -69,9 +69,9 @@ class RecordProbeFragment: ExtendedFragment() {
             override fun onFinish() {
                 try {
                     probeRecorder.stopRecording()
-
+                    val result = probeRecorder.maxAmplitude
                     //TODO: pass here value and make here necesarry calculations
-                    createSuccessFragment()
+                    createSuccessFragment(result)
                 } catch (e: Exception) {
                     Log.e(TAG, e.message, e)
                     createFailureFragment()
@@ -93,9 +93,9 @@ class RecordProbeFragment: ExtendedFragment() {
         customprobe_recordingtextview.startAnimation(AnimationUtils.loadAnimation(context, R.anim.blinking))
     }
 
-    private fun createSuccessFragment() {
+    private fun createSuccessFragment(result: Int) {
         replaceFragment(
-            R.id.framelayout_main, RecordProbeSuccessFragment.newInstance(),
+            R.id.framelayout_main, RecordProbeSuccessFragment.newInstance(result),
             FragmentKeys.CUSTOM_PROBE_SUCCESS_FRAGMENT)
 
     }

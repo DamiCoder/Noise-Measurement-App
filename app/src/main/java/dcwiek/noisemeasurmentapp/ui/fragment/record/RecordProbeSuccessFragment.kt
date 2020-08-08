@@ -17,10 +17,10 @@ import java.net.URL
 import java.time.LocalDateTime
 
 
-class RecordProbeSuccessFragment : ExtendedFragment() {
+class RecordProbeSuccessFragment(private val result: Int) : ExtendedFragment() {
 
     companion object {
-        fun newInstance() = RecordProbeSuccessFragment()
+        fun newInstance(result: Int) = RecordProbeSuccessFragment(result)
     }
 
     private lateinit var notificationService: NotificationService
@@ -45,7 +45,7 @@ class RecordProbeSuccessFragment : ExtendedFragment() {
 
         button_customprobesuccess_continue.setOnClickListener{
 
-            val result = (20..110).shuffled().last()
+            val result = result
             val place = dataStorage.currentlySelectedPlace
             val standards = standardService.getHazardousStandards(result, place)
             val hazard = standardService.determineHealthHazard(result, place)
