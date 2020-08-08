@@ -1,10 +1,15 @@
 package dcwiek.noisemeasurmentapp.ui.fragment.common.fragment
 
+import android.Manifest
 import android.app.Activity
+import android.content.pm.PackageManager
 import android.graphics.Rect
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import dcwiek.noisemeasurmentapp.R
 import dcwiek.noisemeasurmentapp.application.NoiseMeasurementApplication
 import dcwiek.noisemeasurmentapp.domain.DataStorage
@@ -27,6 +32,8 @@ open class ExtendedFragment: Fragment() {
     lateinit var regulationService: RegulationService
     lateinit var standardService: StandardService
     lateinit var probeService: ProbeService
+    lateinit var fusedLocationClient: FusedLocationProviderClient
+
 
     override fun onAttach(activity: Activity) {
         super.onAttach(activity)
@@ -41,6 +48,9 @@ open class ExtendedFragment: Fragment() {
         regulationService = appServiceComponent.getRegulationService()
         standardService = appServiceComponent.getStandardService()
         probeService = appServiceComponent.getProbeService()
+        if(ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity)
+        }
     }
 
 //    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
