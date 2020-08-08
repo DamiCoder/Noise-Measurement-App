@@ -36,6 +36,8 @@
 
     <string name="success">Sukces!</string>
     <string name="probe_registered">Próbka została poprawnie zarejestrowana</string>
+    <string name="probe_registereddesc">Szczegółowe informacje dotyczące pomiaru znajdziesz w archiwum</string>
+
 
     <string name="archive_fragment_header">Historia pomiarów</string>
 

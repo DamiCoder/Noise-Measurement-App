@@ -35,7 +35,7 @@ class Probe(
 //            return Probe(0, "180,90,180,90", place, listOf(standard),  HealthHazard.MEDIUM,50, "Empty comment", LocalDateTime.now().minusDays(2))
 //        }
 
-        const val DISPLAY_DATE_PATTERN = "dd-MM-yyyy hh:mm"
+        const val DISPLAY_DATE_PATTERN = "dd-MM-yyyy HH:mm"
     }
 
     fun getCreateDateFormatted(): String {
