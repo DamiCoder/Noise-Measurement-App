@@ -36,7 +36,7 @@ class LoginFragment: ExtendedFragment() {
             val username = login_usernameedittext.text.toString()
             val password = login_passwordedittext.text.toString()
 
-            hideSoftKeyboard()
+            hideSoftKeyboard(requireView())
             LoginAsyncTask(this, username, password).execute()
         }
         super.onViewCreated(view, savedInstanceState)

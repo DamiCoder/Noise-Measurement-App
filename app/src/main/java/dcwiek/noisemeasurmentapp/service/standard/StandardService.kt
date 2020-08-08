@@ -61,6 +61,24 @@ class StandardService @Inject constructor(private val noiseMeasurementServerApi:
         return healthHazardDeterminator.determineHealthHazard()
     }
 
+    fun getHazardousStandards(result: Int, place: Place): List<Standard> {
+        val standards = dataStorage.standards.value!!
+        val hazardousStandards = standards.stream()
+            .filter {
+                if (place.type != null) {
+                    place.name == it.place.name && place.type == it.place.type
+                } else {
+                    place.name == it.place.name
+                }
+            }
+            .filter{ result >= it.minValue }
+            .collect(Collectors.toList())
+        if(hazardousStandards.isEmpty()) {
+            return Collections.emptyList()
+        }
+        return hazardousStandards
+    }
+
     private class HealthHazardDeterminator {
         var noneHazard = 0
         var mediumHazard = 0

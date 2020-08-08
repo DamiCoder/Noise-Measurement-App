@@ -2,13 +2,14 @@ package dcwiek.noisemeasurmentapp.domain
 
 import androidx.lifecycle.MutableLiveData
 import dcwiek.noisemeasurmentapp.domain.model.*
+import java.util.*
 import java.util.stream.Collectors
 import javax.inject.Inject
 
 class DataStorage @Inject constructor() {
 
 //    val archivedProbes: MutableLiveData<List<Probe>> = MutableLiveData(mutableListOf(Probe.mockGoodProbe(), Probe.mockBadProbe(), Probe.mockAverageProbe(), Probe.mockGoodProbe()))
-    val archivedProbes: MutableLiveData<List<Probe>> = MutableLiveData()
+    val archivedProbes: MutableLiveData<LinkedList<Probe>> = MutableLiveData()
 
     val standards: MutableLiveData<List<Standard>> = MutableLiveData()
 

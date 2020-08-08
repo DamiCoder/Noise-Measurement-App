@@ -35,7 +35,7 @@ class RegisterFragment : ExtendedFragment() {
             val username = register_usernameedittext.text.toString()
             val password = register_passwordedittext.text.toString()
 
-            hideSoftKeyboard()
+            hideSoftKeyboard(requireView())
             RegisterAsyncTask(this, username, password).execute()
         }
 

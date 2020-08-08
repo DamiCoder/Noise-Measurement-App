@@ -9,7 +9,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/textView4"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="90dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="180dp" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" android:textSize="24sp"
             android:fontFamily="@font/open_sans_bold" android:textColor="@color/header" android:textAlignment="center"
             android:gravity="center"/>
@@ -18,7 +18,7 @@
             android:layout_width="351dp"
             android:scrollbars="vertical"
             tools:ignore="HardcodedText"
-            android:layout_height="510dp" android:id="@+id/help_helptextview"
+            android:layout_height="420dp" android:id="@+id/help_helptextview"
             app:layout_constraintTop_toBottomOf="@+id/textView4"
             android:layout_marginTop="24dp" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" android:textAlignment="viewStart" android:textSize="14sp"

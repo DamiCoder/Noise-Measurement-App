@@ -20,9 +20,8 @@ class ProbeRecorder constructor(val context: Context) {
         private const val AUDIO_SAMPLING_RATE =  48 * 1024
     }
 
-    init {
-        initializeProbeRecorder(context)
-    }
+//    init {
+//    }
 
     private fun initializeProbeRecorder(context: Context) : ProbeRecorder {
         Log.i(TAG, "ProbeRecorder.initalizeProbeRecorder called")
@@ -61,6 +60,8 @@ class ProbeRecorder constructor(val context: Context) {
     }
 
     fun startRecording() {
+        initializeProbeRecorder(context)
+
         this.mediaRecorder.prepare()
         this.mediaRecorder.start()
         this.state = true

@@ -6,7 +6,7 @@
               android:orientation="vertical">
     <TextView
             android:layout_width="match_parent"
-            android:layout_height="60dp" android:id="@+id/textView18" android:layout_marginTop="90dp"
+            android:layout_height="60dp" android:id="@+id/textView18" android:layout_marginTop="180dp"
             android:textAlignment="center" android:textColor="@color/header" android:textSize="24sp"
             android:fontFamily="@font/open_sans_bold" android:text="@string/initrecordprobe_header"/>
     <TextView

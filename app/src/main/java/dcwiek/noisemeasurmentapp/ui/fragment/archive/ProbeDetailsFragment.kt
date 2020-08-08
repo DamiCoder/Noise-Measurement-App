@@ -30,9 +30,9 @@ class ProbeDetailsFragment(val probe: Probe): ExtendedFragment() {
         val brightColor = resources.getColor(brightColorId, context?.theme)
         val darkColor = resources.getColor(darkColorId, context?.theme)
         view.probedetails_resultview.setTextColor(darkColor)
-        if(probe.standard.isNotEmpty()) {
-            view.probedetails_resultlabelview.text = probe.standard[0].title
-            view.probedetails_resultdescview.text = probe.standard[0].description
+        if(probe.standards.isNotEmpty()) {
+            view.probedetails_resultlabelview.text = probe.standards[0].title
+            view.probedetails_resultdescview.text = probe.standards[0].description
         }
         view.probedetails_resultlabelview.setTextColor(brightColor)
         view.probedetails_backbutton.setOnClickListener {

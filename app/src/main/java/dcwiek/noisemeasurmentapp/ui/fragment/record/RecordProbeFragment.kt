@@ -69,6 +69,8 @@ class RecordProbeFragment: ExtendedFragment() {
             override fun onFinish() {
                 try {
                     probeRecorder.stopRecording()
+
+                    //TODO: pass here value and make here necesarry calculations
                     createSuccessFragment()
                 } catch (e: Exception) {
                     Log.e(TAG, e.message, e)

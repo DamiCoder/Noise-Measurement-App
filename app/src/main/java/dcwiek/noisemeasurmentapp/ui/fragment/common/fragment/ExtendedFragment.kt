@@ -1,6 +1,8 @@
 package dcwiek.noisemeasurmentapp.ui.fragment.common.fragment
 
 import android.app.Activity
+import android.graphics.Rect
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import dcwiek.noisemeasurmentapp.R
@@ -86,8 +88,19 @@ open class ExtendedFragment: Fragment() {
         }
     }
 
-    open fun hideSoftKeyboard() {
-        val inputMethodManager = this.activity!!.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(activity!!.currentFocus!!.windowToken, 0)
+    open fun hideSoftKeyboard(rootView: View) {
+        rootView.viewTreeObserver.addOnGlobalLayoutListener {
+            val r = Rect()
+            rootView.getWindowVisibleDisplayFrame(r)
+
+            val heightDiff = rootView.rootView.height - r.height()
+            if (heightDiff > 0.25 * rootView.rootView.height) {
+                val inputMethodManager = this@ExtendedFragment.activity!!
+                    .getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+
+                inputMethodManager.hideSoftInputFromWindow(activity!!.currentFocus!!.windowToken, 0)
+            }
+        }
+
     }
 }
