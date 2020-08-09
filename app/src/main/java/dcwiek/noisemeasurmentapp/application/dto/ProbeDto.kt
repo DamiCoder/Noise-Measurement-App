@@ -11,7 +11,7 @@ class ProbeDto(val id: Int,
                val appUser: AppUser,
                val result: Int,
                val comment: String,
-               val probeRating: Int,
+               val userRating: Int,
                val createdDate: String) {
     companion object {
         const val RECEIVED_DATE_PATTERN = "yyyy-MM-dd'T'HH:mm:ss"

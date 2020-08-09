@@ -20,7 +20,7 @@ class ProbeMapper(private val standardService: StandardService) {
             healthHazard,
             probeDto.result,
             probeDto.comment,
-            probeDto.probeRating,
+            probeDto.userRating,
             createdDate)
     }
 }

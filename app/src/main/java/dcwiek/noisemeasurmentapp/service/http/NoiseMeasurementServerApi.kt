@@ -15,12 +15,7 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.InputStream
 import java.security.KeyStore
-import java.security.SecureRandom
 import java.util.concurrent.TimeUnit
-import javax.net.ssl.KeyManagerFactory
-import javax.net.ssl.SSLContext
-import javax.net.ssl.TrustManagerFactory
-import javax.net.ssl.X509TrustManager
 
 
 class NoiseMeasurementServerApi(private val context: Context) {
@@ -37,24 +32,11 @@ class NoiseMeasurementServerApi(private val context: Context) {
         val JSON = "application/json; charset=utf-8".toMediaTypeOrNull()
 
         val TAG = NoiseMeasurementServerApi::class.java.simpleName
-        private lateinit var loggedUserName: String
-        private lateinit var loggedUserPassword: String
     }
 
     private val client: OkHttpClient
 
     init {
-        val sslContext = SSLContext.getInstance("SSL")
-        val trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm())
-        val keyStore: KeyStore = readKeystore()
-        trustManagerFactory.init(keyStore)
-        val keyManagerFactory =
-            KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm())
-        val trustManagers = trustManagerFactory.trustManagers
-        val trustManager = trustManagers[0] as X509TrustManager
-        keyManagerFactory.init(keyStore, "secret".toCharArray())
-        sslContext.init(keyManagerFactory.keyManagers, arrayOf(trustManager), SecureRandom())
-
         val cookieJar: ClearableCookieJar = PersistentCookieJar(SetCookieCache(), SharedPrefsCookiePersistor(context))
 
         client = OkHttpClient()
@@ -62,7 +44,6 @@ class NoiseMeasurementServerApi(private val context: Context) {
             .cookieJar(cookieJar)
             .connectTimeout(60, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
-            .sslSocketFactory(sslContext.socketFactory, trustManager)
             .build()
     }
 
@@ -85,8 +66,6 @@ class NoiseMeasurementServerApi(private val context: Context) {
     }
 
     fun prepareLoginRequest(username: String, password: String): Request {
-        loggedUserName = username
-        loggedUserPassword = password
         val builder = FormBody.Builder()
         val formBody = builder.build()
         return Request.Builder()
@@ -106,28 +85,24 @@ class NoiseMeasurementServerApi(private val context: Context) {
     fun preparePlacesRetrievalRequest(): Request {
         return Request.Builder()
             .url(EndpointConstants.NOISE_MEASUREMENT_SERVER_URL + PLACES_RETRIEVAL_RELATIVE_URL)
-//            .addHeader("Authorization", Credentials.basic(loggedUserName, loggedUserPassword))
             .build()
     }
 
     fun prepareRegulationsRetrievalRequest(): Request {
         return Request.Builder()
             .url(EndpointConstants.NOISE_MEASUREMENT_SERVER_URL + REGULATIONS_RETRIEVAL_RELATIVE_URL)
-//            .addHeader("Authorization", Credentials.basic(loggedUserName, loggedUserPassword))
             .build()
     }
 
     fun prepareStandardsRetrievalRequest(): Request {
         return Request.Builder()
             .url(EndpointConstants.NOISE_MEASUREMENT_SERVER_URL + STANDARDS_RETRIEVAL_RELATIVE_URL)
-//            .addHeader("Authorization", Credentials.basic(loggedUserName, loggedUserPassword))
             .build()
     }
 
     fun prepareProbesRetrievalRequest(): Request {
         return Request.Builder()
             .url(EndpointConstants.NOISE_MEASUREMENT_SERVER_URL + PROBES_RETRIEVAL_RELATIVE_URL)
-//            .addHeader("Authorization", Credentials.basic(loggedUserName, loggedUserPassword))
             .addHeader("Content-Type", "application/json")
             .post(Gson().toJson(ProbeRetrievalForm(null, null)).toRequestBody())
             .build()
@@ -144,7 +119,6 @@ class NoiseMeasurementServerApi(private val context: Context) {
 
         return Request.Builder()
             .url(EndpointConstants.NOISE_MEASUREMENT_SERVER_URL + PROBE_UPLOAD_RELATIVE_URL)
-//            .addHeader("Authorization", Credentials.basic(loggedUserName, loggedUserPassword, StandardCharsets.UTF_8))
             .addHeader("Content-Type", "application/json")
             .post(body.toRequestBody())
             .build()
