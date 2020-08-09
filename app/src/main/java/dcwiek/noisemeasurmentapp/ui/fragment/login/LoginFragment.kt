@@ -12,6 +12,7 @@ import dcwiek.noisemeasurmentapp.ui.fragment.common.fragment.ExtendedFragment
 import dcwiek.noisemeasurmentapp.ui.fragment.common.popup.PopupUtil
 import dcwiek.noisemeasurmentapp.ui.fragment.menu.MainMenuFragment
 import dcwiek.noisemeasurmentapp.ui.fragment.register.RegisterFragment
+import dcwiek.noisemeasurmentapp.ui.fragment.tour.AppTourFragment
 import kotlinx.android.synthetic.main.fragment_login.*
 import java.net.URL
 import java.util.*
@@ -46,6 +47,10 @@ class LoginFragment: ExtendedFragment() {
         replaceFragment(R.id.framelayout_main, MainMenuFragment.getInstance(), FragmentKeys.MAIN_MENU_FRAGMENT)
     }
 
+    fun createAppTourFragment() {
+        replaceFragment(R.id.framelayout_main, AppTourFragment.newInstance(), FragmentKeys.APP_TOUR_FRAGMENT)
+    }
+
     private class LoginAsyncTask(val loginFragment: LoginFragment, val username: String, val password: String) : AsyncTask<URL?, Int?, Optional<AppUser>>() {
 
         override fun doInBackground(vararg urls: URL?): Optional<AppUser> {
@@ -72,7 +77,12 @@ class LoginFragment: ExtendedFragment() {
 
         override fun onPostExecute(result: Optional<AppUser>) {
             if (result.isPresent) {
-                loginFragment.createMainMenuFragment()
+                if(result.get().firstLogIn) {
+                    loginFragment.createAppTourFragment()
+                } else {
+                    loginFragment.createMainMenuFragment()
+                }
+
             } else {
                 loginFragment.view?.let {
                     PopupUtil.createInfoPopup(loginFragment.requireContext(), it, "Nie udało się zalogować",

@@ -80,5 +80,16 @@
     <string name="rating_3">3</string>
     <string name="rating_4">4</string>
     <string name="rating_5">5</string>
+    <string name="apptour_header">Witaj w aplikacji pomiary hałasu!</string>
+    <string name="apptour_description">Dzięki tej aplikacji możesz oszacować poziom hałasu w Twoim otoczeniu oraz
+        wyznaczyć jego szkodliwość na podstawie norm prawnych lub zdrowotnych.
+    </string>
+    <string name="apptour_viewsdescription">Z poziomu menu głównego możesz przejść do jednego z 4 ekranów:</string>
+    <string name="apptour_proberecordlabel">Rejestrowanie hałasu</string>
+    <string name="apptour_probearchivelabel">Historia pomiarów</string>
+    <string name="apptour_probestandardslabel">Standardy prawne i zdrowotne</string>
+    <string name="apptour_apphelplabel">Pomoc nt. aplikacji</string>
+    <string name="apptour_beginbutton">Zaczynajmy</string>
+    <string name="apptour_ready">Gotowy?</string>
 
 </resources>
