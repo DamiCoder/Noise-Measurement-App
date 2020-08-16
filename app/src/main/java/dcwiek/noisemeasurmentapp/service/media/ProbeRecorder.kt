@@ -13,18 +13,15 @@ class ProbeRecorder constructor(val context: Context) {
     private var state = false
     private val TAG: String = ProbeRecorder::class.java.name
 
-    var maxAmplitude: Int = 0
+    var recordedProbe: File? = null
 
     companion object {
         private const val AUDIO_CHANNELS = 1
         const val RECORD_DURATION = 10000
         private const val AUDIO_ENCODING_BIT_RATE =  256 * 1024
         private const val AUDIO_SAMPLING_RATE =  48 * 1024
-        private const val MICROPHONE_SENSITIVITY =  16f
+        const val AMPLITUDE_REFERENCE_VALUE = 0.00013149
     }
-
-//    init {
-//    }
 
     private fun initializeProbeRecorder(context: Context) : ProbeRecorder {
         Log.i(TAG, "ProbeRecorder.initalizeProbeRecorder called")
@@ -41,6 +38,8 @@ class ProbeRecorder constructor(val context: Context) {
             recordedProbe.delete()
         }
 
+        this.recordedProbe = recordedProbe
+
         Log.i(TAG, "Output file location: $output")
 
         this.mediaRecorder = MediaRecorder()
@@ -54,12 +53,7 @@ class ProbeRecorder constructor(val context: Context) {
         this.mediaRecorder.setAudioSamplingRate(AUDIO_SAMPLING_RATE)
         this.mediaRecorder.setOutputFile(output)
 
-
         return this
-    }
-
-    fun changeOutputFileName(fileName: String) {
-        mediaRecorder.setOutputFile(getProbesFolder(context) + fileName)
     }
 
     fun startRecording() {
@@ -73,27 +67,15 @@ class ProbeRecorder constructor(val context: Context) {
 
     fun stopRecording() {
         if (state) {
-            this.maxAmplitude = getAmplitude()
             this.mediaRecorder.stop()
             this.mediaRecorder.release()
             this.state = false
         }
     }
 
-
-    private fun getAmplitude(): Int {
-        val maxAmplitude = this.mediaRecorder.maxAmplitude
-        Log.i(TAG, maxAmplitude.toString())
-        val maxAmplitudeFloat = maxAmplitude.toFloat()
-        Log.i(TAG, "Max ampl float: $maxAmplitudeFloat")
-        val division: Float = maxAmplitudeFloat / MICROPHONE_SENSITIVITY
-        val log: Float = kotlin.math.log10(division)
-        Log.i(TAG, "Division level: $division")
-        val dB: Float = 20f * log
-        Log.i(TAG, "DB level: ${dB.toInt()}")
-        return dB.toInt()
+    fun getPathToRecordedProbe(): String {
+        return getProbesFolder(context) + CUSTOM_PROBE_NAME
     }
-
 
     private fun getProbesFolder(context: Context): String {
         return context.getExternalFilesDir(null)?.absolutePath + "/" + PROBES_FOLDER

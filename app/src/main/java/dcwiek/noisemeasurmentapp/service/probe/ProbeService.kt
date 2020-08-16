@@ -7,6 +7,7 @@ import dcwiek.noisemeasurmentapp.application.dto.ProbeDto
 import dcwiek.noisemeasurmentapp.domain.model.Probe
 import dcwiek.noisemeasurmentapp.domain.model.Standard
 import dcwiek.noisemeasurmentapp.service.http.NoiseMeasurementServerApi
+import java.io.File
 import java.util.*
 import java.util.stream.Collectors
 
@@ -70,6 +71,20 @@ class ProbeService constructor(private val noiseMeasurementServerApi: NoiseMeasu
         }
     }
 
+    fun processProbeOnRemoteServer(probe: File, amplitudeReferenceValue: Double): Optional<Double> {
+        val request = noiseMeasurementServerApi.prepareProbeProcessingRequest(probe, amplitudeReferenceValue)
+        val response = noiseMeasurementServerApi.execute(request)
+        val body: String = response.body?.string()!!
 
+        Log.v(TAG, Gson().toJson(request))
+        Log.v(TAG, body)
 
+        val result: Optional<Double>
+        result = if(response.isSuccessful) {
+            Optional.of(body.toDouble())
+        } else {
+            Optional.empty()
+        }
+        return result
+    }
 }

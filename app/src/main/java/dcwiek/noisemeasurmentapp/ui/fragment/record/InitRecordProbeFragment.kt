@@ -7,8 +7,6 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import android.widget.*
 import dcwiek.noisemeasurmentapp.R
 import dcwiek.noisemeasurmentapp.domain.constants.Regulation
@@ -93,10 +91,8 @@ class InitRecordProbeFragment: ExtendedFragment() {
         placeSpinner.adapter = hintListAdapter
         placeSpinner.setSelection(spinnerValues.size - 1)
 
-        val animation: Animation = AnimationUtils.loadAnimation(context, R.anim.fade_in)
         fragment_initrecordprobe_layout.addView(placeSpinnerLabel)
         fragment_initrecordprobe_layout.addView(placeSpinner)
-        fragment_initrecordprobe_layout.startAnimation(animation)
 
         placeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {

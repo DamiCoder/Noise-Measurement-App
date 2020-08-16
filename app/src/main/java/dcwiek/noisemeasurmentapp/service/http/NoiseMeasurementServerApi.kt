@@ -12,7 +12,10 @@ import dcwiek.noisemeasurmentapp.domain.model.Place
 import dcwiek.noisemeasurmentapp.domain.model.Regulation
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
+import java.io.File
 import java.io.InputStream
 import java.security.KeyStore
 import java.util.concurrent.TimeUnit
@@ -27,6 +30,7 @@ class NoiseMeasurementServerApi(private val context: Context) {
         const val REGULATIONS_RETRIEVAL_RELATIVE_URL = "/api/regulation/retrieveAll"
         const val STANDARDS_RETRIEVAL_RELATIVE_URL = "/api/standard/retrieveAll"
         const val PROBES_RETRIEVAL_RELATIVE_URL = "/api/probe/retrieveAll"
+        const val PROBE_PROCESSING_RELATIVE_URL = "/api/probe/process/dbLevel"
         const val PROBE_UPLOAD_RELATIVE_URL = "/api/probe/upload"
 
         val JSON = "application/json; charset=utf-8".toMediaTypeOrNull()
@@ -105,6 +109,21 @@ class NoiseMeasurementServerApi(private val context: Context) {
             .url(EndpointConstants.NOISE_MEASUREMENT_SERVER_URL + PROBES_RETRIEVAL_RELATIVE_URL)
             .addHeader("Content-Type", "application/json")
             .post(Gson().toJson(ProbeRetrievalForm(null, null)).toRequestBody())
+            .build()
+    }
+
+    fun prepareProbeProcessingRequest(probe: File, amplitudeReferenceValue: Double): Request {
+
+        val formBody: RequestBody = MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("probe", probe.name, probe.asRequestBody("audio/mpeg".toMediaTypeOrNull()))
+            .addFormDataPart("referenceValue", amplitudeReferenceValue.toString())
+            .build()
+
+        return Request.Builder()
+            .url(EndpointConstants.NOISE_MEASUREMENT_SERVER_URL + PROBE_PROCESSING_RELATIVE_URL)
+            .addHeader("Content-Type", "multipart/form-data")
+            .post(formBody)
             .build()
     }
 
