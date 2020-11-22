@@ -20,7 +20,7 @@ class RegisterFragment : ExtendedFragment() {
         fun newInstance() = RegisterFragment()
     }
 
-    override fun onCreateView(        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?)
             : View? {
         return inflater.inflate(R.layout.fragment_register, container, false)
     }
@@ -46,7 +46,8 @@ class RegisterFragment : ExtendedFragment() {
         replaceFragment(R.id.framelayout_main, LoginFragment.newInstance())
     }
 
-    private class RegisterAsyncTask(val registerFragment: RegisterFragment, val username: String, val password: String) : AsyncTask<URL?, Int?, Optional<AppUser>>() {
+    private class RegisterAsyncTask(val registerFragment: RegisterFragment, val username: String, val password: String)
+        : AsyncTask<URL?, Int?, Optional<AppUser>>() {
         override fun doInBackground(vararg urls: URL?): Optional<AppUser> {
             return registerFragment.userService.register(username, password)
         }
@@ -56,12 +57,12 @@ class RegisterFragment : ExtendedFragment() {
 
         override fun onPostExecute(result: Optional<AppUser>) {
             if (result.isPresent) {
-                PopupUtil.createInfoPopup(registerFragment.requireContext(), registerFragment.requireView(), "Udało się założyć konto!",
-                    "Teraz możesz się zalogować")
+                PopupUtil.createInfoPopup(registerFragment.requireContext(), registerFragment.requireView(),
+                    "Udało się założyć konto!", "Teraz możesz się zalogować")
                 registerFragment.switchToLoginFragment()
             } else {
-                PopupUtil.createInfoPopup(registerFragment.requireContext(), registerFragment.requireView(), "Nie udało się zarejestrować",
-                        "Spróbuj ponownie za jakiś czas")
+                PopupUtil.createInfoPopup(registerFragment.requireContext(), registerFragment.requireView(),
+                    "Nie udało się zarejestrować", "Spróbuj ponownie za jakiś czas")
             }
         }
     }

@@ -16,7 +16,7 @@ import dcwiek.noisemeasurmentapp.ui.fragment.login.LoginFragment
 class MainActivity : AppCompatActivity() {
 
     companion object {
-        const val LOGIN_FRAGMENT_LOAD_TIME : Long = 2000;
+        const val LOGIN_FRAGMENT_LOAD_TIME : Long = 2000
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,6 +58,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-
+        //None action is made on back button press
     }
 }

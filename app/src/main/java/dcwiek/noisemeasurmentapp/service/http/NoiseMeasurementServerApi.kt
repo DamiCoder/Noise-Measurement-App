@@ -7,7 +7,6 @@ import com.franmontiel.persistentcookiejar.PersistentCookieJar
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
 import com.google.gson.Gson
-import dcwiek.noisemeasurmentapp.R
 import dcwiek.noisemeasurmentapp.domain.model.Place
 import dcwiek.noisemeasurmentapp.domain.model.Regulation
 import okhttp3.*
@@ -16,8 +15,6 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
-import java.io.InputStream
-import java.security.KeyStore
 import java.util.concurrent.TimeUnit
 
 
@@ -49,20 +46,6 @@ class NoiseMeasurementServerApi(private val context: Context) {
             .connectTimeout(60, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
             .build()
-    }
-
-    private fun readKeystore(): KeyStore {
-        val ks = KeyStore.getInstance("PKCS12")
-        val password: CharArray = "secret".toCharArray()
-
-        var fis: InputStream? = null
-        try {
-            fis = context.resources.openRawResource(R.raw.noisemeasurementserver)
-            ks.load(fis, password)
-        } finally {
-            fis?.close()
-        }
-        return ks
     }
 
     fun execute(request: Request): Response {

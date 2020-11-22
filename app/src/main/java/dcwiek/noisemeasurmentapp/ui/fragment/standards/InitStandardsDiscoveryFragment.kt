@@ -30,10 +30,18 @@ class InitStandardsDiscoveryFragment: ExtendedFragment() {
             changeRadioButtonsAppearance()
         }
         button_initstandardsview_continue.setOnClickListener {
-            if(initstandardsdiscovery_radiogroup.checkedRadioButtonId == R.id.initstandardsdiscovery_law_radiobutton) {
-                replaceFragment(R.id.framelayout_main, StandardsDiscoveryFragment.newInstance(Regulation.LAW), FragmentKeys.STANDARDS_DISCOVERY_FRAGMENT)
+            if (initstandardsdiscovery_radiogroup.checkedRadioButtonId == R.id.initstandardsdiscovery_law_radiobutton) {
+                replaceFragment(
+                    R.id.framelayout_main,
+                    StandardsDiscoveryFragment.newInstance(Regulation.LAW),
+                    FragmentKeys.STANDARDS_DISCOVERY_FRAGMENT
+                )
             } else {
-                replaceFragment(R.id.framelayout_main, StandardsDiscoveryFragment.newInstance(Regulation.SCIENTIFIC), FragmentKeys.STANDARDS_DISCOVERY_FRAGMENT)
+                replaceFragment(
+                    R.id.framelayout_main,
+                    StandardsDiscoveryFragment.newInstance(Regulation.SCIENTIFIC),
+                    FragmentKeys.STANDARDS_DISCOVERY_FRAGMENT
+                )
             }
         }
     }

@@ -56,7 +56,6 @@
             android:id="@+id/button_register_back" android:background="@drawable/arrow_back"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="24dp" android:layout_marginStart="24dp"
-            style="?android:attr/borderlessButtonStyle"
-    />
+            style="?android:attr/borderlessButtonStyle"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,7 +7,6 @@ import dcwiek.noisemeasurmentapp.application.module.service.NoiseMeasurementServ
 
 class NoiseMeasurementApplication : Application() {
     private lateinit var probeRecorderComponent: ProbeRecorderComponent
-//    private lateinit var storageComponent: StorageComponent
     private lateinit var notificationComponent: NotificationComponent
     private lateinit var appServiceComponent: AppServiceComponent
 
@@ -19,10 +18,6 @@ class NoiseMeasurementApplication : Application() {
             .builder()
             .contextModule(contextModule)
             .build()
-//
-//        storageComponent = DaggerStorageComponent.builder()
-//            .contextModule(contextModule)
-//            .build()
 
         appServiceComponent = DaggerAppServiceComponent.builder()
             .contextModule(contextModule)
@@ -35,8 +30,6 @@ class NoiseMeasurementApplication : Application() {
     }
 
     fun getProbeRecorderComponent(): ProbeRecorderComponent = probeRecorderComponent
-
-//    fun getStorageComponent(): StorageComponent = storageComponent
 
     fun getNotificationComponent(): NotificationComponent = notificationComponent
 

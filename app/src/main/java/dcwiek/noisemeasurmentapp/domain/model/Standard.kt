@@ -17,17 +17,4 @@ class Standard(
             "Zagrożenie: $title"
         }
     }
-
-    companion object {
-//        fun mockStandard(regulation: Regulation): Standard {
-//            return if(regulation.name == dcwiek.noisemeasurmentapp.domain.constants.Regulation.SCIENTIFIC.name) {
-//                val place = Place(0, "Place name", "Quite short place description", "ABC", regulation)
-//                Standard(0, "Dobry", "Quite short standard description", 10, 35, regulation, place)
-//            } else {
-//                val place = Place(0, "Place name", "Quite short place description", "", regulation)
-//                Standard(0, "Dobry", "Quite short standard description", 10, 35, regulation, place)
-//            }
-//        }
-    }
-
 }

@@ -5,7 +5,6 @@ import dagger.Component
 import dcwiek.noisemeasurmentapp.application.module.ContextModule
 import dcwiek.noisemeasurmentapp.application.module.service.*
 import dcwiek.noisemeasurmentapp.domain.DataStorage
-import dcwiek.noisemeasurmentapp.service.SharedPreferencesService
 import dcwiek.noisemeasurmentapp.service.place.PlaceService
 import dcwiek.noisemeasurmentapp.service.probe.ProbeMapper
 import dcwiek.noisemeasurmentapp.service.probe.ProbeService
@@ -16,8 +15,8 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(modules = [DataStorageModule::class, ContextModule::class, UserServiceModule::class,
-        NoiseMeasurementServerApiModule::class, PlaceServiceModule::class, SharedPreferencesModule::class,
-        StandardServiceModule::class, ProbeServiceModule::class, ProbeMapperModule::class])
+        NoiseMeasurementServerApiModule::class, PlaceServiceModule::class, StandardServiceModule::class,
+    ProbeServiceModule::class, ProbeMapperModule::class])
 interface AppServiceComponent {
 
     fun getContext(): Context
@@ -25,7 +24,6 @@ interface AppServiceComponent {
     fun getPlaceService(): PlaceService
     fun getRegulationService(): RegulationService
     fun getStandardService(): StandardService
-    fun getSharedPreferencesService(): SharedPreferencesService
     fun getDataStorage(): DataStorage
     fun getProbeService(): ProbeService
     fun getProbeMapper(): ProbeMapper

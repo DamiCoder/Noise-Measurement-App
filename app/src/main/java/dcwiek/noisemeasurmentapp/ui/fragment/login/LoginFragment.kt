@@ -51,7 +51,8 @@ class LoginFragment: ExtendedFragment() {
         replaceFragment(R.id.framelayout_main, AppTourFragment.newInstance(), FragmentKeys.APP_TOUR_FRAGMENT)
     }
 
-    private class LoginAsyncTask(val loginFragment: LoginFragment, val username: String, val password: String) : AsyncTask<URL?, Int?, Optional<AppUser>>() {
+    private class LoginAsyncTask(val loginFragment: LoginFragment, val username: String, val password: String)
+        : AsyncTask<URL?, Int?, Optional<AppUser>>() {
 
         override fun doInBackground(vararg urls: URL?): Optional<AppUser> {
             val userOptional = loginFragment.userService.login(username, password)

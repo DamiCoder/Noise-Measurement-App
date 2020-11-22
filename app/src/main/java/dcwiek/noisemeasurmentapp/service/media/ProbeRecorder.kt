@@ -3,8 +3,8 @@ package dcwiek.noisemeasurmentapp.service.media
 import android.content.Context
 import android.media.MediaRecorder
 import android.util.Log
-import dcwiek.noisemeasurmentapp.ui.constants.ProbesConstants.Companion.CUSTOM_PROBE_NAME
 import dcwiek.noisemeasurmentapp.ui.constants.ProbesConstants.Companion.PROBES_FOLDER
+import dcwiek.noisemeasurmentapp.ui.constants.ProbesConstants.Companion.REGISTERED_PROBE_NAME
 import java.io.File
 
 class ProbeRecorder constructor(val context: Context) {
@@ -20,13 +20,13 @@ class ProbeRecorder constructor(val context: Context) {
         const val RECORD_DURATION = 10000
         private const val AUDIO_ENCODING_BIT_RATE =  256 * 1024
         private const val AUDIO_SAMPLING_RATE =  48 * 1024
-        const val AMPLITUDE_REFERENCE_VALUE = 0.00013149
+        const val AMPLITUDE_REFERENCE_VALUE = 0.0000038355
     }
 
     private fun initializeProbeRecorder(context: Context) : ProbeRecorder {
         Log.i(TAG, "ProbeRecorder.initalizeProbeRecorder called")
         val folderPath = getProbesFolder(context)
-        val output = folderPath + CUSTOM_PROBE_NAME
+        val output = folderPath + REGISTERED_PROBE_NAME
 
         val probesDirectory = File(folderPath)
         if (!probesDirectory.exists()) {
@@ -71,10 +71,6 @@ class ProbeRecorder constructor(val context: Context) {
             this.mediaRecorder.release()
             this.state = false
         }
-    }
-
-    fun getPathToRecordedProbe(): String {
-        return getProbesFolder(context) + CUSTOM_PROBE_NAME
     }
 
     private fun getProbesFolder(context: Context): String {

@@ -27,7 +27,7 @@ class AppTourFragment: ExtendedFragment() {
         }
     }
 
-    fun createMainMenuFragment() {
+    private fun createMainMenuFragment() {
         replaceFragment(R.id.framelayout_main, MainMenuFragment.getInstance(), FragmentKeys.MAIN_MENU_FRAGMENT)
     }
 }

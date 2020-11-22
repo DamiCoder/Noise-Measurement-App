@@ -13,7 +13,6 @@ import com.google.android.gms.location.LocationServices
 import dcwiek.noisemeasurmentapp.R
 import dcwiek.noisemeasurmentapp.application.NoiseMeasurementApplication
 import dcwiek.noisemeasurmentapp.domain.DataStorage
-import dcwiek.noisemeasurmentapp.service.SharedPreferencesService
 import dcwiek.noisemeasurmentapp.service.place.PlaceService
 import dcwiek.noisemeasurmentapp.service.probe.ProbeService
 import dcwiek.noisemeasurmentapp.service.regulation.RegulationService
@@ -25,7 +24,6 @@ import dcwiek.noisemeasurmentapp.ui.fragment.menu.MainMenuFragment
 
 open class ExtendedFragment: Fragment() {
 
-    lateinit var sharedPreferencesService: SharedPreferencesService
     lateinit var dataStorage: DataStorage
     lateinit var userService: UserService
     lateinit var placeService: PlaceService
@@ -41,7 +39,6 @@ open class ExtendedFragment: Fragment() {
         val application = requireContext().applicationContext as NoiseMeasurementApplication
         val appServiceComponent = application.getAppServiceComponent()
 
-        sharedPreferencesService = appServiceComponent.getSharedPreferencesService()
         dataStorage = appServiceComponent.getDataStorage()
         userService = appServiceComponent.getUserService()
         placeService = appServiceComponent.getPlaceService()
@@ -52,24 +49,6 @@ open class ExtendedFragment: Fragment() {
             fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity)
         }
     }
-
-//    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-//        val application = requireContext().applicationContext as NoiseMeasurementApplication
-//        val storageComponent = application.getStorageComponent()
-//        appServiceComponent = application.getAppServiceComponent()
-//
-//        sharedPreferencesService = storageComponent.getSharedPreferencesService()
-//        dataStorage = storageComponent.getDataStorage()
-
-//        return super.onCreateView(inflater, container, savedInstanceState)
-//    }
-
-//    override fun onAttach(context: Context) {
-//        super.onAttach(context)
-////        val storageComponent = (requireContext().applicationContext as NoiseMeasurementApplication).getStorageComponent()
-//        sharedPreferencesService = storageComponent.getSharedPreferencesService()
-//        dataStorage = storageComponent.getDataStorage()
-//    }
 
     fun replaceFragment(containerId: Int, replacement: Fragment){
         fragmentManager
@@ -111,6 +90,5 @@ open class ExtendedFragment: Fragment() {
                 inputMethodManager.hideSoftInputFromWindow(activity!!.currentFocus!!.windowToken, 0)
             }
         }
-
     }
 }

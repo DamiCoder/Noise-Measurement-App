@@ -49,15 +49,18 @@ class StandardService @Inject constructor(private val noiseMeasurementServerApi:
 
         val healthHazardDeterminator = HealthHazardDeterminator()
         filteredStandards.forEach {
-            if(result >= it.maxValue) {
-                healthHazardDeterminator.logHighHazard()
-            } else if(result >= it.minValue) {
-                healthHazardDeterminator.logMediumHazard()
-            } else {
-                healthHazardDeterminator.logNoneHazard()
+            when {
+                result >= it.maxValue -> {
+                    healthHazardDeterminator.logHighHazard()
+                }
+                result >= it.minValue -> {
+                    healthHazardDeterminator.logMediumHazard()
+                }
+                else -> {
+                    healthHazardDeterminator.logNoneHazard()
+                }
             }
         }
-
         return healthHazardDeterminator.determineHealthHazard()
     }
 
