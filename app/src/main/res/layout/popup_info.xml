@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:orientation="vertical"
+                                                   android:layout_width="350dp"
+                                                   android:layout_height="280dp"
+                                                   android:background="@drawable/popup_bg">
+    <TextView
+            android:text="Header"
+            tools:ignore="HardcodedText"
+            android:layout_width="296dp"
+            android:layout_height="33dp"
+            android:id="@+id/popup_header"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="@color/header" android:textAlignment="center"
+            android:fontFamily="@font/open_sans_semibold"
+            android:textStyle="bold" android:textSize="18sp"/>
+    <TextView
+            android:layout_width="290dp"
+            android:layout_height="97dp"
+            tools:ignore="HardcodedText"
+            android:id="@+id/popup_comment" android:textAlignment="center"
+            app:layout_constraintTop_toBottomOf="@+id/popup_header" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="8dp"
+            android:textColor="@color/inputHint" android:fontFamily="@font/open_sans"
+            android:text="Popup content" app:layout_constraintHorizontal_bias="0.515" android:textSize="16sp"/>
+    <Button
+            android:text="OK"
+            android:layout_width="70dp"
+            tools:ignore="HardcodedText"
+            android:layout_height="30dp" android:id="@+id/popup_okbutton"
+            app:layout_constraintTop_toBottomOf="@+id/popup_comment"
+            android:layout_marginTop="24dp" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" android:background="@drawable/login_button_bg"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

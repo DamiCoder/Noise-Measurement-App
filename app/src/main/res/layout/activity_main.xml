@@ -5,7 +5,4 @@
              android:animateLayoutChanges="true"
              android:layout_height="match_parent" android:id="@+id/framelayout_main"
              android:background="@color/backgroundColor">
-
-
-
 </FrameLayout>

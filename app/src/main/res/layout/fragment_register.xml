@@ -22,19 +22,20 @@
             android:inputType="textPersonName"
             android:ems="10"
             android:background="@drawable/input_bg"
-            android:id="@+id/editText"
+            android:id="@+id/register_usernameedittext"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView"
-            android:layout_marginTop="84dp" android:gravity="center" android:hint="@string/email_input"
-            android:fontFamily="@font/open_sans_light" android:alpha="0.9" android:textColor="@color/userInput"/>
+            android:layout_marginTop="20dp" android:gravity="center" android:hint="@string/email_input"
+            android:fontFamily="@font/open_sans_light" android:alpha="0.9" android:textColor="@color/userInput"
+            app:layout_constraintHorizontal_bias="0.503"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
             android:background="@drawable/input_bg"
-            android:id="@+id/editText2"
-            app:layout_constraintTop_toBottomOf="@+id/editText"
+            android:id="@+id/register_passwordedittext"
+            app:layout_constraintTop_toBottomOf="@+id/register_usernameedittext"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="12dp" android:hint="@string/pwd_input" android:gravity="center"
             android:fontFamily="@font/open_sans_light" android:alpha="0.9" android:textColor="@color/userInput"/>
@@ -43,19 +44,18 @@
             android:background="@drawable/login_button_bg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button_login_login"
-            app:layout_constraintTop_toBottomOf="@+id/editText2" android:layout_marginTop="28dp"
+            android:id="@+id/button_register_register"
+            app:layout_constraintTop_toBottomOf="@+id/register_passwordedittext" android:layout_marginTop="104dp"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
             android:fontFamily="@font/open_sans_bold" android:paddingLeft="30dp" android:paddingRight="30dp"
             android:alpha="1"
-    />
+            app:layout_constraintHorizontal_bias="0.498"/>
     <Button
             android:layout_width="24dp"
             android:layout_height="30dp"
             android:id="@+id/button_register_back" android:background="@drawable/arrow_back"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="24dp" android:layout_marginStart="24dp"
-            style="?android:attr/borderlessButtonStyle"
-    />
+            style="?android:attr/borderlessButtonStyle"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

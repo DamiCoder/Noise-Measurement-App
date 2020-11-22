@@ -15,19 +15,22 @@ import dcwiek.noisemeasurmentapp.ui.fragment.login.LoginFragment
 
 class MainActivity : AppCompatActivity() {
 
+    companion object {
+        const val LOGIN_FRAGMENT_LOAD_TIME : Long = 2000
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         switchToLoadingFragment()
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            val permissions = arrayOf(Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED
+            && ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+            && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            val permissions = arrayOf(Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.ACCESS_COARSE_LOCATION)
             ActivityCompat.requestPermissions(this, permissions,0)
         }
-        Handler().postDelayed({
-            switchToLoginFragment()
-        }, 2000)
+        Handler().postDelayed({ switchToLoginFragment() }, LOGIN_FRAGMENT_LOAD_TIME)
     }
 
     private fun switchToLoginFragment() {
@@ -55,7 +58,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        //None action is made on back button press
     }
-
-
 }

@@ -4,14 +4,27 @@
                                                    android:orientation="vertical"
                                                    android:layout_width="match_parent"
                                                    android:layout_height="match_parent">
-
+    <TextView android:layout_width="match_parent" android:layout_height="60dp"
+              app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+              android:id="@+id/textView20" android:layout_marginTop="76dp"
+              android:textColor="@color/header" android:textAlignment="center" android:textSize="24sp"
+              android:fontFamily="@font/open_sans_bold" android:text="@string/archive_fragment_header"
+              android:gravity="center"/>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="@android:color/darker_gray" android:id="@+id/linearLayout3"
+            app:layout_constraintTop_toBottomOf="@+id/textView20" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+    </LinearLayout>
     <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp" app:srcCompat="@drawable/ic_archive_emptylist"
             android:id="@+id/imageView5"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="156dp"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.498"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintTop_toTopOf="@+id/linearLayout3" android:layout_marginTop="80dp"/>
     <TextView
             android:text="@string/archive_emptylist_text"
             android:layout_width="289dp"

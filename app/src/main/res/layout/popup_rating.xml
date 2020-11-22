@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:orientation="vertical"
+                                                   android:layout_width="350dp"
+                                                   android:layout_height="200dp"
+                                                   android:background="@drawable/popup_bg">
+    <TextView
+            android:text="Dodaj ocenę"
+            tools:ignore="HardcodedText"
+            android:layout_width="296dp"
+            android:layout_height="33dp"
+            android:id="@+id/popup_rating_header"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="@color/header" android:textAlignment="center"
+            android:fontFamily="@font/open_sans_semibold"
+            android:textStyle="bold" android:textSize="18sp"/>
+
+    <Button
+            android:text="OK"
+            android:layout_width="70dp"
+            tools:ignore="HardcodedText"
+            android:layout_height="30dp" android:id="@+id/popup_rating_okbutton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" android:background="@drawable/login_button_bg"
+            app:layout_constraintTop_toBottomOf="@+id/popup_rating_radiogroup" android:layout_marginTop="28dp"/>
+    <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/popup_rating_header" android:layout_marginTop="25dp"
+            android:id="@+id/popup_rating_radiogroup">
+        <RadioButton
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:button="@android:color/transparent"
+                android:text="@string/rating_1"
+                android:id="@+id/radioButton"
+                android:background="@drawable/radio_button_background" android:gravity="center"
+                android:layout_marginHorizontal="10dp" android:fontFamily="@font/open_sans_bold"
+                android:textSize="18sp"
+                android:textColor="@color/contraryBlue"
+        />
+        <RadioButton
+                android:layout_width="30dp"
+                android:button="@android:color/transparent"
+                android:text="@string/rating_2"
+                android:textColor="@color/contraryBlue"
+                android:layout_height="30dp" android:id="@+id/radioButton2"
+                android:background="@drawable/radio_button_background" android:gravity="center"
+                android:layout_marginHorizontal="10dp" android:fontFamily="@font/open_sans_bold"
+                android:textSize="18sp"/>
+        <RadioButton
+                android:layout_width="30dp"
+                android:button="@android:color/transparent"
+                android:checked="true"
+                android:textColor="@android:color/white"
+                android:layout_height="30dp" android:id="@+id/radioButton3"
+                android:background="@drawable/radio_button_background"
+                android:text="@string/rating_3" android:gravity="center" android:layout_marginHorizontal="10dp"
+                android:fontFamily="@font/open_sans_bold" android:textSize="18sp"/>
+        <RadioButton
+                android:layout_width="30dp"
+                android:button="@android:color/transparent"
+                android:textColor="@color/contraryBlue"
+                android:layout_height="30dp" android:id="@+id/radioButton4" android:layout_weight="1"
+                android:background="@drawable/radio_button_background" android:text="@string/rating_4" android:gravity="center"
+                android:layout_marginHorizontal="10dp" android:fontFamily="@font/open_sans_bold"
+                android:textSize="18sp"/>
+        <RadioButton
+                android:layout_width="30dp"
+                android:textColor="@color/contraryBlue"
+                android:button="@android:color/transparent"
+                android:text="@string/rating_5"
+                android:layout_height="30dp" android:id="@+id/radioButton5" android:layout_weight="1"
+                android:background="@drawable/radio_button_background" android:gravity="center"
+                android:layout_marginHorizontal="10dp" android:fontFamily="@font/open_sans_bold"
+                android:textSize="18sp"/>
+    </RadioGroup>
+</androidx.constraintlayout.widget.ConstraintLayout>

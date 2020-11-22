@@ -23,6 +23,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main {
+            assets {
+                srcDirs 'src/main/assets', 'assets'
+            }
+        }
+    }
 }
 
 dependencies {
@@ -45,4 +52,27 @@ dependencies {
     implementation 'com.google.dagger:dagger:2.13'
     kapt 'com.google.dagger:dagger-compiler:2.13'
 
+    //OKHttp
+    implementation("com.squareup.okhttp3:okhttp:4.8.0")
+    implementation group: 'com.github.franmontiel', name: 'PersistentCookieJar', version: 'v1.0.1'
+
+    //Gson
+    implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.6'
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
 }
+
+repositories {
+    maven{
+        url = uri("https://repository.mulesoft.org/nexus/content/repositories/public/")
+    }
+}
+
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == "com.android.support") {
+            if (!requested.name.startsWith("multidex")) {
+                details.useVersion "26.+"
+            }
+        }
+    }}
