@@ -11,6 +11,7 @@ Application has been created for Android system and is fully written in Kotlin l
 
 You can see below some in-app screenshots, where created solution is shown:
 <br/>
+
 <img src="resources/screenshots/login_view.JPG" alt="Login View screenshot" height="320"/> 
 <img src="resources/screenshots/app_tour.jpg" alt="App Tour View screenshot" height="320"/> 
 <img src="resources/screenshots/empty_archive.jpg" alt="Empty Archive View screenshot" height="320"/>
@@ -18,4 +19,3 @@ You can see below some in-app screenshots, where created solution is shown:
 <img src="resources/screenshots/processing_in_progress.jpg" alt="Probe Processing In Progress View screenshot" height="320"/> 
 <img src="resources/screenshots/success.jpg" alt="Probe Processing Success View screenshot" height="320"/> 
 <img src="resources/screenshots/registered_probe.jpg" alt="Probe Details View screenshot" height="320"/> 
-<br/>
