@@ -10,20 +10,12 @@ Mobile application is used to:
 Application has been created for Android system and is fully written in Kotlin language.
 
 You can see below some in-app screenshots, where created solution is shown:
-<div class="margin: 20px auto;
-              width:400px;
-              height:320px;
-              background-color:#fff;
-              display:grid;
-              grid-template-columns: 200px 200px 200px;
-              grid-row: auto auto;
-              grid-column-gap: 20px;
-              grid-row-gap: 20px;">
+<br/>
 <img src="resources/screenshots/login_view.JPG" alt="Login View screenshot" height="320"/> 
 <img src="resources/screenshots/app_tour.jpg" alt="App Tour View screenshot" height="320"/> 
 <img src="resources/screenshots/empty_archive.jpg" alt="Empty Archive View screenshot" height="320"/>
+<br/>
 <img src="resources/screenshots/processing_in_progress.jpg" alt="Probe Processing In Progress View screenshot" height="320"/> 
 <img src="resources/screenshots/success.jpg" alt="Probe Processing Success View screenshot" height="320"/> 
 <img src="resources/screenshots/registered_probe.jpg" alt="Probe Details View screenshot" height="320"/> 
-</div>
 <br/>
